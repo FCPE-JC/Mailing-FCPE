@@ -1,0 +1,24 @@
+Objet : Merci pour la kermesse 🎉
+
+Bonjour à tous,
+
+## 📅 Samedi 20 juin
+> Un immense merci à toutes les familles qui ont fait de la kermesse du **samedi 20 juin** une très belle fête !
+
+## ℹ️
+Grâce à vous, nous avons récolté **1 240 €**, qui serviront à financer la sortie de fin d'année des CM2.
+
+## 🎉
+Merci aussi aux 35 bénévoles qui ont tenu les stands, installé le préau et rangé jusqu'au soir.
+
+Les photos des stands (sans enfants) sont à retrouver ici :
+[Ouvrir le lien →](https://exemple-fcpe.fr/kermesse/photos)
+
+## 📅
+*PS : des objets oubliés attendent leur propriétaire au bureau de la directrice jusqu'au 3 juillet.*
+
+---
+À l'année prochaine !
+
+Amicalement,
+Les représentants FCPE

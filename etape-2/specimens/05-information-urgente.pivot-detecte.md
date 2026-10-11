@@ -1,0 +1,24 @@
+Objet : ⚠️ Grève jeudi 12 mars : pas de cantine
+
+Chers parents,
+
+## ⚠️ Jeudi 12 mars
+::: important
+Attention
+En raison d'un mouvement de grève, la cantine et la garderie du soir seront fermées le jeudi 12 mars.
+:::
+
+## ℹ️
+La mairie met en place un service minimum d'accueil le matin uniquement, de 8 h 30 à 11 h 30, au gymnase Paul-Bert.
+
+## 🍽️
+Pensez à prévoir un repas pour votre enfant s'il reste à l'école l'après-midi.
+
+Toutes les informations de la mairie :
+[Lire le document →](https://exemple-mairie.fr/greve-12-mars.pdf)
+
+---
+Nous vous tiendrons informés si la situation évolue.
+
+Bon courage à tous,
+Vos représentants FCPE

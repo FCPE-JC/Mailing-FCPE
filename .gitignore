@@ -1,0 +1,31 @@
+# Aucun document réel dans le dépôt : PDF, images, scans, emails et tableurs sont bloqués.
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.heic
+*.heif
+*.bmp
+*.tif
+*.tiff
+*.svg
+*.eml
+*.msg
+*.mbox
+*.xls
+*.xlsx
+*.xlsm
+*.ods
+*.csv
+
+# Logo extrait du modèle, à placer à la main à côté de rendu.py
+logo.datauri
+
+# Fichiers produits par les outils de travail
+etape-2/specimens/rendus/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
