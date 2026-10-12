@@ -6,7 +6,7 @@ Chers parents,
 ## 🏫
 Avec **10 sièges sur 17** au conseil d’école, nous sommes heureux de pouvoir continuer à vous représenter et à faire entendre vos préoccupations auprès de l’équipe pédagogique, des services municipaux et de la direction de l’école 🤝
 
-## 📅 Lundi 12 octobre
+## 🗓️ Lundi 12 octobre
 Comme nous vous l’avions indiqué, nous rencontrerons la mairie le **lundi 12 octobre** afin d’échanger au sujet des activités et services périscolaires. Pour préparer au mieux ce rendez-vous, nous vous invitons à nous faire part de vos questions, remarques et suggestions en remplissant ce formulaire :
 [Répondre au questionnaire →](https://forms.gle/1Nt2nqQBzQuYxjVs9)
 

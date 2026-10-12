@@ -17,9 +17,9 @@ Nous préparons un outil qui met en forme les emails des représentants FCPE. Ce
 Ceci est un exemple d'encadré pour une information à ne pas manquer.
 :::
 
-## 📅 Rendez-vous fictif
+## 🗓️ Rendez-vous fictif
 ::: date
-📅 Jeudi 5 novembre à 18 h 30
+🗓️ Jeudi 5 novembre à 18 h 30
 📍 Salle d'exemple
 :::
 

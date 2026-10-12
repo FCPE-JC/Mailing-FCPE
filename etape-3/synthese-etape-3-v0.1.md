@@ -63,6 +63,10 @@ Les autres risques ne sont pas touchés par l'étape 3. Aucun nouveau risque.
 - Doc#1, déroulé : étape 3 « Terminée » le 12/10/2026.
 - Doc#2 : synthèse de l'étape 3 (ce document, section « En bref »), dépôt : demande de fusion n° 2.
 
+## Réponses de Mat (12/10/2026, 21:11)
+
+1 oui, 3 oui, 4 oui, 5 oui, 6 oui, 7 oui (demande de fusion n° 2 fusionnée). Question 2 : Mat demande des précisions avant de se positionner ; QO-010 reste en attente de sa réponse.
+
 ## Questions à trancher
 
 Réponds par oui ou non à chaque numéro, ou « OK pour tout ».

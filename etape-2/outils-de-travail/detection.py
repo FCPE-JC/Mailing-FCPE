@@ -19,7 +19,7 @@ LIEU = re.compile(r'\b(salle|mairie|école|ecole|préau|preau|gymnase|cantine|m�
 # D15 : dictionnaire des pastilles, dans l'ordre de priorité
 PICTOS = [
     ('⚠️', r'\b(urgent|grève|greve|fermeture|annul\w*|alerte)\b'),
-    ('📅', None),  # présence d'une date (D9)
+    ('🗓️', None),  # présence d'une date (D9)
     ('🔒', r'\b(anonym\w*|confidenti\w*)\b'),
     ('🍽️', r'\b(cantine|repas|restauration|menus?)\b'),
     ('📝', r'\b(questionnaire|formulaire|sondage|témoignages?|avis)\b'),
@@ -130,7 +130,7 @@ def detecter(brut):
             date_lieu = (DATE.search(v) and HEURE.search(v) and LIEU.search(v) and len(v) <= 160)
             if date_lieu and bloc[0] == 'para':
                 parts = [x.strip(' .') for x in re.split(r'(?<=\d)\s*,\s+|[.;]\s+|\s+[-–]\s+', v) if x.strip(' .')]
-                parts = [('📅 ' if q == 0 else ('📍 ' if LIEU.search(x) else '')) + x[:1].upper() + x[1:] for q, x in enumerate(parts)]
+                parts = [('🗓️ ' if q == 0 else ('📍 ' if LIEU.search(x) else '')) + x[:1].upper() + x[1:] for q, x in enumerate(parts)]
                 bloc = ('date', parts)
             intro_lien = v.endswith(':') and len(v) <= 80 and k + 1 < len(elems) and elems[k+1][0] == 'lien'
             nouvelle = ((not a_des_titres) and not (intro_lien and sec is not None)) or sec is None

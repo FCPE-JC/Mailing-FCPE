@@ -5,9 +5,9 @@ Chers parents,
 ## ☕
 > Nous avons le plaisir de vous inviter au premier café des parents de l'année.
 
-## 📅 Rendez-vous
+## 🗓️ Rendez-vous
 ::: date
-📅 Jeudi 5 novembre à 8 h 30
+🗓️ Jeudi 5 novembre à 8 h 30
 📍 Salle polyvalente de l'école
 :::
 
