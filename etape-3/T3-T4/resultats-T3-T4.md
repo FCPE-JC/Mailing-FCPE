@@ -24,9 +24,11 @@ Notes de 1 (pas du tout) à 4 (tout à fait).
 | Ligne | Appareil | Durée | Corrections | Q1 lisibilité | Q2 toucher un bloc | Q3 clavier | Q4 boutons de partage | Q5 envie |
 |---|---|---|---|---|---|---|---|---|
 | T4-A | Android | 1:21 | 9 | 4 | 4 | 4 (corrigé) | 4 | 4 |
-| T4-I | iPhone | | | | | | | |
+| T4-I | iPhone (autre testeuse) | 0:59 | 2 | 4 | 4 | 4 | 4 | 4 |
 
-Q3 était formulée « Le clavier gêne-t-il peu la saisie et la relecture ? » : la double négation rend la note 1 ambiguë. Précision de Mat : « Le clavier ne m'a pas dérangé. Il réduit la fenêtre de modification du texte, mais ça reste OK. » La note se lit donc 4 (pas de gêne). Question reformulée dans la maquette pour l'iPhone : « La saisie et la relecture restent-elles confortables avec le clavier ouvert ? »
+Q3 était formulée « Le clavier gêne-t-il peu la saisie et la relecture ? » : la double négation rend la note 1 ambiguë. Précision de Mat : « Le clavier ne m'a pas dérangé. Il réduit la fenêtre de modification du texte, mais ça reste OK. » La note se lit donc 4 (pas de gêne).
+
+T4-I (12/10, 20:40) : passage fait par une autre personne sur iPhone, avec la question 3 reformulée et la version WhatsApp corrigée (DEC-057). 2 corrections enregistrées au lieu des 3 demandées (deux blocs et une pastille). Question reformulée dans la maquette pour l'iPhone : « La saisie et la relecture restent-elles confortables avec le clavier ouvert ? »
 
 **Collage dans WhatsApp (Android)** : le texte s'affiche bien, avec les titres en gras et les émojis. Seule gêne de lecture relevée par Mat : certains sauts de ligne du texte initial disparaissent, par exemple entre « vos questions » et « Pour nous aider ».
 
