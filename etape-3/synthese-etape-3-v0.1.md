@@ -22,7 +22,8 @@ Les quatre tests sont faits et aucun n'a bloqué. L'email se copie vers Gmail d'
 
 1. **En-tête sur téléphone** (T2, vérifié sur 4 captures) : le texte à droite du logo passe sur six lignes étroites, parce que la colonne du logo garde sa largeur fixe de 150 pixels. Correction à étudier à l'étape 4 ou 5 ; la piste n'est pas choisie (les styles « réactifs » ne survivent pas forcément au collage dans Gmail).
 2. **Police du titre de date et de la clôture** (T1, constat sur une capture) : ils semblent plus larges que l'Arial gras du modèle. Cause non recherchée ; à revoir pendant le développement.
-3. **Sauts de ligne de la version WhatsApp** (T4) : corrigé le 12/10 dans `rendu.py` (DEC-057).
+3. **Sauts de ligne de la version WhatsApp** (T4) : corrigé le 12/10 dans `rendu.py` (DEC-057), vérifié sur la capture iPhone.
+4. **Émoji 📅 trompeur** (T4, capture iPhone) : il s'affiche comme une page de calendrier portant une date imprimée (« FEB 24 »), à côté de la vraie date de l'événement. L'émoji 🗓️ (calendrier à spirale) ne porte en principe pas de date : c'est déduit des jeux d'émojis courants, non vérifié.
 
 ## Mises à jour proposées des documents
 
@@ -71,4 +72,5 @@ Réponds par oui ou non à chaque numéro, ou « OK pour tout ».
 3. **Bouton de l'image.** L'outil propose seulement « Enregistrer l'image », sans « Copier l'image » ? *Je préconise oui : la copie ne colle pas dans WhatsApp, et un bouton inutile embrouille.*
 4. **En-tête sur téléphone.** Inscrire la correction de l'en-tête (texte sur six lignes) comme point à traiter aux étapes 4 et 5, sans choisir la solution maintenant ? *Je préconise oui : la solution dépend de ce que Gmail garde au collage, à vérifier avec l'architecture.*
 5. **Revue des risques.** Valider les nouvelles cotations de RSK-001, RSK-003 et RSK-004, et la mesure ajoutée à RSK-007 ? *Je préconise oui.*
-6. **Clôture de l'étape 3.** Clore l'étape, dont la condition de sortie est remplie (résultats consignés, QO-001 répondue, QO-003 et QO-010 renvoyées, constat de QO-002 noté, Doc#6 complété, Doc#8 revu) ? *Je préconise oui, une fois la demande de fusion n° 2 relue et fusionnée par toi.*
+6. **Émoji de la date.** Remplacer 📅 par 🗓️ dans la charte, la détection et les rendus ? *Je préconise oui : 📅 affiche une fausse date sur la capture ; 🗓️ ne devrait pas, ce que je fais vérifier en recette.*
+7. **Clôture de l'étape 3.** Clore l'étape, dont la condition de sortie est remplie (résultats consignés, QO-001 répondue, QO-003 et QO-010 renvoyées, constat de QO-002 noté, Doc#6 complété, Doc#8 revu) ? *Je préconise oui, une fois la demande de fusion n° 2 relue et fusionnée par toi.*
