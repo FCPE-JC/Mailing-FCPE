@@ -1,0 +1,266 @@
+<title>Test T3 Mailing-FCPE</title>
+<style>
+/* Mise en page : une colonne d'outil ; la commande en haut, les images produites dessous, l'email source à la fin. */
+:root {
+  --fond: #f5f6fb;
+  --surface: #ffffff;
+  --texte: #1f2440;
+  --doux: #5a6080;
+  --bord: #d9dcea;
+  --accent: #263f9d;
+  --accent-texte: #ffffff;
+  --vert: #3f7d1f;
+  --vert-fond: #e8f4de;
+  --rouge: #a3282b;
+  --rouge-fond: #fbe6e6;
+  --police: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --police-mono: Consolas, Menlo, "Courier New", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --fond: #12152a; --surface: #1c2140; --texte: #e8eaf6; --doux: #a7acc8; --bord: #343a63;
+    --accent: #8ea2f2; --accent-texte: #10142a; --vert: #9fd57c; --vert-fond: #1f3317;
+    --rouge: #f29a9c; --rouge-fond: #3a1c1e; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --fond: #12152a; --surface: #1c2140; --texte: #e8eaf6; --doux: #a7acc8; --bord: #343a63;
+  --accent: #8ea2f2; --accent-texte: #10142a; --vert: #9fd57c; --vert-fond: #1f3317;
+  --rouge: #f29a9c; --rouge-fond: #3a1c1e; color-scheme: dark;
+}
+body { background: var(--fond); color: var(--texte); font-family: var(--police); font-size: 16px; line-height: 1.5; margin: 0; }
+.page { max-width: 760px; margin: 0 auto; padding-inline: 16px; padding-block: 24px 48px; display: grid; gap: 20px; }
+.page > * { min-width: 0; }
+h1 { font-size: 1.6rem; margin: 0; text-wrap: balance; }
+h2 { font-size: 1.1rem; margin: 0; }
+h3 { font-size: 1rem; margin: 0; }
+p { margin: 0; }
+.chapeau { color: var(--doux); }
+.panneau { background: var(--surface); border: 1px solid var(--bord); border-radius: 12px; padding: 16px; display: grid; gap: 12px; min-width: 0; }
+.etiquette { font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--doux); font-weight: 600; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+button.principal, button.second { font: 600 1rem var(--police); padding: 10px 16px; border-radius: 10px; cursor: pointer; }
+button.principal { background: var(--accent); color: var(--accent-texte); border: 1px solid var(--accent); }
+button.second { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+button:disabled { opacity: .5; cursor: default; }
+button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.resultat { border-radius: 10px; padding: 12px 14px; display: grid; gap: 4px; background: var(--fond); border: 1px solid var(--bord); }
+.resultat.ok { background: var(--vert-fond); border-color: var(--vert); }
+.resultat.ko { background: var(--rouge-fond); border-color: var(--rouge); }
+.env { font: .85rem var(--police-mono); color: var(--doux); overflow-wrap: anywhere; }
+ol { margin: 0; padding-left: 1.3em; display: grid; gap: 4px; }
+.format { display: grid; gap: 10px; border-top: 1px solid var(--bord); padding-top: 12px; }
+.format .mesures { font: .85rem var(--police-mono); color: var(--doux); font-variant-numeric: tabular-nums; }
+.images { display: grid; gap: 8px; }
+.images img { width: 100%; height: auto; border: 1px solid var(--bord); border-radius: 8px; background: #ffffff; }
+.cadre-email { border: 1px solid var(--bord); border-radius: 12px; overflow: hidden; overflow-x: auto; }
+@media (prefers-reduced-motion: no-preference) { button { transition: transform .1s; } button:active { transform: scale(.98); } }
+</style>
+
+<main class="page">
+  <header style="display:grid;gap:6px">
+    <p class="etiquette">Mailing-FCPE · étape 3 · test T3</p>
+    <h1>Transformer l'email en image</h1>
+    <p class="chapeau">Cette page n'envoie rien et ne conserve rien. Tu notes les résultats dans la fiche et tu me les envoies dans le fil.</p>
+  </header>
+
+  <section class="panneau" aria-labelledby="t-creer">
+    <h2 id="t-creer">1. Crée les images</h2>
+    <div class="actions"><button class="principal" id="creer">Créer l'image</button></div>
+    <div class="resultat" id="resultat" role="status" aria-live="polite">
+      <strong id="res-titre">Pas encore créée</strong>
+      <span id="res-detail">La page dessine l'email en trois formats : une image longue, puis deux et trois morceaux. Le résultat s'affiche ici.</span>
+    </div>
+    <p class="env" id="env"></p>
+  </section>
+
+  <section class="panneau" aria-labelledby="t-formats">
+    <h2 id="t-formats">2. Enregistre, puis partage dans WhatsApp</h2>
+    <ol>
+      <li>Pour chaque format : « Enregistrer » (claude.ai te demande de confirmer), ou appui long sur l'image puis « Enregistrer l'image ».</li>
+      <li>Dans WhatsApp, envoie les images à toi-même ou à un groupe de test, depuis la galerie.</li>
+      <li>Ouvre-les dans WhatsApp et zoome sur un paragraphe : note si le texte reste lisible.</li>
+    </ol>
+    <div id="formats" class="images"><p class="chapeau">Les images apparaîtront ici.</p></div>
+  </section>
+
+  <section aria-labelledby="t-email" style="display:grid;gap:8px">
+    <h2 id="t-email">L'email source</h2>
+    <div class="cadre-email">
+      <div id="email" style="__STYLE_BODY__">__EMAIL__</div>
+    </div>
+  </section>
+</main>
+
+<script>
+const LARGEUR = 560;   // largeur de l'email dans l'image, en pixels CSS
+const ECHELLE = 2;     // densité de l'image : 2 pixels par pixel CSS
+const email = document.getElementById('email');
+let downloads = null;
+
+function afficher(ok, titre, detail) {
+  const r = document.getElementById('resultat');
+  r.className = 'resultat ' + (ok ? 'ok' : 'ko');
+  document.getElementById('res-titre').textContent = titre;
+  document.getElementById('res-detail').textContent = detail;
+}
+
+function navigateur() {
+  const ua = navigator.userAgent;
+  const nav = /Edg\//.test(ua) ? 'Edge' : /Firefox\//.test(ua) ? 'Firefox' : /CriOS|Chrome\//.test(ua) ? 'Chrome' : /Safari\//.test(ua) ? 'Safari' : 'autre';
+  const sys = /Windows/.test(ua) ? 'Windows' : /iPhone|iPad/.test(ua) ? 'iPhone/iPad' : /Android/.test(ua) ? 'Android' : /Mac OS X/.test(ua) ? 'Mac' : 'autre';
+  return 'Navigateur : ' + nav + ' · Système : ' + sys + ' · Écran : ' + window.innerWidth + ' px, densité ' + (window.devicePixelRatio || 1);
+}
+document.getElementById('env').textContent = navigateur();
+
+// Copie hors écran de l'email, à la largeur choisie, pour mesurer et dessiner.
+async function preparerCopie() {
+  const copie = document.createElement('div');
+  copie.setAttribute('style', email.getAttribute('style') + 'width:' + LARGEUR + 'px;');
+  copie.innerHTML = email.innerHTML;
+  const hote = document.createElement('div');
+  hote.style.cssText = 'position:fixed;left:-10000px;top:0;';
+  hote.appendChild(copie);
+  document.body.appendChild(hote);
+  await Promise.all([...copie.querySelectorAll('img')].map(i => i.decode ? i.decode().catch(() => {}) : null));
+  const hauteur = Math.ceil(copie.getBoundingClientRect().height);
+  const haut = copie.getBoundingClientRect().top;
+  // Points de coupe possibles : le haut de chaque section du fil, puis le filet de clôture.
+  const coupes = [...copie.querySelectorAll('td[width="46"]')]
+    .map(td => Math.round(td.closest('table').getBoundingClientRect().top - haut));
+  return { copie, hote, hauteur, coupes };
+}
+
+function chargerImage(src) {
+  return new Promise((ok, ko) => {
+    const img = new Image();
+    img.onload = () => ok(img);
+    img.onerror = () => ko(new Error("le navigateur n'a pas pu lire le dessin de l'email"));
+    img.src = src;
+  });
+}
+
+function versBlob(canevas) {
+  return new Promise((ok, ko) => {
+    try { canevas.toBlob(b => b ? ok(b) : ko(new Error('image vide')), 'image/png'); }
+    catch (e) { ko(e); }
+  });
+}
+
+function choisirCoupes(coupes, hauteur, n) {
+  const choix = [];
+  for (let k = 1; k < n; k++) {
+    const cible = hauteur * k / n;
+    let meilleure = null;
+    coupes.forEach(c => { if (c > 0 && (meilleure === null || Math.abs(c - cible) < Math.abs(meilleure - cible))) meilleure = c; });
+    if (meilleure !== null && !choix.includes(meilleure)) choix.push(meilleure);
+  }
+  return choix.sort((a, b) => a - b);
+}
+
+async function enregistrer(blob, nom, bouton) {
+  if (!downloads) return;
+  bouton.disabled = true;
+  try {
+    await downloads.save({ filename: nom, data: blob });
+    bouton.textContent = 'Enregistrée';
+  } catch (e) {
+    bouton.textContent = e && e.code === 'declined' ? 'Enregistrement annulé' : 'Échec : ' + ((e && (e.code || e.message)) || 'inconnu');
+    bouton.disabled = false;
+  }
+}
+
+async function copierImage(blob, bouton) {
+  try {
+    await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+    bouton.textContent = 'Image copiée';
+  } catch (e) {
+    bouton.textContent = 'Copie refusée : ' + (e.name || 'erreur');
+  }
+}
+
+function ajouterFormat(titre, morceaux, nomBase) {
+  const bloc = document.createElement('div');
+  bloc.className = 'format';
+  const h = document.createElement('h3');
+  h.textContent = titre;
+  const mesures = document.createElement('p');
+  mesures.className = 'mesures';
+  mesures.textContent = morceaux.map((m, i) => 'Image ' + (i + 1) + ' : ' + m.largeur + ' × ' + m.hauteur + ' px, ' + Math.round(m.blob.size / 1024) + ' Ko').join(' · ');
+  const images = document.createElement('div');
+  images.className = 'images';
+  morceaux.forEach((m, i) => {
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(m.blob);
+    img.alt = titre + ', image ' + (i + 1) + ' sur ' + morceaux.length;
+    const actions = document.createElement('div');
+    actions.className = 'actions';
+    const nom = nomBase + (morceaux.length > 1 ? '-' + (i + 1) : '') + '.png';
+    if (downloads) {
+      const b = document.createElement('button');
+      b.className = 'second';
+      b.textContent = 'Enregistrer ' + (morceaux.length > 1 ? 'le morceau ' + (i + 1) : "l'image");
+      b.addEventListener('click', () => enregistrer(m.blob, nom, b));
+      actions.appendChild(b);
+    }
+    if (navigator.clipboard && window.ClipboardItem) {
+      const c = document.createElement('button');
+      c.className = 'second';
+      c.textContent = 'Copier ' + (morceaux.length > 1 ? 'le morceau ' + (i + 1) : "l'image");
+      c.addEventListener('click', () => copierImage(m.blob, c));
+      actions.appendChild(c);
+    }
+    images.appendChild(img);
+    images.appendChild(actions);
+  });
+  bloc.append(h, mesures, images);
+  document.getElementById('formats').appendChild(bloc);
+}
+
+document.getElementById('creer').addEventListener('click', async () => {
+  const bouton = document.getElementById('creer');
+  bouton.disabled = true;
+  afficher(true, 'Création en cours…', 'Le navigateur dessine l\'email.');
+  document.getElementById('formats').innerHTML = '';
+  const debut = performance.now();
+  let prep;
+  try {
+    prep = await preparerCopie();
+    const xhtml = new XMLSerializer().serializeToString(prep.copie);
+    const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + LARGEUR + '" height="' + prep.hauteur + '">' +
+      '<foreignObject x="0" y="0" width="100%" height="100%">' + xhtml + '</foreignObject></svg>';
+    const dessin = await chargerImage('data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg));
+    const complet = document.createElement('canvas');
+    complet.width = LARGEUR * ECHELLE;
+    complet.height = prep.hauteur * ECHELLE;
+    const ctx = complet.getContext('2d');
+    ctx.fillStyle = '#f4f4f8';
+    ctx.fillRect(0, 0, complet.width, complet.height);
+    ctx.drawImage(dessin, 0, 0, complet.width, complet.height);
+    const long = await versBlob(complet);
+    const fin = Math.round(performance.now() - debut);
+    ajouterFormat('Image longue', [{ blob: long, largeur: complet.width, hauteur: complet.height }], 'apercu-test-long');
+    for (const n of [2, 3]) {
+      const bornes = [0, ...choisirCoupes(prep.coupes, prep.hauteur, n), prep.hauteur];
+      const morceaux = [];
+      for (let i = 0; i + 1 < bornes.length; i++) {
+        const h = (bornes[i + 1] - bornes[i]) * ECHELLE;
+        const c = document.createElement('canvas');
+        c.width = complet.width;
+        c.height = h;
+        c.getContext('2d').drawImage(complet, 0, bornes[i] * ECHELLE, complet.width, h, 0, 0, complet.width, h);
+        morceaux.push({ blob: await versBlob(c), largeur: c.width, hauteur: h });
+      }
+      ajouterFormat('En ' + morceaux.length + ' morceaux', morceaux, 'apercu-test-' + n + '-morceaux');
+    }
+    afficher(true, 'Images créées', 'Image longue créée en ' + fin + ' ms, sans bibliothèque. Les trois formats sont plus bas.');
+  } catch (e) {
+    afficher(false, 'Création impossible', 'Erreur : ' + (e && e.name ? e.name + ' : ' : '') + (e && e.message ? e.message : String(e)) + '. Recopie ce message dans la fiche : c\'est un résultat du test.');
+  } finally {
+    if (prep) prep.hote.remove();
+    bouton.disabled = false;
+  }
+});
+
+window.claude?.use?.('downloads').then(d => { downloads = d; }).catch(() => {});
+</script>

@@ -1,0 +1,36 @@
+Objet : [Test] Mailing-FCPE, rendu de l'email
+
+Chers parents,
+
+## 🧪
+> Ce message est un test de mise en forme : vous n'avez rien à faire, merci de ne pas y répondre.
+
+## 🏫 Ce que nous vérifions
+Nous préparons un outil qui met en forme les emails des représentants FCPE. Cet email contient **tous les éléments** de la charte, pour voir comment votre messagerie les affiche.
+
+- un paragraphe et une note ;
+- une liste comme celle-ci ;
+- un encadré, un rendez-vous et un bouton.
+
+## ⚠️ Encadré
+::: important
+Ceci est un exemple d'encadré pour une information à ne pas manquer.
+:::
+
+## 📅 Rendez-vous fictif
+::: date
+📅 Jeudi 5 novembre à 18 h 30
+📍 Salle d'exemple
+:::
+
+Le bouton ci-dessous mène à une page d'exemple, sans rien à remplir :
+[Voir la page d'exemple →](https://example.com/)
+
+## 🔒 Confidentialité
+*Aucune donnée n'est collectée par ce test. Ce paragraphe est un exemple de note discrète.*
+
+---
+Merci d'avoir regardé ce test ✨
+
+Bien cordialement,
+Vos représentants FCPE

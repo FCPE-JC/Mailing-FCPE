@@ -29,3 +29,6 @@ __pycache__/
 *.pyc
 .DS_Store
 Thumbs.db
+
+# Pages de test construites : elles contiennent le logo intégré
+etape-3/**/page-test-*.html

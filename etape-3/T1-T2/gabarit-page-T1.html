@@ -1,0 +1,205 @@
+<title>Test T1 Mailing-FCPE</title>
+<style>
+/* Mise en page : une colonne d'outil, la commande en haut, l'email de test dessous, sur son propre fond. */
+:root {
+  --fond: #f5f6fb;
+  --surface: #ffffff;
+  --texte: #1f2440;
+  --doux: #5a6080;
+  --bord: #d9dcea;
+  --accent: #263f9d;
+  --accent-texte: #ffffff;
+  --vert: #3f7d1f;
+  --vert-fond: #e8f4de;
+  --rouge: #a3282b;
+  --rouge-fond: #fbe6e6;
+  --police: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --police-mono: Consolas, Menlo, "Courier New", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --fond: #12152a; --surface: #1c2140; --texte: #e8eaf6; --doux: #a7acc8; --bord: #343a63;
+    --accent: #8ea2f2; --accent-texte: #10142a; --vert: #9fd57c; --vert-fond: #1f3317;
+    --rouge: #f29a9c; --rouge-fond: #3a1c1e; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --fond: #12152a; --surface: #1c2140; --texte: #e8eaf6; --doux: #a7acc8; --bord: #343a63;
+  --accent: #8ea2f2; --accent-texte: #10142a; --vert: #9fd57c; --vert-fond: #1f3317;
+  --rouge: #f29a9c; --rouge-fond: #3a1c1e; color-scheme: dark;
+}
+body { background: var(--fond); color: var(--texte); font-family: var(--police); font-size: 16px; line-height: 1.5; margin: 0; }
+.page { max-width: 760px; margin: 0 auto; padding-inline: 16px; padding-block: 24px 48px; display: grid; gap: 20px; }
+.page > * { min-width: 0; }
+h1 { font-size: 1.6rem; margin: 0; text-wrap: balance; }
+h2 { font-size: 1.1rem; margin: 0; }
+p { margin: 0; }
+.chapeau { color: var(--doux); }
+.panneau { background: var(--surface); border: 1px solid var(--bord); border-radius: 12px; padding: 16px; display: grid; gap: 12px; min-width: 0; }
+.etiquette { font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--doux); font-weight: 600; }
+.codes { display: flex; flex-wrap: wrap; gap: 8px; }
+.code { font: 600 .95rem var(--police-mono); padding: 6px 10px; border-radius: 8px; border: 1px solid var(--bord); background: var(--fond); color: var(--texte); cursor: pointer; }
+.code[aria-pressed="true"] { background: var(--accent); color: var(--accent-texte); border-color: var(--accent); }
+.objet { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.objet output { font-family: var(--police-mono); background: var(--fond); border: 1px dashed var(--bord); border-radius: 8px; padding: 6px 10px; user-select: all; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+button.principal, button.second { font: 600 1rem var(--police); padding: 10px 16px; border-radius: 10px; cursor: pointer; }
+button.principal { background: var(--accent); color: var(--accent-texte); border: 1px solid var(--accent); }
+button.second { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.resultat { border-radius: 10px; padding: 12px 14px; display: grid; gap: 4px; background: var(--fond); border: 1px solid var(--bord); }
+.resultat.ok { background: var(--vert-fond); border-color: var(--vert); }
+.resultat.ko { background: var(--rouge-fond); border-color: var(--rouge); }
+.resultat strong { font-size: 1.02rem; }
+.env { font: .85rem var(--police-mono); color: var(--doux); overflow-wrap: anywhere; }
+ol, ul { margin: 0; padding-left: 1.3em; display: grid; gap: 4px; }
+.cadre-email { border: 1px solid var(--bord); border-radius: 12px; overflow: hidden; overflow-x: auto; }
+@media (prefers-reduced-motion: no-preference) { button { transition: transform .1s; } button:active { transform: scale(.98); } }
+</style>
+
+<main class="page">
+  <header style="display:grid;gap:6px">
+    <p class="etiquette">Mailing-FCPE · étape 3 · test T1</p>
+    <h1>Copier l'email de test vers Gmail</h1>
+    <p class="chapeau">Cette page n'envoie rien et ne conserve rien. Tu notes les résultats dans la fiche et tu me les envoies dans le fil.</p>
+  </header>
+
+  <section class="panneau" aria-labelledby="t-ligne">
+    <h2 id="t-ligne">1. Choisis la ligne du test</h2>
+    <div class="codes" role="group" aria-label="Ligne du test">
+      <button class="code" id="c-W1" data-code="T1-W1" aria-pressed="true">T1-W1</button>
+      <button class="code" id="c-W2" data-code="T1-W2" aria-pressed="false">T1-W2</button>
+      <button class="code" id="c-W3" data-code="T1-W3" aria-pressed="false">T1-W3</button>
+      <button class="code" id="c-M1" data-code="T1-M1" aria-pressed="false">T1-M1</button>
+      <button class="code" id="c-M2" data-code="T1-M2" aria-pressed="false">T1-M2</button>
+      <button class="code" id="c-M3" data-code="T1-M3" aria-pressed="false">T1-M3</button>
+    </div>
+    <p id="ligne-desc" class="chapeau"></p>
+    <div class="objet"><span>Objet à mettre dans Gmail :</span> <output id="objet"></output></div>
+  </section>
+
+  <section class="panneau" aria-labelledby="t-copie">
+    <h2 id="t-copie">2. Copie l'email</h2>
+    <div class="actions">
+      <button class="principal" id="copier">Copier l'email</button>
+      <button class="second" id="selectionner">Tout sélectionner</button>
+    </div>
+    <p class="chapeau">« Copier l'email » sert aux lignes « bouton ». « Tout sélectionner » sert aux lignes « sélection à la main » : sélectionne, puis Ctrl+C (Cmd+C sur Mac).</p>
+    <div class="resultat" id="resultat" role="status" aria-live="polite">
+      <strong id="res-titre">Pas encore copié</strong>
+      <span id="res-detail">Le résultat de la copie s'affichera ici. Recopie-le dans la fiche.</span>
+    </div>
+    <p class="env" id="env"></p>
+  </section>
+
+  <section class="panneau" aria-labelledby="t-gmail">
+    <h2 id="t-gmail">3. Colle et envoie depuis la boîte commune</h2>
+    <ol>
+      <li>Dans Gmail, ouvre un nouveau message et colle (Ctrl+V ou Cmd+V) dans le corps.</li>
+      <li>Avant d'envoyer, fais une capture de la fenêtre de rédaction.</li>
+      <li>Mets l'objet indiqué plus haut, ton adresse en destinataire, et envoie.</li>
+      <li>Note dans la fiche : en-tête bleu, logo, pastilles et trait du fil, couleurs, encadré, bloc date, bouton.</li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="t-email" style="display:grid;gap:8px">
+    <h2 id="t-email">L'email de test</h2>
+    <div class="cadre-email">
+      <div id="email" style="__STYLE_BODY__">__EMAIL__</div>
+    </div>
+  </section>
+</main>
+
+<script>
+const TEXTE = __TEXTE__;
+const LIGNES = {
+  "T1-W1": "Windows, Chrome, bouton « Copier l'email »",
+  "T1-W2": "Windows, Edge, bouton « Copier l'email »",
+  "T1-W3": "Windows, Chrome, sélection à la main",
+  "T1-M1": "Mac, Safari, bouton « Copier l'email »",
+  "T1-M2": "Mac, Chrome, bouton « Copier l'email »",
+  "T1-M3": "Mac, Safari, sélection à la main"
+};
+const email = document.getElementById('email');
+const enLigne = location.protocol !== 'file:';
+let code = 'T1-W1';
+
+function choisir(c) {
+  code = c;
+  document.querySelectorAll('.code').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.code === c)));
+  document.getElementById('ligne-desc').textContent = LIGNES[c];
+  document.getElementById('objet').textContent = '[Test] ' + c + (enLigne ? '' : ' fichier');
+}
+document.querySelectorAll('.code').forEach(b => b.addEventListener('click', () => choisir(b.dataset.code)));
+
+function navigateur() {
+  const ua = navigator.userAgent;
+  const nav = /Edg\//.test(ua) ? 'Edge' : /Firefox\//.test(ua) ? 'Firefox' : /Chrome\//.test(ua) ? 'Chrome' : /Safari\//.test(ua) ? 'Safari' : 'autre';
+  const sys = /Windows/.test(ua) ? 'Windows' : /iPhone|iPad/.test(ua) ? 'iPhone/iPad' : /Android/.test(ua) ? 'Android' : /Mac OS X/.test(ua) ? 'Mac' : 'autre';
+  let cadre = 'non';
+  try { cadre = window.self !== window.top ? 'oui' : 'non'; } catch (e) { cadre = 'oui'; }
+  return 'Navigateur : ' + nav + ' · Système : ' + sys + ' · Ouverture : ' + (enLigne ? 'page en ligne' : 'fichier téléchargé') +
+    ' · Page encadrée : ' + cadre + ' · Contexte sécurisé : ' + (window.isSecureContext ? 'oui' : 'non') +
+    ' · Copie moderne disponible : ' + ((navigator.clipboard && window.ClipboardItem) ? 'oui' : 'non');
+}
+document.getElementById('env').textContent = navigateur();
+
+function afficher(ok, titre, detail) {
+  const r = document.getElementById('resultat');
+  r.className = 'resultat ' + (ok ? 'ok' : 'ko');
+  document.getElementById('res-titre').textContent = titre;
+  document.getElementById('res-detail').textContent = detail;
+}
+
+function selectionner() {
+  const sel = window.getSelection();
+  const r = document.createRange();
+  r.selectNodeContents(email);
+  sel.removeAllRanges();
+  sel.addRange(r);
+}
+
+function htmlEmail() {
+  return '<div style="' + email.getAttribute('style') + '">' + email.innerHTML + '</div>';
+}
+
+function copieAncienne(html, erreurModerne) {
+  let ecrit = false;
+  const surCopie = ev => {
+    ev.clipboardData.setData('text/html', html);
+    ev.clipboardData.setData('text/plain', TEXTE);
+    ev.preventDefault();
+    ecrit = true;
+  };
+  document.addEventListener('copy', surCopie);
+  let ok = false, erreur = '';
+  try { selectionner(); ok = document.execCommand('copy'); } catch (e) { erreur = e.name + ': ' + e.message; }
+  document.removeEventListener('copy', surCopie);
+  window.getSelection().removeAllRanges();
+  const avant = 'Méthode moderne refusée (' + erreurModerne + '). ';
+  if (ok && ecrit) afficher(true, 'Copié par la méthode ancienne', avant + 'La méthode ancienne a réussi. Colle maintenant dans Gmail.');
+  else afficher(false, 'Copie impossible', avant + 'Méthode ancienne : ' + (erreur || 'refusée par le navigateur') + '. Essaie le fichier téléchargé, puis « Tout sélectionner ».');
+}
+
+document.getElementById('copier').addEventListener('click', () => {
+  const html = htmlEmail();
+  if (!(navigator.clipboard && window.ClipboardItem)) { copieAncienne(html, 'non disponible dans ce navigateur'); return; }
+  let item;
+  try {
+    item = new ClipboardItem({
+      'text/html': new Blob([html], { type: 'text/html' }),
+      'text/plain': new Blob([TEXTE], { type: 'text/plain' })
+    });
+  } catch (e) { copieAncienne(html, e.name + ': ' + e.message); return; }
+  navigator.clipboard.write([item])
+    .then(() => afficher(true, 'Copié par la méthode moderne', "L'email est dans le presse-papier, en version mise en forme et en version texte. Colle maintenant dans Gmail."))
+    .catch(e => copieAncienne(html, e.name + ': ' + e.message));
+});
+
+document.getElementById('selectionner').addEventListener('click', () => {
+  selectionner();
+  afficher(true, 'Email sélectionné', 'Fais maintenant Ctrl+C (Cmd+C sur Mac), puis colle dans Gmail.');
+});
+
+choisir(code);
+</script>
