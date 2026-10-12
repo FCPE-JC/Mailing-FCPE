@@ -213,7 +213,7 @@ def sortie_texte(doc, wa):
                 o.append(('⚠️ *IMPORTANT*' if wa else 'IMPORTANT'))
                 o += [L(x) for x in corps]
             elif ty == 'date': o += [L(x) for x in v]
-            o.append('')  # ligne vide entre chaque bloc (DEC de l'étape 3, retour T4)
+            o.append('')  # ligne vide entre chaque bloc (DEC-057, retour T4)
     if doc['cloture']: o += [L(doc['cloture']), '']
     if doc['signature']:
         o.append(doc['signature'][0])
