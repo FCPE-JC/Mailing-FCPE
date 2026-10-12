@@ -1,0 +1,372 @@
+<title>Maquette T4 Mailing-FCPE</title>
+<style>
+/* Mise en page : une application de téléphone en une colonne ; barre du haut (étape, chrono), écran courant, barre d'onglets en bas. */
+:root {
+  --fond: #f5f6fb;
+  --surface: #ffffff;
+  --texte: #1f2440;
+  --doux: #5a6080;
+  --bord: #d9dcea;
+  --accent: #263f9d;
+  --accent-texte: #ffffff;
+  --accent-doux: #e7ebfa;
+  --vert: #3f7d1f;
+  --vert-fond: #e8f4de;
+  --orange: #8a5a00;
+  --orange-fond: #fff3d6;
+  --voile: rgba(16, 20, 42, .45);
+  --police: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --police-mono: Consolas, Menlo, "Courier New", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --fond: #12152a; --surface: #1c2140; --texte: #e8eaf6; --doux: #a7acc8; --bord: #343a63;
+    --accent: #8ea2f2; --accent-texte: #10142a; --accent-doux: #262d57; --vert: #9fd57c; --vert-fond: #1f3317;
+    --orange: #f2c46b; --orange-fond: #3a2e12; --voile: rgba(0, 0, 0, .6); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --fond: #12152a; --surface: #1c2140; --texte: #e8eaf6; --doux: #a7acc8; --bord: #343a63;
+  --accent: #8ea2f2; --accent-texte: #10142a; --accent-doux: #262d57; --vert: #9fd57c; --vert-fond: #1f3317;
+  --orange: #f2c46b; --orange-fond: #3a2e12; --voile: rgba(0, 0, 0, .6); color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--fond); color: var(--texte); font-family: var(--police); font-size: 16px; line-height: 1.45; margin: 0; }
+.appli { max-width: 480px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; padding-inline: 16px; }
+.haut { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--fond); padding-block: 12px 8px; display: flex; align-items: center; justify-content: space-between; gap: 8px; border-bottom: 1px solid var(--bord); }
+.haut strong { font-size: 1.05rem; }
+.chrono { font: 600 .95rem var(--police-mono); font-variant-numeric: tabular-nums; color: var(--doux); }
+.bandeau { font-size: .85rem; color: var(--orange); background: var(--orange-fond); border-radius: 8px; padding: 6px 10px; margin-top: 10px; }
+main { flex: 1; padding-block: 14px 96px; display: grid; gap: 14px; align-content: start; }
+main > * { min-width: 0; }
+h2 { font-size: 1.15rem; margin: 0; }
+p { margin: 0; }
+.chapeau { color: var(--doux); font-size: .95rem; }
+label { font-weight: 600; font-size: .95rem; }
+textarea, input[type="text"] { width: 100%; font: 16px var(--police); color: var(--texte); background: var(--surface); border: 1px solid var(--bord); border-radius: 10px; padding: 10px 12px; }
+textarea { min-height: 42vh; resize: vertical; }
+textarea:focus, input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.rangee { display: flex; flex-wrap: wrap; gap: 8px; }
+button { font: 600 1rem var(--police); border-radius: 10px; padding: 12px 16px; cursor: pointer; min-height: 44px; }
+.principal { background: var(--accent); color: var(--accent-texte); border: 1px solid var(--accent); }
+.second { background: var(--surface); color: var(--accent); border: 1px solid var(--accent); }
+.large { width: 100%; }
+button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.compteur { display: flex; justify-content: space-between; font-size: .85rem; color: var(--doux); font-variant-numeric: tabular-nums; }
+.conseils { display: grid; gap: 4px; font-size: .88rem; }
+.conseils p { background: var(--orange-fond); color: var(--orange); border-radius: 8px; padding: 6px 10px; }
+.conseils p.bon { background: var(--vert-fond); color: var(--vert); }
+.groupe { background: var(--surface); border: 1px solid var(--bord); border-radius: 12px; padding: 14px; display: grid; gap: 10px; }
+.groupe h3 { margin: 0; font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--doux); }
+.retour { font-size: .9rem; color: var(--vert); min-height: 1.3em; }
+/* Aperçu de l'email : couleurs fixes de la charte, comme l'email réel. */
+.email { background: #f4f4f8; border-radius: 14px; padding: 10px 6px; }
+.carte { background: #ffffff; border-radius: 16px; overflow: hidden; color: #2a2a3a; font-family: Arial, Helvetica, sans-serif; }
+.entete { background: #263f9d; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 16px; border-bottom: 3px solid #7ab850; }
+.entete img { width: 92px; height: auto; display: block; }
+.entete p { color: #ffffff; text-align: right; font-size: 12px; }
+.entete strong { font-size: 13px; }
+.corps { padding: 16px 14px 18px; display: grid; gap: 14px; }
+.salut { color: #383288; font-size: 21px; font-weight: 700; }
+.section { display: grid; grid-template-columns: 34px 1fr; gap: 10px; }
+.pastille { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-size: 17px; border: 2px solid #7ab850; background: #e6f3dc; padding: 0; min-height: 0; }
+.section:nth-of-type(even) .pastille { border-color: #383288; background: #ebe9f7; }
+.contenu { display: grid; gap: 8px; min-width: 0; }
+.surtitre { color: #467d1e; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.bloc { position: relative; border-radius: 8px; padding: 6px 8px; outline: 1px dashed transparent; cursor: pointer; font-size: 15px; }
+.bloc:hover, .bloc:focus-visible { outline-color: #9aa3c7; }
+.bloc.choisi { outline: 2px solid #263f9d; }
+.type { display: inline-block; font: 600 10px var(--police); letter-spacing: .04em; text-transform: uppercase; color: #263f9d; background: #e7ebfa; border-radius: 6px; padding: 1px 6px; margin-bottom: 4px; }
+.t-accroche { border-left: 4px solid #7ab850; font-weight: 700; color: #383288; font-size: 16px; }
+.t-note { color: #55607a; font-size: 13px; }
+.t-titre { color: #467d1e; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.t-encadre { background: #ebe9f7; border-left: 4px solid #383288; font-weight: 700; }
+.t-date { border: 1px solid #d9dcea; border-radius: 10px; }
+.t-date .l1 { color: #383288; font-weight: 700; font-size: 16px; }
+.t-liste ul { margin: 0; padding-left: 18px; }
+.t-liste li::marker { color: #7ab850; }
+.t-bouton .faux-bouton { display: inline-block; background: #383288; color: #ffffff; border-radius: 999px; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+.cloture { color: #383288; font-weight: 700; font-size: 17px; border-top: 1px solid #e2e0ee; padding-top: 12px; }
+.signature { font-size: 14px; }
+.signature strong { color: #383288; }
+/* Barre d'onglets et feuille de choix */
+.onglets { position: fixed; left: 0; right: 0; bottom: 0; background: var(--surface); border-top: 1px solid var(--bord); padding-bottom: env(safe-area-inset-bottom, 0px); z-index: 6; }
+.onglets div { max-width: 480px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); }
+.onglets button { border: 0; border-radius: 0; background: transparent; color: var(--doux); padding: 10px 4px; font-size: .9rem; }
+.onglets button[aria-current="page"] { color: var(--accent); box-shadow: inset 0 3px 0 var(--accent); }
+.voile { position: fixed; inset: 0; background: var(--voile); z-index: 10; display: flex; align-items: flex-end; justify-content: center; }
+.feuille { background: var(--surface); width: 100%; max-width: 480px; border-radius: 16px 16px 0 0; padding: 16px 16px calc(16px + env(safe-area-inset-bottom, 0px)); display: grid; gap: 12px; max-height: 85vh; overflow-y: auto; }
+.choix { display: flex; flex-wrap: wrap; gap: 8px; }
+.choix button { padding: 8px 12px; min-height: 40px; font-size: .92rem; background: var(--surface); color: var(--texte); border: 1px solid var(--bord); }
+.choix button[aria-pressed="true"] { background: var(--accent); color: var(--accent-texte); border-color: var(--accent); }
+.choix.emojis button { font-size: 1.3rem; padding: 6px 10px; }
+.questions { display: grid; gap: 12px; }
+.question { display: grid; gap: 6px; }
+.question .choix button { min-width: 44px; }
+@media (prefers-reduced-motion: no-preference) { .feuille { animation: monte .18s ease-out; } @keyframes monte { from { transform: translateY(24px); opacity: .6; } to { transform: none; opacity: 1; } } }
+</style>
+
+<div class="appli">
+  <div class="haut">
+    <strong id="titre-ecran">Écrire</strong>
+    <span class="chrono" id="chrono" aria-label="Chronomètre">0:00</span>
+  </div>
+  <p class="bandeau">Maquette du test T4 : « Mettre en forme » affiche toujours le spécimen d'invitation, quel que soit le texte saisi. Rien n'est envoyé ni conservé.</p>
+
+  <main>
+    <section id="ecran-ecrire" aria-labelledby="t-ecrire" style="display:grid;gap:12px">
+      <h2 id="t-ecrire">Ton texte</h2>
+      <p class="chapeau">Colle ou écris ton message. Une ligne « Objet : » en tête sert d'objet.</p>
+      <label for="saisie" class="chapeau" style="font-weight:400">Texte de l'email</label>
+      <textarea id="saisie" spellcheck="true"></textarea>
+      <button class="principal large" id="mettre-en-forme">Mettre en forme</button>
+      <div class="rangee">
+        <button class="second" data-absent="Les modèles types">Partir d'un modèle</button>
+        <button class="second" data-absent="La reprise d'un brouillon">Reprendre un brouillon</button>
+        <button class="second" data-absent="Le prompt pour une IA">Prompt IA</button>
+      </div>
+      <p class="retour" id="retour-ecrire" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="ecran-verifier" aria-labelledby="t-verifier" hidden style="display:grid;gap:12px">
+      <h2 id="t-verifier">Vérifie l'email</h2>
+      <div style="display:grid;gap:6px">
+        <label for="objet">Objet</label>
+        <input type="text" id="objet">
+        <div class="compteur"><span id="objet-nb"></span><span>30 à 50 conseillés</span></div>
+        <div class="conseils" id="conseils" aria-live="polite"></div>
+      </div>
+      <p class="chapeau">Touche un bloc pour changer son type, la pastille ou le surtitre de sa section.</p>
+      <div class="email"><div class="carte">
+        <div class="entete"><img alt="FCPE" src="__LOGO__"><p>Représentants des parents d'élèves<br><strong>École élémentaire Joliot-Curie</strong></p></div>
+        <div class="corps" id="apercu"></div>
+      </div></div>
+      <button class="principal large" id="vers-partager">Passer au partage</button>
+    </section>
+
+    <section id="ecran-partager" aria-labelledby="t-partager" hidden style="display:grid;gap:12px">
+      <h2 id="t-partager">Partage l'email</h2>
+      <div class="groupe">
+        <h3>Pour la relecture</h3>
+        <button class="principal large" id="copier-whatsapp">Copier pour WhatsApp</button>
+        <button class="second large" data-absent="L'image d'aperçu (testée à part, en T3)">Créer l'image</button>
+        <button class="second large" id="copier-pivot">Copier le brouillon</button>
+      </div>
+      <div class="groupe">
+        <h3>Pour l'envoi</h3>
+        <button class="second large" id="copier-gmail">Copier pour Gmail</button>
+        <button class="second large" id="copier-texte">Copier la version texte</button>
+      </div>
+      <p class="retour" id="retour-partager" role="status" aria-live="polite"></p>
+      <div class="groupe">
+        <h3>Fin du test</h3>
+        <button class="principal large" id="terminer">Arrêter le chrono et répondre</button>
+        <div id="questionnaire" hidden class="questions"></div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="onglets" aria-label="Écrans"><div>
+    <button data-ecran="ecrire" aria-current="page">Écrire</button>
+    <button data-ecran="verifier">Vérifier</button>
+    <button data-ecran="partager">Partager</button>
+  </div></nav>
+</div>
+
+<script>
+const DOC = __DOC__;
+const BRUT = __BRUT__;
+const PIVOT = __PIVOT__;
+const WHATSAPP = __WHATSAPP__;
+const TEXTE = __TEXTE__;
+const EMAIL_HTML = __EMAIL_HTML__;
+const TYPES = { para: 'Paragraphe', accroche: 'Accroche', note: 'Note', titre: 'Titre', liste: 'Liste', important: 'Encadré', date: 'Date et lieu', bouton: 'Bouton' };
+const PICTOS = ['📅', '🏫', '🍽️', '📝', '🔒', '🎉', '🙏', '🤝', '⚠️', '🗳️', 'ℹ️'];
+const QUESTIONS = [
+  "L'aperçu de l'email est-il lisible sur ton écran ?",
+  'Est-il facile de toucher le bon bloc ?',
+  'Le clavier gêne-t-il peu la saisie et la relecture ?',
+  'Les boutons de partage sont-ils clairs ?',
+  'Aurais-tu envie de rédiger un vrai email sur téléphone avec cet outil ?'
+];
+
+// Chronomètre : démarre au premier geste, s'arrête sur « Arrêter le chrono ».
+let debut = null, fin = null, corrections = 0;
+function demarrer() { if (debut === null) debut = Date.now(); }
+function duree() { const ms = (fin || Date.now()) - (debut || Date.now()); const s = Math.floor(ms / 1000); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
+setInterval(() => { document.getElementById('chrono').textContent = duree(); }, 500);
+['pointerdown', 'keydown'].forEach(t => document.addEventListener(t, demarrer, { once: true, capture: true }));
+
+// Navigation entre les trois écrans
+const NOMS = { ecrire: 'Écrire', verifier: 'Vérifier', partager: 'Partager' };
+function aller(ecran) {
+  Object.keys(NOMS).forEach(k => { document.getElementById('ecran-' + k).hidden = k !== ecran; });
+  document.querySelectorAll('.onglets button').forEach(b => b.setAttribute('aria-current', b.dataset.ecran === ecran ? 'page' : 'false'));
+  document.getElementById('titre-ecran').textContent = NOMS[ecran];
+  window.scrollTo(0, 0);
+}
+document.querySelectorAll('.onglets button').forEach(b => b.addEventListener('click', () => aller(b.dataset.ecran)));
+document.querySelectorAll('[data-absent]').forEach(b => b.addEventListener('click', () => {
+  const zone = b.closest('section').querySelector('.retour');
+  zone.textContent = b.dataset.absent + ' : non simulé dans cette maquette.';
+}));
+
+// Écran Écrire
+document.getElementById('saisie').value = BRUT;
+document.getElementById('mettre-en-forme').addEventListener('click', () => {
+  const ligne = document.getElementById('saisie').value.split('\n').find(l => /^\s*(objet|sujet)\s*:/i.test(l));
+  document.getElementById('objet').value = ligne ? ligne.replace(/^\s*(objet|sujet)\s*:\s*/i, '') : DOC.objet;
+  verifierObjet();
+  aller('verifier');
+});
+
+// Aide à l'objet (règles de regles-detection.md, section 5)
+const EMOJI = /\p{Extended_Pictographic}/gu;
+function verifierObjet() {
+  const v = document.getElementById('objet').value.trim();
+  const n = [...v].length;
+  document.getElementById('objet-nb').textContent = n + ' caractère' + (n > 1 ? 's' : '');
+  const c = [];
+  if (!n) c.push("Ajoute un objet : sans objet, beaucoup de parents n'ouvriront pas l'email.");
+  if (n > 60) c.push('Ton objet sera coupé sur téléphone (environ 35 à 40 caractères visibles). Mets l\'essentiel au début.');
+  if ((v.match(EMOJI) || []).length > 1) c.push('Un seul émoji suffit.');
+  const lettres = v.replace(/[^A-Za-zÀ-ÿ]/g, '');
+  if (lettres.length > 4 && lettres.replace(/[^A-ZÀ-Þ]/g, '').length > lettres.length / 2) c.push('Évite les capitales : elles se lisent comme un cri et attirent les filtres anti-spam.');
+  if (/[!?]{2,}/.test(v)) c.push('Une seule ponctuation forte suffit.');
+  if (/\b(gratuit|cliquez ici)\b|urgent!!!/i.test(v)) c.push("Ce mot peut envoyer l'email dans les indésirables.");
+  const zone = document.getElementById('conseils');
+  zone.innerHTML = '';
+  (c.length ? c : ['Objet clair, de bonne longueur.']).forEach(t => { const p = document.createElement('p'); p.textContent = t; if (!c.length) p.className = 'bon'; zone.appendChild(p); });
+}
+document.getElementById('objet').addEventListener('input', verifierObjet);
+
+// Aperçu par blocs
+const etat = DOC.sections.map(s => ({ picto: s.picto, surtitre: s.surtitre || '', blocs: s.blocs.map(([type, val]) => ({ type, val })) }));
+function texteBloc(b) { return Array.isArray(b.val) ? b.val : [b.val]; }
+function enGras(t) { const f = document.createDocumentFragment(); t.split(/(\*\*[^*]+\*\*)/).forEach(m => { if (/^\*\*.*\*\*$/.test(m)) { const s = document.createElement('strong'); s.style.color = '#383288'; s.textContent = m.slice(2, -2); f.appendChild(s); } else f.appendChild(document.createTextNode(m)); }); return f; }
+function dessinerBloc(b, si, bi) {
+  const d = document.createElement('div');
+  d.className = 'bloc t-' + ({ important: 'encadre', para: 'para' }[b.type] || b.type);
+  d.tabIndex = 0;
+  d.setAttribute('role', 'button');
+  d.dataset.s = si; d.dataset.b = bi;
+  const etiquette = document.createElement('span');
+  etiquette.className = 'type';
+  etiquette.textContent = TYPES[b.type] || b.type;
+  d.appendChild(etiquette);
+  const lignes = texteBloc(b);
+  if (b.type === 'liste') {
+    const ul = document.createElement('ul');
+    lignes.forEach(l => { const li = document.createElement('li'); li.appendChild(enGras(l)); ul.appendChild(li); });
+    d.appendChild(ul);
+  } else if (b.type === 'bouton') {
+    const f = document.createElement('div'); f.className = 'faux-bouton'; f.textContent = lignes[0]; d.appendChild(f);
+  } else if (b.type === 'date') {
+    lignes.forEach((l, i) => { const p = document.createElement('p'); if (i === 0) p.className = 'l1'; p.textContent = l; d.appendChild(p); });
+  } else {
+    lignes.forEach(l => { const p = document.createElement('p'); p.appendChild(enGras(l)); d.appendChild(p); });
+  }
+  d.addEventListener('click', () => ouvrir(si, bi, d));
+  d.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); ouvrir(si, bi, d); } });
+  return d;
+}
+function dessiner() {
+  const a = document.getElementById('apercu');
+  a.innerHTML = '';
+  const s0 = document.createElement('p'); s0.className = 'salut'; s0.textContent = DOC.salutation; a.appendChild(s0);
+  etat.forEach((s, si) => {
+    const sec = document.createElement('div'); sec.className = 'section';
+    const p = document.createElement('button'); p.className = 'pastille'; p.textContent = s.picto; p.setAttribute('aria-label', 'Pastille ' + s.picto + ', changer');
+    p.addEventListener('click', () => ouvrir(si, 0, sec.querySelector('.bloc')));
+    const c = document.createElement('div'); c.className = 'contenu';
+    if (s.surtitre) { const t = document.createElement('p'); t.className = 'surtitre'; t.textContent = s.surtitre; c.appendChild(t); }
+    s.blocs.forEach((b, bi) => c.appendChild(dessinerBloc(b, si, bi)));
+    sec.append(p, c); a.appendChild(sec);
+  });
+  const cl = document.createElement('p'); cl.className = 'cloture'; cl.textContent = DOC.cloture; a.appendChild(cl);
+  const sg = document.createElement('p'); sg.className = 'signature'; sg.append(DOC.signature[0], document.createElement('br')); const st = document.createElement('strong'); st.textContent = DOC.signature[1]; sg.appendChild(st); a.appendChild(sg);
+}
+
+// Feuille de choix : type du bloc, pastille et surtitre de la section
+function ouvrir(si, bi, el) {
+  document.querySelectorAll('.bloc.choisi').forEach(x => x.classList.remove('choisi'));
+  if (el) el.classList.add('choisi');
+  const b = etat[si].blocs[bi], s = etat[si];
+  const voile = document.createElement('div'); voile.className = 'voile';
+  const f = document.createElement('div'); f.className = 'feuille'; f.setAttribute('role', 'dialog'); f.setAttribute('aria-label', 'Modifier le bloc');
+  const fermer = () => { voile.remove(); document.querySelectorAll('.bloc.choisi').forEach(x => x.classList.remove('choisi')); };
+  voile.addEventListener('click', e => { if (e.target === voile) fermer(); });
+  const t1 = document.createElement('label'); t1.textContent = 'Type du bloc';
+  const types = document.createElement('div'); types.className = 'choix';
+  Object.entries(TYPES).forEach(([k, nom]) => {
+    const x = document.createElement('button'); x.textContent = nom; x.setAttribute('aria-pressed', String(k === b.type));
+    x.addEventListener('click', () => { if (b.type !== k) { b.type = k; corrections++; } dessiner(); fermer(); });
+    types.appendChild(x);
+  });
+  const t2 = document.createElement('label'); t2.textContent = 'Pastille de la section';
+  const pics = document.createElement('div'); pics.className = 'choix emojis';
+  PICTOS.forEach(e => {
+    const x = document.createElement('button'); x.textContent = e; x.setAttribute('aria-pressed', String(e === s.picto)); x.setAttribute('aria-label', 'Pastille ' + e);
+    x.addEventListener('click', () => { if (s.picto !== e) { s.picto = e; corrections++; } dessiner(); fermer(); });
+    pics.appendChild(x);
+  });
+  const t3 = document.createElement('label'); t3.textContent = 'Surtitre de la section'; t3.htmlFor = 'surtitre';
+  const champ = document.createElement('input'); champ.type = 'text'; champ.id = 'surtitre'; champ.value = s.surtitre; champ.placeholder = 'Par exemple : Jeudi 5 novembre · École';
+  const ok = document.createElement('button'); ok.className = 'principal large'; ok.textContent = 'Valider le surtitre';
+  ok.addEventListener('click', () => { if (s.surtitre !== champ.value.trim()) { s.surtitre = champ.value.trim(); corrections++; } dessiner(); fermer(); });
+  const annuler = document.createElement('button'); annuler.className = 'second large'; annuler.textContent = 'Fermer'; annuler.addEventListener('click', fermer);
+  f.append(t1, types, t2, pics, t3, champ, ok, annuler);
+  voile.appendChild(f); document.body.appendChild(voile);
+  types.querySelector('[aria-pressed="true"]')?.focus();
+}
+document.getElementById('vers-partager').addEventListener('click', () => aller('partager'));
+
+// Écran Partager
+function signaler(t) { document.getElementById('retour-partager').textContent = t; }
+async function copierTexte(t, quoi) {
+  try { await navigator.clipboard.writeText(t); signaler(quoi + ' copiée. Colle-la où tu veux.'); }
+  catch (e) { signaler('Copie refusée (' + (e.name || 'erreur') + ').'); }
+}
+document.getElementById('copier-whatsapp').addEventListener('click', () => copierTexte(WHATSAPP, 'Version WhatsApp'));
+document.getElementById('copier-pivot').addEventListener('click', () => copierTexte(PIVOT, 'Version brouillon'));
+document.getElementById('copier-texte').addEventListener('click', () => copierTexte(TEXTE, 'Version texte'));
+document.getElementById('copier-gmail').addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.write([new ClipboardItem({ 'text/html': new Blob([EMAIL_HTML], { type: 'text/html' }), 'text/plain': new Blob([TEXTE], { type: 'text/plain' }) })]);
+    signaler('Email mis en forme copié, prêt pour Gmail.');
+  } catch (e) { signaler('Copie refusée (' + (e.name || 'erreur') + ').'); }
+});
+
+// Fin du test : chrono et questions de ressenti
+const notes = {};
+document.getElementById('terminer').addEventListener('click', () => {
+  if (fin === null) fin = Date.now();
+  const q = document.getElementById('questionnaire');
+  q.hidden = false; q.innerHTML = '';
+  const r = document.createElement('p'); r.className = 'chapeau'; r.textContent = 'Durée : ' + duree() + ' · corrections faites : ' + corrections + '. Note chaque point de 1 (pas du tout) à 4 (tout à fait).';
+  q.appendChild(r);
+  QUESTIONS.forEach((texte, i) => {
+    const d = document.createElement('div'); d.className = 'question';
+    const l = document.createElement('p'); l.textContent = (i + 1) + '. ' + texte;
+    const c = document.createElement('div'); c.className = 'choix';
+    [1, 2, 3, 4].forEach(n => { const b = document.createElement('button'); b.textContent = n; b.setAttribute('aria-pressed', String(notes[i] === n)); b.addEventListener('click', () => { notes[i] = n; c.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b))); }); c.appendChild(b); });
+    d.append(l, c); q.appendChild(d);
+  });
+  const remarque = document.createElement('textarea'); remarque.id = 'remarques'; remarque.placeholder = 'Remarques libres (facultatif)'; remarque.style.minHeight = '90px';
+  const copier = document.createElement('button'); copier.className = 'principal large'; copier.textContent = 'Copier mes réponses pour le fil';
+  copier.addEventListener('click', async () => {
+    const ua = navigator.userAgent;
+    const appareil = /iPhone|iPad/.test(ua) ? 'iPhone' : /Android/.test(ua) ? 'Android' : 'autre';
+    const lignes = ['T4 · appareil : ' + appareil + ' · durée : ' + duree() + ' · corrections : ' + corrections]
+      .concat(QUESTIONS.map((t, i) => (i + 1) + '. ' + (notes[i] || '?') + '/4'))
+      .concat(remarque.value.trim() ? ['Remarques : ' + remarque.value.trim()] : []);
+    try { await navigator.clipboard.writeText(lignes.join('\n')); copier.textContent = 'Réponses copiées : colle-les dans le fil'; }
+    catch (e) { copier.textContent = 'Copie refusée : recopie les notes à la main'; }
+  });
+  q.append(remarque, copier);
+  copier.scrollIntoView({ block: 'nearest' });
+});
+
+dessiner();
+</script>
