@@ -57,7 +57,7 @@ Une adresse au milieu d'une phrase reste un lien simple.
 - « lundi 12/10 » ;
 - « 12/10/2026 ».
 
-Une heure est reconnue sous les formes « 8 h 30 », « 18h », « 18:30 ». Un paragraphe de 160 caractères au plus qui contient une date, une heure et un lieu (salle, mairie, école, préau, gymnase, cantine, médiathèque, adresse, lieu, ou 📍) devient un bloc Date et lieu. Il est découpé en lignes à la virgule qui suit l'heure, au point ou au tiret ; la première ligne reçoit 📅 et une ligne de lieu reçoit 📍.
+Une heure est reconnue sous les formes « 8 h 30 », « 18h », « 18:30 ». Un paragraphe de 160 caractères au plus qui contient une date, une heure et un lieu (salle, mairie, école, préau, gymnase, cantine, médiathèque, adresse, lieu, ou 📍) devient un bloc Date et lieu. Il est découpé en lignes à la virgule qui suit l'heure, au point ou au tiret ; la première ligne reçoit 🗓️ et une ligne de lieu reçoit 📍.
 
 **D13. Note.** Un paragraphe entièrement en italique (`_…_`), ou qui commence par « PS », « P.S. », « NB » ou « N.B. », devient une note.
 
@@ -76,7 +76,7 @@ Une section sans émoji reçoit une pastille selon le premier mot-clé trouvé d
 | Pastille | Mots-clés |
 |---|---|
 | ⚠️ | urgent, grève, fermeture, annulé, alerte |
-| 📅 | une date (D12) |
+| 🗓️ | une date (D12) |
 | 🔒 | anonyme, confidentiel |
 | 🍽️ | cantine, repas, restauration, menu |
 | 📝 | questionnaire, formulaire, sondage, témoignage, avis |
@@ -100,7 +100,7 @@ J'ai appliqué ces règles à la lettre, avec un outil de travail écrit pour l'
 - cinq spécimens fictifs, un par modèle type.
 
 **Vérifié**, en comparant les rendus aux modèles (`specimens/apercus/`) :
-- **Mail de référence, depuis son texte WhatsApp.** Salutation, accroche, bouton et libellé, clôture et signature sont retrouvés, ainsi que les cinq pastilles du modèle (🙏 🏫 📅 🔒 🤝) et le surtitre « Lundi 12 octobre ». Il manque les surtitres thématiques (« Au conseil d'école », « Anonyme », « Toute l'année ») et la note, que le modèle avait ajoutés à la main.
+- **Mail de référence, depuis son texte WhatsApp.** Salutation, accroche, bouton et libellé, clôture et signature sont retrouvés, ainsi que les cinq pastilles du modèle (🙏 🏫 🗓️ 🔒 🤝) et le surtitre « Lundi 12 octobre ». Il manque les surtitres thématiques (« Au conseil d'école », « Anonyme », « Toute l'année ») et la note, que le modèle avait ajoutés à la main.
 - **Remerciement.** Tout est retrouvé, y compris le post-scriptum en note. Une section reçoit la pastille neutre ℹ️.
 - **Invitation.** Le bloc Date et lieu, la liste « Au programme » et le bouton framadate sont retrouvés. Défaut : la pastille 🍽️ de la section programme vient du mot « cantine » dans la liste ; le rédacteur la changera.
 - **Conseil d'école.** Le titre, la liste, le bouton, l'encadré Important et la clôture sont retrouvés.

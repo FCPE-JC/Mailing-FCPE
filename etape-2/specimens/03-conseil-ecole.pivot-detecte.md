@@ -2,7 +2,7 @@ Objet : Préparons ensemble le conseil d'école du 17 novembre
 
 Chers parents,
 
-## 📅 Mardi 17 novembre
+## 🗓️ Mardi 17 novembre
 > Le premier conseil d'école de l'année aura lieu le **mardi 17 novembre**. Vos représentants y porteront vos questions et vos remarques.
 
 ## 📝 Les sujets déjà prévus

@@ -63,6 +63,10 @@ Les autres risques ne sont pas touchés par l'étape 3. Aucun nouveau risque.
 - Doc#1, déroulé : étape 3 « Terminée » le 12/10/2026.
 - Doc#2 : synthèse de l'étape 3 (ce document, section « En bref »), dépôt : demande de fusion n° 2.
 
+## Réponses de Mat (12/10/2026, 21:11)
+
+1 oui, 3 oui, 4 oui, 5 oui, 6 oui, 7 oui (demande de fusion n° 2 fusionnée). Question 2 : après précisions, réponse de Mat à 21:13 : ses tests T1 sous Windows ont été faits sur un poste professionnel, avec succès ; un rédacteur sans ordinateur personnel, ou au poste plus verrouillé, utilise son téléphone (dans ce cas, Gmail en version ordinateur dans le navigateur, selon l'essai T1-S). QO-010 répondue.
+
 ## Questions à trancher
 
 Réponds par oui ou non à chaque numéro, ou « OK pour tout ».

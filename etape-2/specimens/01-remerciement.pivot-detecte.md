@@ -2,7 +2,7 @@ Objet : Merci pour la kermesse 🎉
 
 Bonjour à tous,
 
-## 📅 Samedi 20 juin
+## 🗓️ Samedi 20 juin
 > Un immense merci à toutes les familles qui ont fait de la kermesse du **samedi 20 juin** une très belle fête !
 
 ## ℹ️
@@ -14,7 +14,7 @@ Merci aussi aux 35 bénévoles qui ont tenu les stands, installé le préau et r
 Les photos des stands (sans enfants) sont à retrouver ici :
 [Ouvrir le lien →](https://exemple-fcpe.fr/kermesse/photos)
 
-## 📅
+## 🗓️
 *PS : des objets oubliés attendent leur propriétaire au bureau de la directrice jusqu'au 3 juillet.*
 
 ---

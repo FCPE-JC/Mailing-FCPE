@@ -31,7 +31,7 @@ Chers parents,
 ## 🏫 Au conseil d’école
 Avec **10 sièges sur 17** au conseil d’école, nous sommes heureux de pouvoir continuer à vous représenter…
 
-## 📅 Lundi 12 octobre · Mairie
+## 🗓️ Lundi 12 octobre · Mairie
 Comme nous vous l’avions indiqué, nous rencontrerons la mairie le **lundi 12 octobre** afin d’échanger au sujet des activités et services périscolaires.
 
 Pour préparer au mieux ce rendez-vous, nous vous invitons à nous faire part de vos questions, remarques et suggestions en remplissant ce formulaire :
@@ -58,7 +58,7 @@ Une ligne vide sépare deux blocs. Deux lignes qui se suivent sans ligne vide fo
 |---|---|---|---|
 | P1 | Objet | `Objet : texte` | Première ligne non vide, si elle commence par « Objet : » (« Sujet : » est accepté). Facultative. |
 | P2 | Salutation | `Chers parents,` | Premier paragraphe, s'il fait 40 caractères au plus et finit par une virgule. Sinon, pas de salutation. |
-| P3 | Section | `## 📅 Surtitre` | Ouvre une section du fil. Un émoji en tête devient la pastille ; le reste de la ligne devient le surtitre. Les deux sont facultatifs : `## 🙏` (pastille seule), `## Surtitre` (pastille choisie par l'outil), `##` seul (pastille choisie, pas de surtitre). Tout ce qui suit, jusqu'au prochain `##` ou `---`, appartient à la section. |
+| P3 | Section | `## 🗓️ Surtitre` | Ouvre une section du fil. Un émoji en tête devient la pastille ; le reste de la ligne devient le surtitre. Les deux sont facultatifs : `## 🙏` (pastille seule), `## Surtitre` (pastille choisie par l'outil), `##` seul (pastille choisie, pas de surtitre). Tout ce qui suit, jusqu'au prochain `##` ou `---`, appartient à la section. |
 | P4 | Accroche | `> texte` | Ligne commençant par `>` et une espace. |
 | P5 | Paragraphe | texte libre | Tout ce qui n'est pas reconnu autrement. |
 | P6 | Note | `*texte entier*` ou `_texte entier_` | Paragraphe entièrement entouré d'étoiles simples ou de tirets bas. |
@@ -67,7 +67,7 @@ Une ligne vide sépare deux blocs. Deux lignes qui se suivent sans ligne vide fo
 | P9 | Bouton | `[Libellé →](https://…)` | Lien seul sur sa ligne. La flèche est conseillée, pas obligatoire. |
 | P10 | Liste | `- élément` | Lignes consécutives commençant par `- ` (`* ` et `• ` sont acceptés). |
 | P11 | Encadré Important | `::: important` / texte / `:::` | Le texte entre les deux lignes `:::`. Si sa première ligne est seulement « Attention », « Urgent », « À retenir », « À noter » ou « Rappel », elle devient le titre de l'encadré à la place d'« Important ». |
-| P12 | Date et lieu | `::: date` / lignes / `:::` | Une information par ligne ; la première est mise en avant. Exemple : `📅 Jeudi 5 novembre à 8 h 30`, `📍 Salle polyvalente`. |
+| P12 | Date et lieu | `::: date` / lignes / `:::` | Une information par ligne ; la première est mise en avant. Exemple : `🗓️ Jeudi 5 novembre à 8 h 30`, `📍 Salle polyvalente`. |
 | P13 | Séparateur et clôture | `---` puis la phrase | Ce qui suit le dernier `---` et précède la signature est la clôture. |
 | P14 | Signature | `Bien cordialement,` / `Vos représentants FCPE` | Paragraphe qui commence par une formule de politesse connue : bien cordialement, cordialement, bien à vous, amicalement, à bientôt, à très bientôt, belle ou bonne journée / soirée / semaine, avec nos salutations, bon courage, merci et à bientôt. La formule va jusqu'à la première virgule ; le reste est le signataire. |
 
