@@ -75,7 +75,7 @@ B4 et B5 sont écartées par un critère éliminatoire. Restent B1, B2 et B3, qu
 
 **Préconisation : B1.** C'est la solution la plus simple à reprendre (un seul compte, celui où vit déjà le code) et la moins coûteuse en démarches. B2 est le bon repli si tu tiens à garder le dépôt privé.
 
-**Point à trancher plus tard, avant l'étape 7** : l'adresse de l'outil contiendra ton identifiant GitHub (mat130718.github.io/mailing-fcpe). Pour qu'un bénévole puisse un jour reprendre l'outil sans changer d'adresse, le dépôt peut être placé dans une organisation GitHub gratuite au nom du conseil local. Ce n'est pas nécessaire pour l'étape 4 ; je le note en question ouverte.
+**Point à trancher plus tard, avant l'étape 7** : l'adresse de l'outil contiendra ton identifiant GitHub (mat130718.github.io/Mailing-FCPE). Pour qu'un bénévole puisse un jour reprendre l'outil sans changer d'adresse, le dépôt peut être placé dans une organisation GitHub gratuite au nom du conseil local. Ce n'est pas nécessaire pour l'étape 4 ; je le note en question ouverte.
 
 ## C. Charte et modèles types (paramètres partagés)
 

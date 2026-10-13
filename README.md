@@ -15,7 +15,7 @@ Outil qui transforme un texte brut en email aux couleurs du conseil local FCPE d
 | 6. Recette | Vérifier sur les vrais appareils | À venir |
 | 7. Mise à disposition | Diffuser et mesurer | À venir |
 
-L'outil lui-même n'existe pas encore : ce dépôt contient pour l'instant les spécifications, les outils de travail et les pages de test. Il est publié par GitHub Pages depuis le dossier `docs/` (DEC-068) : https://mat130718.github.io/mailing-fcpe/
+L'outil lui-même n'existe pas encore : ce dépôt contient pour l'instant les spécifications, les outils de travail et les pages de test. Il est publié par GitHub Pages depuis le dossier `docs/` (DEC-068) : https://mat130718.github.io/Mailing-FCPE/
 
 ## Contenu
 
