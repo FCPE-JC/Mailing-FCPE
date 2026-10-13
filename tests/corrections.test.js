@@ -77,7 +77,7 @@ test('US-016 : vers Titre de section, une nouvelle section commence ici ; un tit
   const f = changerType(DOC, '1.titre', 'paragraphe');
   assert.equal(f.sections.length, 1);
   assert.deepEqual(f.sections[0].blocs.slice(0, 3).map(b => b.texte ?? b.type), ['Merci à tous.', 'Au programme', 'Nous vous attendons. Venez avec vos enfants.']);
-  // Titre de 100 caractères au plus (relevé à la demande de Mat, 60 auparavant).
+  // Titre de 100 caractères au plus (DEC-108, 60 auparavant).
   const titre = n => choixPossibles(lirePivot(`## x\n${'x'.repeat(n)}\n\nTexte.`), '0.0').find(c => c.type === 'titre');
   assert.equal(titre(100).possible, true);
   const choix = titre(101);

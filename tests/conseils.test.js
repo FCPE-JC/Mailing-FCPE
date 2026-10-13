@@ -53,7 +53,7 @@ test('US-018 : conseils de la charte, chacun avec le bloc concerné', () => {
   assert.ok(!liste.some(c => c.code === 'section-sans-surtitre' && c.cible === '0.0'));
 });
 
-test('US-018 : surtitre, conseil au-delà de 60 caractères seulement (relevé à la demande de Mat)', () => {
+test('US-018 : surtitre, conseil au-delà de 60 caractères seulement (DEC-108)', () => {
   assert.ok(!codes(`## 🎉 ${'x'.repeat(60)}\nTexte.${FIN}`).includes('surtitre-long'));
   assert.ok(codes(`## 🎉 ${'x'.repeat(61)}\nTexte.${FIN}`).includes('surtitre-long'));
 });

@@ -60,7 +60,7 @@ Pour chaque bloc : rôle, rendu dans l'email, rendu dans la version WhatsApp (EX
 
 **3. Section du fil** — L'unité de construction du mail. Colonne gauche de 46 px avec une pastille ronde de 40 px (émoji 18 px), colonne droite avec le contenu (marges 8 / 0 / 24 / 14 px). Les pastilles alternent : sections impaires vertes (fond #e6f3dc, bordure 2 px #7ab850), sections paires bleues (fond #ebe9f7, bordure 2 px #383288). Un trait vertical de 2 px #e2e0ee relie chaque pastille à la suivante ; la dernière section n'en a pas. Pastille par défaut si aucun émoji n'est trouvé : ℹ️. Nombre de sections : pas de limite technique ; au-delà de 7, l'outil le signale comme conseil de rédaction. WhatsApp : l'émoji puis le surtitre en gras et en capitales sur une ligne ; une section sans surtitre n'a pas de ligne de tête. Texte : surtitre en capitales. Pivot : `## 🗓️ Surtitre`.
 
-**4. Surtitre** — Facultatif, en tête d'une section. 12 px, capitales, espacement 1,5 px, graisse 800, marge basse 10 px. Couleur opposée à celle de la pastille : bleu titre sur une section verte, vert foncé sur une section bleue. Conseil : 60 caractères au plus (40 jusqu'au 13/10/2026, relevé à la demande de Mat).
+**4. Surtitre** — Facultatif, en tête d'une section. 12 px, capitales, espacement 1,5 px, graisse 800, marge basse 10 px. Couleur opposée à celle de la pastille : bleu titre sur une section verte, vert foncé sur une section bleue. Conseil : 60 caractères au plus (40 jusqu'au 13/10/2026, relevé par DEC-108).
 
 **5. Accroche** — Paragraphe mis en avant, normalement la première section. Barre verticale verte de 5 px à gauche, texte 18 px gras bleu titre, retrait 18 px. Une seule par mail conseillée. WhatsApp : en gras. Pivot : `> texte`.
 

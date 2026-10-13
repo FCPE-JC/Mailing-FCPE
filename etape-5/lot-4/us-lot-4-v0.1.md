@@ -25,6 +25,8 @@ Ce que tu pourras essayer à la fin du lot : corriger un email mal détecté, pa
 | Date et lieu | Découpé en lignes comme à la règle D12 (virgule après l'heure, point, tiret), avec 🗓️ et 📍. |
 | Clôture | Proposé seulement pour le dernier bloc avant la signature ; l'ancienne clôture, s'il y en a une, redevient un paragraphe. |
 
+Seuils modifiés le 13/10/2026 par DEC-108 : conseil au-delà de 60, refus au-delà de 100.
+
 ## Questions pour Mat
 
 Réponds par oui ou non à chaque numéro, ou « OK pour tout ».
