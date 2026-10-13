@@ -173,5 +173,73 @@ textarea:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; 
 
 /* Écran Vérifier : l'objet et l'aperçu de l'email (US-010). L'email porte ses propres
    couleurs, en styles en ligne : l'aperçu ne suit pas le mode sombre de l'outil. */
-.objet { font-weight: 600; padding: 10px 12px; border-radius: 10px; background: var(--accent-pale); }
+/* Écran Vérifier, lot 4 : objet guidé, conseils, étiquettes des blocs et panneau de
+   correction (US-015 à US-020). Les étiquettes n'existent que dans l'aperçu. */
+.verification { display: grid; gap: 14px; }
+.champ-objet { display: grid; gap: 6px; }
+.ligne-objet { display: flex; align-items: center; gap: 8px; }
+input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid var(--bord);
+  border-radius: 10px;
+  background: var(--fond);
+  color: var(--texte);
+  font: 1rem/1.4 var(--police);
+}
+input[type="text"]:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.compteur { color: var(--doux); font-size: .9rem; white-space: nowrap; }
+.messages, .conseils ul { margin: 0; padding-left: 20px; font-size: .9rem; }
+.messages:empty { display: none; }
+.messages li, .conseils li { margin-top: 4px; }
+.propositions { display: flex; flex-wrap: wrap; gap: 6px; }
+.propositions:empty { display: none; }
+.proposition, .lien-conseil {
+  font: inherit; color: var(--accent); background: none; border: 0; padding: 0;
+  text-align: left; text-decoration: underline; cursor: pointer;
+}
+.proposition { min-height: 44px; padding: 6px 10px; border: 1px solid var(--bord); border-radius: 10px; text-decoration: none; }
+.conseils { padding: 10px 12px; border-radius: 10px; background: var(--construction-fond); color: var(--construction); }
+.conseils summary { font-weight: 600; cursor: pointer; min-height: 28px; }
+.conseils .anomalie { font-weight: 600; }
+.note-pivot { padding: 10px 12px; border-radius: 10px; background: var(--accent-pale); font-size: .9rem; }
+.barre-apercu { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.bouton:disabled { opacity: .45; cursor: default; }
+button.bouton { cursor: pointer; }
+
+.repere { position: relative; cursor: pointer; border-radius: 6px; outline: 1px dashed transparent; outline-offset: 3px; }
+.repere:hover, .repere:focus-within { outline-color: #9aa3c7; }
+.etiquette-bloc {
+  display: inline-block; margin: 0 0 4px; padding: 1px 8px; border: 0; border-radius: 9px;
+  background: #e3e6f3; color: #2a3270; font: 600 11px/1.6 -apple-system, "Segoe UI", Roboto, Arial, sans-serif; cursor: pointer;
+}
+.etiquette-bloc:focus-visible { outline: 2px solid #2a4bb0; outline-offset: 1px; }
+.repere-pastille { cursor: pointer; }
+
+.panneau {
+  width: min(100% - 16px, 560px);
+  max-height: 85vh;
+  margin: auto auto 8px;
+  padding: 16px;
+  border: 1px solid var(--bord);
+  border-radius: 16px;
+  background: var(--surface);
+  color: var(--texte);
+}
+.panneau::backdrop { background: rgba(10, 12, 30, .45); }
+.panneau h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.panneau #panneau-section h3 { margin-top: 14px; }
+.panneau .etiquette { display: block; margin: 12px 0 6px; }
+.panneau > .bouton { width: 100%; margin-top: 16px; }
+.grille-types { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.choix-type, .choix-pastille {
+  min-height: 44px; padding: 6px 4px; border: 1px solid var(--bord); border-radius: 10px;
+  background: var(--fond); color: var(--texte); font: 600 .85rem/1.2 var(--police); cursor: pointer; overflow-wrap: normal;
+}
+.choix-type[aria-pressed="true"], .choix-pastille[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-texte); }
+.choix-type[aria-disabled="true"] { opacity: .45; }
+.grille-pastilles { display: flex; flex-wrap: wrap; gap: 6px; }
+.choix-pastille { width: 44px; font-size: 1.3rem; padding: 0; }
+.choix-type:focus-visible, .choix-pastille:focus-visible, .proposition:focus-visible, .lien-conseil:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 .apercu { margin: 0 -16px; overflow-x: auto; }

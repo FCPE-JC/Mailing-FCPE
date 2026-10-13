@@ -4,6 +4,7 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { join, relative, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { brancherApercu } from '../docs/js/apercu.js';
 
 export const RACINE = fileURLToPath(new URL('..', import.meta.url));
 export const SITE = join(RACINE, 'docs');
@@ -42,11 +43,14 @@ export class FauxElement {
     this.aLeFocus = false;
   }
   append(...elements) { this.enfants.push(...elements); }
-  replaceChildren() { this.enfants = []; }
+  replaceChildren(...elements) { this.enfants = elements; }
   setAttribute(nom, valeur) { this.attributs[nom] = String(valeur); }
   getAttribute(nom) { return nom in this.attributs ? this.attributs[nom] : null; }
   removeAttribute(nom) { delete this.attributs[nom]; }
   focus() { this.ownerDocument.focus = this; }
+  // Événements : écouteurs enregistrés, déclenchés à la main par les tests.
+  addEventListener(nom, fonction) { (this.ecouteurs ??= {})[nom] = fonction; }
+  declencher(nom, evenement = {}) { this.ecouteurs?.[nom]?.(evenement); }
   // Texte visible de l'élément et de ses enfants.
   get texte() {
     return this.textContent + this.enfants.map(e => (typeof e === 'string' ? e : e.texte)).join('');
@@ -63,4 +67,32 @@ export class FauxDocument {
   // Les éléments sont enregistrés à l'avance sous leur sélecteur exact.
   enregistrer(selecteur, element) { this.selecteurs[selecteur] = element; return element; }
   querySelector(selecteur) { return this.selecteurs[selecteur] || null; }
+  getElementById(id) { return this.selecteurs[`#${id}`] || null; }
+}
+
+// Fausse page : un faux document dont les éléments sont enregistrés sous leur id.
+export function faussePage(ids) {
+  const document = new FauxDocument();
+  const elements = {};
+  for (const id of ids) {
+    const e = document.enregistrer(`#${id}`, new FauxElement(document, 'div'));
+    e.id = id;
+    e.value = '';
+    e.innerHTML = '';
+    elements[id] = e;
+  }
+  return { document, elements, fenetre: { document } };
+}
+
+// Éléments de l'écran Vérifier que l'aperçu branche.
+const IDS = ['texte', 'note-pivot', 'apercu-vide', 'verification', 'lecture', 'objet', 'objet-compteur', 'objet-messages', 'objet-propositions',
+  'conseils', 'conseils-titre', 'conseils-liste', 'annuler', 'apercu', 'panneau', 'panneau-types', 'panneau-raison', 'panneau-section',
+  'panneau-pastilles', 'panneau-surtitre', 'panneau-conseil-surtitre', 'panneau-libelle-zone', 'panneau-libelle', 'panneau-fermer'];
+// Page dont l'aperçu est branché (US-010 à US-020) ; taper() simule la saisie du rédacteur.
+export function pageBranchee(texte = '') {
+  const page = faussePage(IDS);
+  page.elements.texte.value = texte;
+  brancherApercu(page.fenetre);
+  const taper = valeur => { page.elements.texte.value = valeur; page.elements.texte.declencher('input'); };
+  return { ...page, taper };
 }

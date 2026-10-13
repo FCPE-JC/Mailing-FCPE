@@ -33,6 +33,7 @@ const LIEN_SEUL = motif(`^(?:(?:👉|➡️|→|->)\\s*)?(?:(?:lien|formulaire|i
 const LIEU = motif('\\b(salle|mairie|école|ecole|préau|preau|gymnase|cantine|médiathèque|adresse|lieu)\\b|📍');
 const EMOJI_TETE = motif(`^(${EMOJI})\\s*(.*)$`, 'u');
 const EMOJIS = motif(EMOJI, 'gu');
+const COMMENCE_EMOJI = motif(`^${EMOJI}`, 'u');
 
 // D16 : pastilles, dans l'ordre de priorité ; null pour la présence d'une date (D12).
 const PICTOS = [
@@ -71,12 +72,29 @@ export function libelleBouton(adresse) {
 // D16 : première pastille dont un mot-clé figure dans le texte, en évitant une pastille déjà
 // utilisée par une section précédente si un autre mot-clé correspond ; ℹ️ seulement sans
 // aucun mot-clé. Deux corrections de detection.py, qui donnait ℹ️ à une pastille répétée et
-// ne reconnaissait pas « maître » au singulier (proposées à Mat le 13/10/2026).
+// ne reconnaissait pas « maître » au singulier (DEC-101).
 export function choisirPastille(texte, deja = []) {
   const t = texte.toLowerCase();
   const trouves = PICTOS.filter(([, m]) => (m === null ? DATE.test(t) : m.test(t))).map(([e]) => e);
   return trouves.find(e => e !== NEUTRE && !deja.includes(e)) ?? trouves[0] ?? NEUTRE;
 }
+
+// D12 : découpe un paragraphe en lignes de bloc Date et lieu, à la virgule qui suit l'heure,
+// au point ou au tiret ; la première ligne reçoit 🗓️, une ligne de lieu reçoit 📍.
+export function decouperDateLieu(v) {
+  const parts = v.split(/(?<=\d)\s*,\s+|[.;]\s+|\s+[-–]\s+/u).map(x => retirerBords(x, ' .')).filter(Boolean);
+  return parts.map((x, q) => (q === 0 ? '🗓️ ' : (LIEU.test(x) ? '📍 ' : '')) + majuscule(x));
+}
+
+// Lignes d'un bloc Date et lieu déjà découpées (corrections, US-016) : 🗓️ sur la première
+// ligne et 📍 sur une ligne de lieu, sauf si la ligne commence déjà par un émoji.
+export function marquerDateLieu(lignes) {
+  return lignes.map((x, q) => (COMMENCE_EMOJI.test(x) ? x
+    : (q === 0 ? '🗓️ ' : (LIEU.test(x) ? '📍 ' : '')) + majuscule(x)));
+}
+
+// Pastilles proposées au rédacteur (US-017), dans l'ordre de la règle D16.
+export const PASTILLES = Object.freeze(PICTOS.map(([e]) => e));
 
 // Texte d'un bloc, pour la recherche des mots-clés et des dates.
 const texteBloc = ([, v]) => (typeof v === 'string' ? v : v.join(' '));
@@ -182,8 +200,7 @@ export function detecter(brut) {
       else bloc = ['para', v];
       const dateLieu = DATE.test(v) && HEURE.test(v) && LIEU.test(v) && longueur(v) <= 160;
       if (dateLieu && bloc[0] === 'para') {
-        const parts = v.split(/(?<=\d)\s*,\s+|[.;]\s+|\s+[-–]\s+/u).map(x => retirerBords(x, ' .')).filter(Boolean);
-        bloc = ['date', parts.map((x, q) => (q === 0 ? '🗓️ ' : (LIEU.test(x) ? '📍 ' : '')) + majuscule(x))];
+        bloc = ['date', decouperDateLieu(v)];
       }
       const introLien = v.endsWith(':') && longueur(v) <= 80 && k + 1 < elems.length && elems[k + 1][0] === 'lien';
       const nouvelle = (!aDesTitres && !(introLien && sec !== null)) || sec === null;

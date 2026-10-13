@@ -7,7 +7,7 @@ import { preparerApercu, brancherApercu, LECTURES } from '../docs/js/apercu.js';
 import { estPivot, detecterPivot, completerPastilles } from '../docs/js/detection.js';
 import { rendreEmail } from '../docs/js/rendu.js';
 import { lirePivot } from '../docs/js/pivot.js';
-import { lireDuSite, lireDuDepot } from './aides.js';
+import { lireDuSite, lireDuDepot, pageBranchee } from './aides.js';
 
 const REFERENCE = lireDuDepot('etape-2/specimens/00-reference-merci-elections.pivot.md');
 
@@ -33,45 +33,30 @@ test('US-010 : l’aperçu est exactement le code de l’email qui sera copié',
   assert.equal(apercu.objet, 'Merci pour votre confiance 🗳️');
 });
 
-// Faux éléments de la page, juste assez pour brancher l'aperçu.
-function faussePage() {
-  const elements = {};
-  for (const id of ['texte', 'apercu', 'objet', 'apercu-vide', 'lecture']) {
-    elements[id] = { id, hidden: false, value: '', innerHTML: '', textContent: '', ecouteurs: {},
-      addEventListener(nom, f) { this.ecouteurs[nom] = f; } };
-  }
-  return { elements, fenetre: { document: { getElementById: id => elements[id] } } };
-}
-
 test('US-010 : l’aperçu se met à jour à chaque modification du texte', () => {
-  const { elements, fenetre } = faussePage();
-  brancherApercu(fenetre);
+  const { elements, taper } = pageBranchee();
   assert.equal(elements['apercu-vide'].hidden, false);
-  assert.equal(elements.apercu.hidden, true);
+  assert.equal(elements.verification.hidden, true);
 
-  elements.texte.value = REFERENCE;
-  elements.texte.ecouteurs.input();
+  taper(REFERENCE);
   assert.equal(elements['apercu-vide'].hidden, true);
-  assert.equal(elements.apercu.hidden, false);
-  assert.equal(elements.apercu.innerHTML, rendreEmail(lirePivot(REFERENCE)));
-  assert.equal(elements.objet.textContent, 'Objet : Merci pour votre confiance 🗳️');
+  assert.equal(elements.verification.hidden, false);
+  assert.equal(elements.apercu.innerHTML, preparerApercu(REFERENCE).htmlEtiquete);
+  assert.equal(elements.objet.value, 'Merci pour votre confiance 🗳️');
 
-  elements.texte.value = REFERENCE.replace('Merci pour votre confiance', 'Nouvel objet');
-  elements.texte.ecouteurs.input();
-  assert.equal(elements.objet.textContent, 'Objet : Nouvel objet 🗳️');
+  taper(REFERENCE.replace('Merci pour votre confiance', 'Nouvel objet'));
+  assert.equal(elements.objet.value, 'Nouvel objet 🗳️');
 
-  elements.texte.value = '';
-  elements.texte.ecouteurs.input();
-  assert.equal(elements.apercu.hidden, true);
+  taper('');
+  assert.equal(elements.verification.hidden, true);
   assert.equal(elements.apercu.innerHTML, '');
 });
 
-test('US-010 : sans ligne Objet, l’aperçu le dit', () => {
-  const { elements, fenetre } = faussePage();
-  brancherApercu(fenetre);
-  elements.texte.value = 'Chers parents,\n\nTexte.';
-  elements.texte.ecouteurs.input();
-  assert.equal(elements.objet.textContent, 'Objet : (aucun objet dans le texte)');
+test('US-010 : sans ligne Objet, le champ de l’objet est vide et l’aide le dit (US-019)', () => {
+  const { elements, taper } = pageBranchee();
+  taper('Chers parents,\n\nTexte.');
+  assert.equal(elements.objet.value, '');
+  assert.match(elements['objet-messages'].texte, /Ajoute un objet/);
 });
 
 const BRUT = lireDuDepot('etape-2/specimens/00-reference-merci-elections.brut.txt');
@@ -101,20 +86,16 @@ test('US-014 : un texte brut passe par la détection, puis par la lecture du piv
 });
 
 test('US-014 : l’écran Vérifier dit quelle lecture a été faite, à chaque modification', () => {
-  const { elements, fenetre } = faussePage();
-  brancherApercu(fenetre);
-  assert.equal(elements.lecture.hidden, true);
-  elements.texte.value = BRUT;
-  elements.texte.ecouteurs.input();
-  assert.equal(elements.lecture.hidden, false);
+  const { elements, taper } = pageBranchee();
+  assert.equal(elements.verification.hidden, true);
+  taper(BRUT);
+  assert.equal(elements.verification.hidden, false);
   assert.equal(elements.lecture.textContent, LECTURES.detection);
-  elements.texte.value = REFERENCE;
-  elements.texte.ecouteurs.input();
+  taper(REFERENCE);
   assert.equal(elements.lecture.textContent, LECTURES.pivot);
-  elements.texte.value = '';
-  elements.texte.ecouteurs.input();
-  assert.equal(elements.lecture.hidden, true);
-  assert.match(lireDuSite('index.html'), /<p id="lecture"[^>]*hidden><\/p>/);
+  taper('');
+  assert.equal(elements.verification.hidden, true);
+  assert.match(lireDuSite('index.html'), /<div id="verification"[^>]*hidden>\s*<p id="lecture"/);
 });
 
 test('US-014 : le texte d’aide de l’écran Écrire mentionne le texte brut et le pivot', () => {
