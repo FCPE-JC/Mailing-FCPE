@@ -8,7 +8,7 @@ Avec **10 sièges sur 17** au conseil d’école, nous sommes heureux de pouvoir
 
 ## 🗓️ Lundi 12 octobre
 Comme nous vous l’avions indiqué, nous rencontrerons la mairie le **lundi 12 octobre** afin d’échanger au sujet des activités et services périscolaires. Pour préparer au mieux ce rendez-vous, nous vous invitons à nous faire part de vos questions, remarques et suggestions en remplissant ce formulaire :
-[Répondre au questionnaire →](https://forms.gle/1Nt2nqQBzQuYxjVs9)
+[Répondre au questionnaire →](https://forms.gle/exemple-mairie)
 
 ## 🔒
 Vos réponses seront **anonymes** et nous permettront de mieux cerner les besoins des familles et de relayer vos préoccupations auprès des services concernés lors de cette rencontre.
