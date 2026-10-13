@@ -41,7 +41,14 @@
       <label for="texte" class="etiquette">Colle ton texte</label>
       <textarea id="texte" rows="12" autocomplete="off" autocapitalize="sentences" spellcheck="true" lang="fr"
         placeholder="Objet : …&#10;&#10;Chers parents,&#10;&#10;Ton texte…"></textarea>
-      <p class="aide">Un message tel quel (WhatsApp, email) est mis en forme automatiquement ; un texte au format pivot est lu tel quel. Les modèles types arriveront au lot 6.</p>
+      <p class="aide">Un message tel quel (WhatsApp, email) est mis en forme automatiquement ; un texte au format pivot est lu tel quel. Pour reprendre un brouillon exporté, colle-le ici ou ouvre son fichier. Les modèles types arriveront au lot 6.</p>
+      <div class="actions-ecrire">
+        <input id="ouvrir-brouillon" type="file" accept=".txt,.md,text/plain" class="hors-ecran">
+        <label for="ouvrir-brouillon" class="bouton bouton-second">📂 Reprendre un brouillon</label>
+        <button id="copier-prompt" type="button" class="bouton bouton-second">🤖 J'utilise une IA : copier le prompt</button>
+      </div>
+      <p id="retour-ecrire" class="retour" role="status" aria-live="polite"></p>
+      <textarea id="prompt-repli" class="repli-texte" rows="8" readonly aria-label="Prompt pour une IA" hidden></textarea>
       <p id="note-pivot" class="note-pivot" hidden>Tes corrections sont faites : le texte est maintenant écrit au format pivot. Tu peux encore le modifier ici.</p>
       <div class="navigation">
         <a class="bouton" href="#verifier">Mettre en forme →</a>
@@ -97,7 +104,27 @@
 
     <section data-ecran="partager" aria-labelledby="titre-partager" hidden>
       <h2 id="titre-partager" tabindex="-1">Partager</h2>
-      <p class="a-venir">Ici, tu copieras l'email pour Gmail et la version WhatsApp, et tu créeras l'image de l'aperçu. Contenu à venir (lot 5).</p>
+      <p id="partage-vide" class="a-venir">Colle d'abord un texte sur l'écran Écrire : tu pourras ensuite le partager ici.</p>
+      <div id="partage" class="partage" hidden>
+        <div class="groupe">
+          <h3>Pour la relecture (téléphone)</h3>
+          <button id="copier-whatsapp" type="button" class="bouton">💬 Copier pour WhatsApp</button>
+          <button id="enregistrer-image" type="button" class="bouton bouton-second">🖼️ Enregistrer l'image de l'aperçu</button>
+          <button id="partager-image" type="button" class="bouton bouton-second" hidden>📤 Partager l'image</button>
+          <button id="exporter" type="button" class="bouton bouton-second">💾 Exporter le brouillon (copier)</button>
+          <button id="telecharger-brouillon" type="button" class="bouton bouton-second">⬇️ Télécharger le brouillon (fichier)</button>
+        </div>
+        <div class="groupe">
+          <h3>Pour l'envoi (ordinateur)</h3>
+          <button id="copier-gmail" type="button" class="bouton">📋 Copier l'email pour Gmail</button>
+          <button id="copier-texte" type="button" class="bouton bouton-second">📄 Copier la version texte</button>
+        </div>
+        <p id="retour-partager" class="retour" role="status" aria-live="polite"></p>
+        <div id="repli" class="repli" hidden>
+          <p id="repli-consigne" class="aide"></p>
+          <div id="repli-contenu" class="repli-contenu"></div>
+        </div>
+      </div>
       <div class="navigation">
         <a class="bouton bouton-second" href="#verifier">← Vérifier</a>
       </div>
