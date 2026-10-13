@@ -183,7 +183,7 @@ test('US-016 : écrire le pivot puis le relire redonne le même modèle', async 
   assert.deepEqual(net(lirePivot(ecrirePivot(note))).sections, note.sections);
 });
 
-test('US-007 P14 : la signature garde ses retours à la ligne, une ligne par ligne écrite (demande de Mat)', async () => {
+test('US-007 P14 : la signature garde ses retours à la ligne, une ligne par ligne écrite (DEC-110)', async () => {
   const { ecrirePivot } = await import('../docs/js/pivot.js');
   const attendu = { formule: 'Bien cordialement,', signataire: 'Le conseil local FCPE\nÉcole Jean Moulin\nTél. 06 00 00 00 00' };
   const texte = '## x\nTexte.\n\nBien cordialement,\nLe conseil local FCPE\nÉcole Jean Moulin\nTél. 06 00 00 00 00';

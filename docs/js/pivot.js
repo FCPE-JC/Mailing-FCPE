@@ -155,7 +155,7 @@ export function lirePivot(texte) {
     if (suivante >= 0) k = suivante;
   }
   if (k >= 0) {
-    // Le signataire garde les retours à la ligne écrits : une ligne par ligne (lot 4, demande de Mat).
+    // Le signataire garde les retours à la ligne écrits : une ligne par ligne (DEC-110).
     const [v, ...suite] = blocs.slice(k).filter(b => b.type === 'paragraphe').flatMap(b => lignesParagraphe.get(b));
     const virgule = v.indexOf(',');
     const formule = (virgule >= 0 ? v.slice(0, virgule) : v) + ',';

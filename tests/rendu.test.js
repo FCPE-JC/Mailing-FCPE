@@ -97,7 +97,7 @@ test('US-008 : une section sans émoji reçoit la pastille par défaut ℹ️ (D
   assert.ok(html.includes(`>${CHARTE.textes.pastilleParDefaut}</td>`));
 });
 
-test('US-008 : signature sur plusieurs lignes, la première en gras bleu, les suivantes en texte normal (demande de Mat)', () => {
+test('US-008 : signature sur plusieurs lignes, la première en gras bleu, les suivantes en texte normal (DEC-110)', () => {
   const html = rendreEmail(lirePivot('## x\nTexte.\n\nBien cordialement,\nLe conseil local FCPE\nÉcole <Jean> Moulin\nTél. 06 00 00 00 00'));
   assert.match(html, /Bien cordialement,<br><strong style="color:#383288;">Le conseil local FCPE<\/strong><br>École &lt;Jean&gt; Moulin<br>Tél\. 06 00 00 00 00<\/p>/);
   // Une seule ligne : rien ne change.
