@@ -147,7 +147,7 @@ def html_email(doc, logo):
             elif ty == 'para':
                 a(f'<p style="{F}font-size:16px;line-height:1.6;margin:0 0 {mb};color:{C["texte"]};">{en_ligne(v)}</p>')
             elif ty == 'note':
-                a(f'<p style="{F}font-size:15px;line-height:1.6;margin:0 0 {mb};color:{C["texte2"]};">{en_ligne(v, C["texte2"])}</p>')
+                a(f'<p style="{F}font-size:14px;line-height:1.6;margin:0 0 {mb};color:{C["texte2"]};font-style:italic;">{en_ligne(v, C["texte2"])}</p>')
             elif ty == 'liste':
                 a(f'{tbl("width=\"100%\"")} style="margin:0 0 {mb};">')
                 for it in v:

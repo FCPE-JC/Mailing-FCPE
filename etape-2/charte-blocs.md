@@ -39,7 +39,7 @@ Sept couleurs de fond et de texte au plus, contre huit couleurs de fond dans la 
 | Salutation | 25 px | 1,25 | gras (titre `h1`) | Bleu titre |
 | Accroche | 18 px | 1,6 | 700 | Bleu titre |
 | Paragraphe | 16 px | 1,6 | normale | Texte |
-| Note | 15 px | 1,6 | normale | Texte secondaire |
+| Note | 14 px, italique | 1,6 | normale | Texte secondaire |
 | Surtitre | 12 px, capitales, espacement 1,5 px | — | 800 | Alterné (voir bloc 3) |
 | Bouton | 15 px | — | 700 | Blanc sur bleu titre |
 | Lien de secours | 12 px | 1,4 | normale | #5f6f8c |
@@ -66,7 +66,7 @@ Pour chaque bloc : rôle, rendu dans l'email, rendu dans la version WhatsApp (EX
 
 **6. Paragraphe** — Texte courant 16 px, marge basse 16 px (0 pour le dernier bloc d'une section). Pivot : texte libre.
 
-**7. Note** — Paragraphe secondaire (précision, confidentialité, post-scriptum), 15 px, couleur texte secondaire. WhatsApp : en italique. Pivot : paragraphe entièrement en italique `*…*`.
+**7. Note** — Paragraphe secondaire (précision, confidentialité, post-scriptum), 14 px en italique, couleur texte secondaire (15 px droit jusqu'au 13/10/2026, trop proche du paragraphe à l'essai du lot 4). WhatsApp : en italique. Pivot : paragraphe entièrement en italique `*…*`.
 
 **8. Mise en valeur** — Mots en gras bleu titre dans un paragraphe (chiffre, date, échéance). Dans une note, le gras reste de la couleur de la note. WhatsApp : `*…*`. Texte : sans marque. Pivot : `**…**`.
 

@@ -105,7 +105,7 @@ export function rendreEmail(doc, charte = CHARTE, options = {}) {
           a(`<p style="${F}font-size:${px(ty.paragraphe.taille)};line-height:${ty.paragraphe.interligne};margin:0 0 ${mb};color:${c.texte};">${enLigne(b.texte, null, charte)}</p>`);
           break;
         case 'note':
-          a(`<p style="${F}font-size:${px(ty.note.taille)};line-height:${ty.note.interligne};margin:0 0 ${mb};color:${c.texteSecondaire};">${enLigne(b.texte, c.texteSecondaire, charte)}</p>`);
+          a(`<p style="${F}font-size:${px(ty.note.taille)};line-height:${ty.note.interligne};margin:0 0 ${mb};color:${c.texteSecondaire};font-style:${ty.note.style};">${enLigne(b.texte, c.texteSecondaire, charte)}</p>`);
           break;
         case 'liste':
           a(`${tableau(LARGE)} style="margin:0 0 ${mb};">`);
