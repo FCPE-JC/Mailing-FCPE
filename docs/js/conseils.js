@@ -13,7 +13,7 @@ const EMOJI = /\p{Extended_Pictographic}(?:️|‍\p{Extended_Pictographic}️?|
 const longueur = s => [...s.replace(/[\uFE0F\u{1F3FB}-\u{1F3FF}]|\u200D\p{Extended_Pictographic}/gu, '')].length;
 
 export const SEUILS = Object.freeze({
-  sectionsMax: 7, surtitreMax: 40, libelleMax: 30, clotureMax: 80, listeMax: 7,
+  sectionsMax: 7, surtitreMax: 60, libelleMax: 30, clotureMax: 80, listeMax: 7,
   objetMin: 30, objetMax: 50, objetAlerte: 60, debutAccroche: 50,
 });
 

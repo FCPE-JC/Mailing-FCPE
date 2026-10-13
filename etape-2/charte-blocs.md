@@ -39,7 +39,7 @@ Sept couleurs de fond et de texte au plus, contre huit couleurs de fond dans la 
 | Salutation | 25 px | 1,25 | gras (titre `h1`) | Bleu titre |
 | Accroche | 18 px | 1,6 | 700 | Bleu titre |
 | Paragraphe | 16 px | 1,6 | normale | Texte |
-| Note | 15 px | 1,6 | normale | Texte secondaire |
+| Note | 14 px, italique | 1,6 | normale | Texte secondaire |
 | Surtitre | 12 px, capitales, espacement 1,5 px | — | 800 | Alterné (voir bloc 3) |
 | Bouton | 15 px | — | 700 | Blanc sur bleu titre |
 | Lien de secours | 12 px | 1,4 | normale | #5f6f8c |
@@ -60,13 +60,13 @@ Pour chaque bloc : rôle, rendu dans l'email, rendu dans la version WhatsApp (EX
 
 **3. Section du fil** — L'unité de construction du mail. Colonne gauche de 46 px avec une pastille ronde de 40 px (émoji 18 px), colonne droite avec le contenu (marges 8 / 0 / 24 / 14 px). Les pastilles alternent : sections impaires vertes (fond #e6f3dc, bordure 2 px #7ab850), sections paires bleues (fond #ebe9f7, bordure 2 px #383288). Un trait vertical de 2 px #e2e0ee relie chaque pastille à la suivante ; la dernière section n'en a pas. Pastille par défaut si aucun émoji n'est trouvé : ℹ️. Nombre de sections : pas de limite technique ; au-delà de 7, l'outil le signale comme conseil de rédaction. WhatsApp : l'émoji puis le surtitre en gras et en capitales sur une ligne ; une section sans surtitre n'a pas de ligne de tête. Texte : surtitre en capitales. Pivot : `## 🗓️ Surtitre`.
 
-**4. Surtitre** — Facultatif, en tête d'une section. 12 px, capitales, espacement 1,5 px, graisse 800, marge basse 10 px. Couleur opposée à celle de la pastille : bleu titre sur une section verte, vert foncé sur une section bleue. Conseil : 40 caractères au plus.
+**4. Surtitre** — Facultatif, en tête d'une section. 12 px, capitales, espacement 1,5 px, graisse 800, marge basse 10 px. Couleur opposée à celle de la pastille : bleu titre sur une section verte, vert foncé sur une section bleue. Conseil : 60 caractères au plus (40 jusqu'au 13/10/2026, relevé par DEC-108).
 
 **5. Accroche** — Paragraphe mis en avant, normalement la première section. Barre verticale verte de 5 px à gauche, texte 18 px gras bleu titre, retrait 18 px. Une seule par mail conseillée. WhatsApp : en gras. Pivot : `> texte`.
 
 **6. Paragraphe** — Texte courant 16 px, marge basse 16 px (0 pour le dernier bloc d'une section). Pivot : texte libre.
 
-**7. Note** — Paragraphe secondaire (précision, confidentialité, post-scriptum), 15 px, couleur texte secondaire. WhatsApp : en italique. Pivot : paragraphe entièrement en italique `*…*`.
+**7. Note** — Paragraphe secondaire (précision, confidentialité, post-scriptum), 14 px en italique, couleur texte secondaire (15 px droit jusqu'au 13/10/2026, DEC-112). WhatsApp : en italique. Pivot : paragraphe entièrement en italique `*…*`.
 
 **8. Mise en valeur** — Mots en gras bleu titre dans un paragraphe (chiffre, date, échéance). Dans une note, le gras reste de la couleur de la note. WhatsApp : `*…*`. Texte : sans marque. Pivot : `**…**`.
 

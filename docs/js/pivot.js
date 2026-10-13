@@ -69,8 +69,9 @@ export function lirePivot(texte) {
   }
   fermer();
 
-  // Paquets vers blocs.
+  // Paquets vers blocs. Les lignes de chaque paragraphe sont gardées à part, pour la signature.
   const blocs = [];
+  const lignesParagraphe = new Map();
   for (const paquet of paquets) {
     const tete = paquet[0].trim();
     // P3 : section ; « ### » est lu comme « ## ».
@@ -107,7 +108,14 @@ export function lirePivot(texte) {
     // Autres paquets : paragraphes, avec boutons, listes et accroches repérés ligne à ligne.
     let tampon = [];
     let liste = [];
-    const viderTampon = () => { if (tampon.length) blocs.push({ type: 'paragraphe', texte: tampon.map(x => x.trim()).join(' ') }); tampon = []; };
+    const viderTampon = () => {
+      if (tampon.length) {
+        const bloc = { type: 'paragraphe', texte: tampon.map(x => x.trim()).join(' ') };
+        lignesParagraphe.set(bloc, tampon.map(x => x.trim()));
+        blocs.push(bloc);
+      }
+      tampon = [];
+    };
     const viderListe = () => { if (liste.length) blocs.push({ type: 'liste', elements: liste }); liste = []; };
     for (const brute of paquet) {
       const s = brute.trim();
@@ -147,11 +155,11 @@ export function lirePivot(texte) {
     if (suivante >= 0) k = suivante;
   }
   if (k >= 0) {
-    const paragraphes = blocs.slice(k).filter(b => b.type === 'paragraphe').map(b => b.texte);
-    const v = paragraphes[0];
+    // Le signataire garde les retours à la ligne écrits : une ligne par ligne (DEC-110).
+    const [v, ...suite] = blocs.slice(k).filter(b => b.type === 'paragraphe').flatMap(b => lignesParagraphe.get(b));
     const virgule = v.indexOf(',');
     const formule = (virgule >= 0 ? v.slice(0, virgule) : v) + ',';
-    const signataire = ((virgule >= 0 ? v.slice(virgule + 1).trim() : '') + ' ' + paragraphes.slice(1).join(' ')).trim();
+    const signataire = [virgule >= 0 ? v.slice(virgule + 1).trim() : '', ...suite].filter(Boolean).join('\n');
     doc.signature = { formule, signataire: signataire || null };
     blocs.length = k;
   } else {

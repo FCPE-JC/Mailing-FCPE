@@ -69,7 +69,7 @@ Une ligne vide sépare deux blocs. Deux lignes qui se suivent sans ligne vide fo
 | P11 | Encadré Important | `::: important` / texte / `:::` | Le texte entre les deux lignes `:::`. Si sa première ligne est seulement « Attention », « Urgent », « À retenir », « À noter » ou « Rappel », elle devient le titre de l'encadré à la place d'« Important ». |
 | P12 | Date et lieu | `::: date` / lignes / `:::` | Une information par ligne ; la première est mise en avant. Exemple : `🗓️ Jeudi 5 novembre à 8 h 30`, `📍 Salle polyvalente`. |
 | P13 | Séparateur et clôture | `---` puis la phrase | Ce qui suit le dernier `---` et précède la signature est la clôture. |
-| P14 | Signature | `Bien cordialement,` / `Vos représentants FCPE` | Paragraphe qui commence par une formule de politesse connue : bien cordialement, cordialement, bien à vous, amicalement, à bientôt, à très bientôt, belle ou bonne journée / soirée / semaine, avec nos salutations, bon courage, merci et à bientôt. La formule va jusqu'à la première virgule ; le reste est le signataire. |
+| P14 | Signature | `Bien cordialement,` / `Vos représentants FCPE` | Paragraphe qui commence par une formule de politesse connue : bien cordialement, cordialement, bien à vous, amicalement, à bientôt, à très bientôt, belle ou bonne journée / soirée / semaine, avec nos salutations, bon courage, merci et à bientôt. La formule va jusqu'à la première virgule ; le reste est le signataire, qui garde ses retours à la ligne : la première ligne en gras, les suivantes en texte normal (DEC-110). |
 
 Contenu placé avant le premier `##` : il forme une première section sans surtitre, dont la pastille est choisie par l'outil.
 

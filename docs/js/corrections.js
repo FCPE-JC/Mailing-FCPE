@@ -18,7 +18,7 @@ export const TYPES = Object.freeze([
 ]);
 export const NOM_TYPE = Object.freeze(Object.fromEntries(TYPES.map(([t, nom]) => [t, nom.replace(/^\S+ (?=[A-Z])/u, '')])));
 
-export const LONGUEUR_TITRE_MAX = 60;
+export const LONGUEUR_TITRE_MAX = 100;
 const ADRESSE = /https?:\/\/[^\s<>()[\]]+/;
 const LIEN_MARQUE = /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/;
 

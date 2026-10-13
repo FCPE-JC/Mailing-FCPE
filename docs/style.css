@@ -192,6 +192,11 @@ input[type="text"]:focus-visible { outline: 3px solid var(--accent); outline-off
 .compteur { color: var(--doux); font-size: .9rem; white-space: nowrap; }
 .messages, .conseils ul { margin: 0; padding-left: 20px; font-size: .9rem; }
 .messages:empty { display: none; }
+/* Messages de l'objet : sous le champ, mis à jour pendant la frappe, avec l'aspect des
+   conseils pour qu'on les reconnaisse (DEC-113). */
+.messages { list-style: none; padding: 8px 12px; border-radius: 10px; background: var(--construction-fond); color: var(--construction); }
+.messages li::before { content: "💡 "; }
+.messages li:first-child { margin-top: 0; }
 .messages li, .conseils li { margin-top: 4px; }
 .propositions { display: flex; flex-wrap: wrap; gap: 6px; }
 .propositions:empty { display: none; }

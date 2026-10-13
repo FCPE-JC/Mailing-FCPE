@@ -182,3 +182,16 @@ test('US-016 : écrire le pivot puis le relire redonne le même modèle', async 
   const note = { objet: null, salutation: null, sections: [{ pastille: '🙏', surtitre: null, blocs: [{ type: 'note', texte: '*étoile* au début' }] }], cloture: null, signature: null, anomalies: [] };
   assert.deepEqual(net(lirePivot(ecrirePivot(note))).sections, note.sections);
 });
+
+test('US-007 P14 : la signature garde ses retours à la ligne, une ligne par ligne écrite (DEC-110)', async () => {
+  const { ecrirePivot } = await import('../docs/js/pivot.js');
+  const attendu = { formule: 'Bien cordialement,', signataire: 'Le conseil local FCPE\nÉcole Jean Moulin\nTél. 06 00 00 00 00' };
+  const texte = '## x\nTexte.\n\nBien cordialement,\nLe conseil local FCPE\nÉcole Jean Moulin\nTél. 06 00 00 00 00';
+  assert.deepEqual(lirePivot(texte).signature, attendu);
+  // Même résultat avec des lignes vides entre les lignes, ou le signataire après la virgule.
+  assert.deepEqual(lirePivot('## x\nTexte.\n\nBien cordialement,\n\nLe conseil local FCPE\n\nÉcole Jean Moulin\nTél. 06 00 00 00 00').signature, attendu);
+  assert.deepEqual(lirePivot('## x\nTexte.\n\nBien cordialement, Le conseil local FCPE\nÉcole Jean Moulin\nTél. 06 00 00 00 00').signature, attendu);
+  // L'écriture du pivot garde les lignes, et se relit à l'identique.
+  assert.deepEqual(lirePivot(ecrirePivot(lirePivot(texte))).signature, attendu);
+  assert.ok(ecrirePivot(lirePivot(texte)).endsWith('Bien cordialement,\nLe conseil local FCPE\nÉcole Jean Moulin\nTél. 06 00 00 00 00\n'));
+});
