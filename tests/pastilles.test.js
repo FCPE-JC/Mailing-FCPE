@@ -15,6 +15,7 @@ test('US-013 : chaque ligne du tableau D16 donne sa pastille', () => {
     ['🔒', ['anonyme', 'confidentiel']],
     ['🍽️', ['cantine', 'repas', 'restauration', 'menu']],
     ['📝', ['questionnaire', 'formulaire', 'sondage', 'témoignage', 'avis']],
+    // « maître » au singulier : DEC-101.
     ['🏫', ['école', 'conseil d’école', 'classe', 'enseignant', 'maître', 'maîtresse']],
     ['🎉', ['fête', 'kermesse', 'carnaval', 'spectacle', 'goûter']],
     ['🙏', ['merci', 'remercions']],
@@ -53,7 +54,7 @@ test('US-013 : exemples de priorité', () => {
   assert.equal(choisirPastille('Réunion le 12 octobre à la cantine'), '🗓️');
 });
 
-test('US-013 : un émoji déjà utilisé est évité si une autre correspondance existe, sinon il est gardé', () => {
+test('US-013 : un émoji déjà utilisé est évité si une autre correspondance existe, sinon il est gardé (DEC-101)', () => {
   assert.equal(choisirPastille('Merci pour la fête', ['🎉']), '🙏');
   // Sans autre mot-clé, la pastille répétée est gardée : ℹ️ ne vaut que sans aucun mot-clé.
   assert.equal(choisirPastille('Merci', ['🙏']), '🙏');

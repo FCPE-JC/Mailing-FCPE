@@ -71,7 +71,7 @@ export function libelleBouton(adresse) {
 // D16 : première pastille dont un mot-clé figure dans le texte, en évitant une pastille déjà
 // utilisée par une section précédente si un autre mot-clé correspond ; ℹ️ seulement sans
 // aucun mot-clé. Deux corrections de detection.py, qui donnait ℹ️ à une pastille répétée et
-// ne reconnaissait pas « maître » au singulier (choix de Mat du 13/10/2026).
+// ne reconnaissait pas « maître » au singulier (DEC-101).
 export function choisirPastille(texte, deja = []) {
   const t = texte.toLowerCase();
   const trouves = PICTOS.filter(([, m]) => (m === null ? DATE.test(t) : m.test(t))).map(([e]) => e);
