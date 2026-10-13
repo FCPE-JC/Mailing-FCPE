@@ -2,14 +2,70 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<!-- Règle de sécurité (US-002, DEC-070, TEC-004) : aucune requête réseau lancée par le code
+     (connect-src 'none') ; seuls les fichiers du site, les images intégrées (data:) et celles
+     créées par la page (blob:) sont permis. Elle doit rester la première ligne après charset. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
 <meta name="robots" content="noindex">
 <title>Mailing-FCPE</title>
+<link rel="stylesheet" href="style.css">
+<script type="module" src="js/demarrage.js"></script>
 </head>
-<body style="font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;max-width:640px;margin:0 auto;padding:24px 16px;line-height:1.5;">
-<h1>Mailing-FCPE</h1>
-<p>L'outil est en préparation (étape 4 : architecture). Seule la page de test est en ligne pour l'instant :</p>
-<p><a href="test-T5/">Test T5</a></p>
+<body>
+
+<!-- Visible seulement si le code de l'outil ne peut pas se charger (navigateur trop ancien). -->
+<div id="navigateur-trop-ancien" class="bandeau bandeau-alerte" role="alert">
+  <p><strong>Ce navigateur est trop ancien pour Mailing-FCPE.</strong> Ouvre cette page avec une version récente de Chrome, Edge ou Safari.</p>
+</div>
+
+<div id="application" hidden>
+  <p class="bandeau bandeau-construction" role="note">Version en construction, ne pas utiliser pour un vrai mailing.</p>
+
+  <header class="entete">
+    <p class="nom-outil">Mailing-FCPE</p>
+    <nav aria-label="Étapes">
+      <ol class="etapes">
+        <li><a href="#ecrire" data-etape="ecrire"><span class="numero">1</span> Écrire</a></li>
+        <li><a href="#verifier" data-etape="verifier"><span class="numero">2</span> Vérifier</a></li>
+        <li><a href="#partager" data-etape="partager"><span class="numero">3</span> Partager</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <div id="avertissement-navigateur" class="bandeau bandeau-alerte" role="alert" hidden></div>
+
+  <main>
+    <section data-ecran="ecrire" aria-labelledby="titre-ecrire">
+      <h2 id="titre-ecrire" tabindex="-1">Écrire</h2>
+      <p class="a-venir">Ici, tu colleras ton texte, partiras d'un modèle type ou reprendras un brouillon. Contenu à venir (lots 2, 3 et 6).</p>
+      <div class="navigation">
+        <a class="bouton" href="#verifier">Vérifier →</a>
+      </div>
+    </section>
+
+    <section data-ecran="verifier" aria-labelledby="titre-verifier" hidden>
+      <h2 id="titre-verifier" tabindex="-1">Vérifier</h2>
+      <p class="a-venir">Ici, tu verras l'aperçu de l'email et tu corrigeras chaque bloc. Contenu à venir (lots 2 et 4).</p>
+      <div class="navigation">
+        <a class="bouton bouton-second" href="#ecrire">← Écrire</a>
+        <a class="bouton" href="#partager">Partager →</a>
+      </div>
+    </section>
+
+    <section data-ecran="partager" aria-labelledby="titre-partager" hidden>
+      <h2 id="titre-partager" tabindex="-1">Partager</h2>
+      <p class="a-venir">Ici, tu copieras l'email pour Gmail et la version WhatsApp, et tu créeras l'image de l'aperçu. Contenu à venir (lot 5).</p>
+      <div class="navigation">
+        <a class="bouton bouton-second" href="#verifier">← Vérifier</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pied">
+    <p>🔒 Ton texte ne quitte pas cet appareil ; il disparaît à la fermeture de la page.</p>
+  </footer>
+</div>
+
 </body>
 </html>

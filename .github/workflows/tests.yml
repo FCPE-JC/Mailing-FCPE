@@ -1,0 +1,30 @@
+# Mailing-FCPE : vérification automatique (DEC « double vérification des tests », étape 5).
+#
+# À chaque demande de fusion et à chaque fusion dans main, GitHub lance tous les tests
+# avec Node.js, sur ses propres machines. Rien de ce fichier ne s'exécute dans la page
+# des rédacteurs. Aucune installation de paquet : Node.js suffit (DEC-067).
+# Le résultat s'affiche dans la demande de fusion (coche verte ou croix rouge).
+
+name: Tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: Tests automatiques
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+      - name: Installer Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Lancer les tests
+        run: node --test

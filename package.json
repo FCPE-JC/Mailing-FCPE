@@ -1,0 +1,9 @@
+{
+  "name": "mailing-fcpe",
+  "private": true,
+  "description": "Mailing-FCPE : texte brut vers email aux couleurs du conseil local FCPE. Aucune dépendance.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  }
+}
