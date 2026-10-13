@@ -10,7 +10,7 @@ Outil qui transforme un texte brut en email aux couleurs du conseil local FCPE d
 | 1. Documents et cahier des charges | Exigences vérifiables | Terminée |
 | 2. Charte et format pivot | Bibliothèque de blocs, règles de détection, prompt IA | Terminée |
 | 3. Tests de faisabilité | Collage Gmail, mode sombre, image d'aperçu, smartphone | Terminée |
-| 4. Architecture | Choisir la solution | En cours |
+| 4. Architecture | Choisir la solution | Terminée |
 | 5. Développement V1 | Construire | À venir |
 | 6. Recette | Vérifier sur les vrais appareils | À venir |
 | 7. Mise à disposition | Diffuser et mesurer | À venir |
@@ -27,7 +27,7 @@ L'outil lui-même n'existe pas encore : ce dépôt contient pour l'instant les s
   - `specimens/` : textes bruts fictifs et pivots attendus, plus le texte du mailing de référence d'octobre 2026.
   - `outils-de-travail/` : deux scripts Python de vérification (lire leur `LISEZMOI.md`). Ce ne sont pas des composants de l'outil.
 - `etape-3/` : plan et pages des tests de faisabilité.
-- `etape-4/` : plan de l'étape 4 (architecture) et sources du test T5.
+- `etape-4/` : plan, note comparative, brouillons des documents, US du lot 1, test T5 (sources et résultats) et synthèse de l'étape 4 (architecture).
 - `docs/` : le site publié par GitHub Pages. Il ne contient que des pages web, construites par les scripts des dossiers d'étape ; il accueillera l'outil à l'étape 5.
 
 ## Documents de référence
