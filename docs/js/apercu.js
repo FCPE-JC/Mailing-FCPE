@@ -6,7 +6,7 @@
 // sont que dans l'aperçu : le code copié au lot 5 est celui de preparerApercu().html.
 // Un texte qui contient la syntaxe pivot est lu tel quel ; un texte brut passe d'abord par
 // la détection (principe 5 de regles-detection.md). Une correction réécrit le texte au
-// format pivot dans la zone de l'écran Écrire (DEC du lot 4) ; « Annuler » revient en
+// format pivot dans la zone de l'écran Écrire (DEC-103) ; « Annuler » revient en
 // arrière correction par correction. Le texte ne vit que dans la page : rien n'est
 // enregistré (DEC-071).
 

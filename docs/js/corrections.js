@@ -1,8 +1,8 @@
 // Mailing-FCPE : corrections d'un clic (US-016, US-017, US-019 ; EX-005, EX-006, EX-027).
 //
 // Chaque correction prend le modèle interne (js/pivot.js) et rend un nouveau modèle, sans
-// toucher l'ancien : l'écran le réécrit ensuite au format pivot (DEC du lot 4). Le changement
-// de type suit le tableau de conversion validé par Mat (etape-5/lot-4/us-lot-4-v0.1.md) :
+// toucher l'ancien : l'écran le réécrit ensuite au format pivot (DEC-103). Le changement
+// de type suit le tableau de conversion validé par Mat (DEC-105, etape-5/lot-4/us-lot-4-v0.1.md) :
 // aucun texte n'est jamais perdu, et un choix impossible est grisé avec sa raison.
 //
 // Un bloc est désigné par un repère écrit en texte, celui que porte l'aperçu :

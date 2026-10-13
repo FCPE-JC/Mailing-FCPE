@@ -4,7 +4,7 @@
 // L'outil signale, il ne corrige jamais en silence. Les anomalies viennent de la lecture du
 // pivot (js/pivot.js) ; les conseils viennent de la charte (etape-2/charte-blocs.md) ; l'aide
 // à l'objet suit la section 5 de etape-2/regles-detection.md, seuils gardés tels quels comme
-// conseils pour la V1 (DEC du lot 4).
+// conseils pour la V1 (DEC-106).
 
 const LETTRE = /\p{L}/gu;
 const MAJUSCULE = /\p{Lu}/gu;
