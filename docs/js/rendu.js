@@ -74,6 +74,7 @@ export function rendreEmail(doc, charte = CHARTE) {
     const trait = k < n - 1
       ? `background-image:linear-gradient(${c.trait},${c.trait});background-repeat:no-repeat;background-position:21px 0;background-size:2px 100%;`
       : '';
+    // Sans émoji, pastille par défaut (DEC-093) ; le choix par mots-clés (D16) viendra au lot 3.
     const pastille = s.pastille || charte.textes.pastilleParDefaut;
     a(`${tableau(LARGE)}><tr>\n<td width="${d.colonnePastille}" valign="top" style="${trait}">${tableau()}><tr><td width="${d.pastille}" height="${d.pastille}" align="center" valign="middle" `
       + `style="width:${px(d.pastille)};height:${px(d.pastille)};background:${fond};border:2px solid ${bord};border-radius:22px;font-size:${px(d.taillePastille)};line-height:${px(d.pastille)};">${echapper(pastille)}</td></tr></table></td>`);

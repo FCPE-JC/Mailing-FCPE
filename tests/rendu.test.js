@@ -1,5 +1,5 @@
 // US-008 « Rendu selon la charte » (EX-007, RG-003) : l'outil redonne le rendu de l'outil de
-// travail validé à l'étape 2 (rendu.py), à l'en-tête V1 (DEC-078) et aux espaces près.
+// travail validé à l'étape 2 (rendu.py, références de DEC-094), à l'en-tête V1 (DEC-078) et aux espaces près.
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -92,7 +92,7 @@ test('US-008 : changer une couleur de la charte change le rendu (aucune valeur �
   assert.ok(!html.includes(CHARTE.couleurs.bleuTitre));
 });
 
-test('US-008 : une section sans émoji reçoit la pastille par défaut ℹ️', () => {
+test('US-008 : une section sans émoji reçoit la pastille par défaut ℹ️ (DEC-093)', () => {
   const html = rendreEmail(lirePivot('## Au programme\nTexte.'));
   assert.ok(html.includes(`>${CHARTE.textes.pastilleParDefaut}</td>`));
 });

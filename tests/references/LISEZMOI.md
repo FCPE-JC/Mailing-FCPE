@@ -1,4 +1,4 @@
-# Références de rendu (US-008)
+# Références de rendu (US-008, DEC-094)
 
 Chaque fichier `.html` de ce dossier est le rendu produit par l'outil de travail de l'étape 2, `etape-2/outils-de-travail/rendu.py`, à partir d'un pivot du dépôt :
 - `etape-2/specimens/<nom>.md` pour les spécimens de l'étape 2 ;
