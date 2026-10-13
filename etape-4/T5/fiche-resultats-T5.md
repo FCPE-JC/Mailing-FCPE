@@ -1,6 +1,6 @@
 # Test T5 : fiche de résultats
 
-Adresse : https://mat130718.github.io/mailing-fcpe/test-T5/
+Adresse : https://mat130718.github.io/Mailing-FCPE/test-T5/
 Réponds dans le fil ; une ligne par case suffit. Captures sans adresse ni nom visibles.
 
 ## Section 1 : ce que le navigateur sait faire
