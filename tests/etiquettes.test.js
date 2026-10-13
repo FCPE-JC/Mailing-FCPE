@@ -1,5 +1,5 @@
 // US-015 « Voir le type de chaque bloc » (EX-005, EX-008) : chaque bloc de l'aperçu porte
-// l'étiquette de son type ; les étiquettes ne sont jamais dans le code copié (DEC du lot 4).
+// l'étiquette de son type ; les étiquettes ne sont jamais dans le code copié (DEC-104).
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
