@@ -20,3 +20,10 @@ Pour chaque ligne, réponds OK ou KO, avec un mot d'explication si c'est KO. Une
 | 10 | Navigateur utilisé | Indique lequel (Chrome, Edge…) | | |
 
 Remarques libres (ce qui te gêne, ce qui manque) :
+
+## Résultats
+
+- **PC Windows (13/10/2026, 20 h 33)** : « Tests réalisés sur PC Windows tous concluants » (message de Mat). Aucun encadré rouge affiché (message de Mat, 20 h 34) : le navigateur du PC propose les trois fonctions, partage compris.
+- **Android (13/10/2026, 20 h 35)** : « Tests réalisés sur Android tous concluants et pas d’encadré rouge » (message de Mat).
+
+Conclusion : critères de fin de US-001 à US-006 vérifiés sur PC et Android ; lot 1 clos. iPhone renvoyé à la recette (DEC-081).

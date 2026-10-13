@@ -154,3 +154,24 @@ main h2:focus { outline: none; }
 a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 
 .pied { margin-top: 16px; color: var(--doux); font-size: .9rem; text-align: center; }
+
+/* Écran Écrire : la zone de texte (US-009). */
+.etiquette { font-weight: 600; }
+textarea {
+  width: 100%;
+  min-height: 14rem;
+  padding: 12px;
+  border: 1px solid var(--bord);
+  border-radius: 10px;
+  background: var(--fond);
+  color: var(--texte);
+  font: 1rem/1.5 var(--police);
+  resize: vertical;
+}
+textarea:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.aide { color: var(--doux); font-size: .9rem; }
+
+/* Écran Vérifier : l'objet et l'aperçu de l'email (US-010). L'email porte ses propres
+   couleurs, en styles en ligne : l'aperçu ne suit pas le mode sombre de l'outil. */
+.objet { font-weight: 600; padding: 10px 12px; border-radius: 10px; background: var(--accent-pale); }
+.apercu { margin: 0 -16px; overflow-x: auto; }
