@@ -1,6 +1,6 @@
 # Lot 5 : pastilles complémentaires et bouton « Autre »
 
-Demande de Mat du 13/10/2026 (22 h 51), propositions validées le 13/10/2026 (22 h 56, « OK pour tes propositions »). À reprendre dans les US du lot 5 ; une DEC sera demandée au fil Documents (modification de la règle D16).
+Demande de Mat du 13/10/2026 (22 h 51), propositions validées le 13/10/2026 (22 h 56, « OK pour tes propositions »). À reprendre dans les US du lot 5 ; DEC-109 (modification de la règle D16).
 
 ## Émojis ajoutés au panneau (7)
 

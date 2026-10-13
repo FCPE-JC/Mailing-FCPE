@@ -24,4 +24,4 @@ Remplacer « Lot suivant : `sorties.js`. » par :
 
 ## Pour le lot 5
 
-Décisions de Mat pendant l'essai, notées dans `etape-5/lot-5/` : pastilles complémentaires et bouton « Autre » (DEC-109, `pastilles-a-ajouter.md`), texte du bloc dans le panneau (DEC-111, `texte-du-bloc.md`), type « Signature » sans formule obligatoire (DEC à attribuer, `type-signature.md`). Le prompt IA demande encore un surtitre de 40 caractères au plus (DEC-108).
+Décisions de Mat pendant l'essai, notées dans `etape-5/lot-5/` : pastilles complémentaires et bouton « Autre » (DEC-109, `pastilles-a-ajouter.md`), texte du bloc dans le panneau (DEC-111, `texte-du-bloc.md`), type « Signature » sans formule obligatoire (DEC-114, `type-signature.md`). Le prompt IA demande encore un surtitre de 40 caractères au plus (DEC-108).

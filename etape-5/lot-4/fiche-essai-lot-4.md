@@ -28,4 +28,4 @@ Remarques libres (13/10/2026, 22 h 46 à 23 h 20), avec leur suite :
 - Essai n° 4 : la note est trop proche du paragraphe ; elle passe à 14 px en italique (DEC-112, demande n° 12).
 - Essai n° 6 : impossible avec ce texte, qui ne permet aucune proposition d'objet ; fiche corrigée.
 - Essai n° 7 : les trois messages s'affichaient sous le champ, mais Mat les cherchait dans le pavé Conseils ; ils prennent l'aspect des conseils (DEC-113, demande n° 12).
-- Signature absente après les corrections de l'essai : normal, le texte n'avait plus de formule de politesse. Type « Signature » sans formule obligatoire au lot 5 (DEC à attribuer).
+- Signature absente après les corrections de l'essai : normal, le texte n'avait plus de formule de politesse. Type « Signature » sans formule obligatoire au lot 5 (DEC-114).
