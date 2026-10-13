@@ -38,10 +38,10 @@
   <main>
     <section data-ecran="ecrire" aria-labelledby="titre-ecrire">
       <h2 id="titre-ecrire" tabindex="-1">Écrire</h2>
-      <label for="texte" class="etiquette">Colle ton texte au format pivot</label>
+      <label for="texte" class="etiquette">Colle ton texte</label>
       <textarea id="texte" rows="12" autocomplete="off" autocapitalize="sentences" spellcheck="true" lang="fr"
-        placeholder="Objet : …&#10;&#10;Chers parents,&#10;&#10;## 🗓️ Surtitre&#10;Ton texte…"></textarea>
-      <p class="aide">Le texte brut sans mise en forme sera reconnu au lot 3 ; les modèles types arriveront au lot 6.</p>
+        placeholder="Objet : …&#10;&#10;Chers parents,&#10;&#10;Ton texte…"></textarea>
+      <p class="aide">Un message tel quel (WhatsApp, email) est mis en forme automatiquement ; un texte au format pivot est lu tel quel. Les modèles types arriveront au lot 6.</p>
       <div class="navigation">
         <a class="bouton" href="#verifier">Mettre en forme →</a>
       </div>
@@ -50,6 +50,7 @@
     <section data-ecran="verifier" aria-labelledby="titre-verifier" hidden>
       <h2 id="titre-verifier" tabindex="-1">Vérifier</h2>
       <p id="apercu-vide" class="a-venir">Colle d'abord un texte sur l'écran Écrire : l'email s'affichera ici.</p>
+      <p id="lecture" class="aide" hidden></p>
       <p id="objet" class="objet" hidden></p>
       <div id="apercu" class="apercu" hidden></div>
       <p class="aide">Les corrections bloc par bloc arriveront au lot 4.</p>
