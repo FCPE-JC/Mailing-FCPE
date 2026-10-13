@@ -193,7 +193,7 @@ input[type="text"]:focus-visible { outline: 3px solid var(--accent); outline-off
 .messages, .conseils ul { margin: 0; padding-left: 20px; font-size: .9rem; }
 .messages:empty { display: none; }
 /* Messages de l'objet : sous le champ, mis à jour pendant la frappe, avec l'aspect des
-   conseils pour qu'on les reconnaisse (demande de Mat à l'essai du lot 4). */
+   conseils pour qu'on les reconnaisse (DEC-113). */
 .messages { list-style: none; padding: 8px 12px; border-radius: 10px; background: var(--construction-fond); color: var(--construction); }
 .messages li::before { content: "💡 "; }
 .messages li:first-child { margin-top: 0; }

@@ -130,7 +130,7 @@ test('US-019 : sur la page, l’objet se corrige dans son champ, avec compteur, 
   assert.equal(elements.annuler.disabled, false);
 });
 
-test('US-019 : les messages de l’objet restent sous le champ, avec l’aspect des conseils (demande de Mat)', () => {
+test('US-019 : les messages de l’objet restent sous le champ, avec l’aspect des conseils (DEC-113)', () => {
   const css = lireDuSite('style.css');
   const regle = css.match(/\.messages \{ list-style[^}]*\}/)?.[0] ?? '';
   const conseils = css.match(/\.conseils \{[^}]*\}/)[0];
