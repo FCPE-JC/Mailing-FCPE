@@ -38,15 +38,21 @@
   <main>
     <section data-ecran="ecrire" aria-labelledby="titre-ecrire">
       <h2 id="titre-ecrire" tabindex="-1">Écrire</h2>
-      <p class="a-venir">Ici, tu colleras ton texte, partiras d'un modèle type ou reprendras un brouillon. Contenu à venir (lots 2, 3 et 6).</p>
+      <label for="texte" class="etiquette">Colle ton texte au format pivot</label>
+      <textarea id="texte" rows="12" autocomplete="off" autocapitalize="sentences" spellcheck="true" lang="fr"
+        placeholder="Objet : …&#10;&#10;Chers parents,&#10;&#10;## 🗓️ Surtitre&#10;Ton texte…"></textarea>
+      <p class="aide">Le texte brut sans mise en forme sera reconnu au lot 3 ; les modèles types arriveront au lot 6.</p>
       <div class="navigation">
-        <a class="bouton" href="#verifier">Vérifier →</a>
+        <a class="bouton" href="#verifier">Mettre en forme →</a>
       </div>
     </section>
 
     <section data-ecran="verifier" aria-labelledby="titre-verifier" hidden>
       <h2 id="titre-verifier" tabindex="-1">Vérifier</h2>
-      <p class="a-venir">Ici, tu verras l'aperçu de l'email et tu corrigeras chaque bloc. Contenu à venir (lots 2 et 4).</p>
+      <p id="apercu-vide" class="a-venir">Colle d'abord un texte sur l'écran Écrire : l'email s'affichera ici.</p>
+      <p id="objet" class="objet" hidden></p>
+      <div id="apercu" class="apercu" hidden></div>
+      <p class="aide">Les corrections bloc par bloc arriveront au lot 4.</p>
       <div class="navigation">
         <a class="bouton bouton-second" href="#ecrire">← Écrire</a>
         <a class="bouton" href="#partager">Partager →</a>

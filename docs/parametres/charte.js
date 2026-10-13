@@ -52,9 +52,29 @@ export const CHARTE = Object.freeze({
     marges: '20px 20px 18px',
     largeurColonneLogo: 96,
     largeurLogo: 88,
+    tailleLigne1: 14,             // « Représentants des parents d'élèves »
+    tailleLigne2: 16,             // nom de l'école, en gras
+    interligne: 1.4,
     ligne1: 'Représentants des parents d’élèves',
     ligne2: 'École élémentaire Joliot-Curie',
     hauteurFilet: 4,
+  }),
+
+  // Dimensions de la mise en page (charte-blocs.md, section 4), en pixels.
+  dimensions: Object.freeze({
+    rayonCarte: 20,               // coins arrondis de la carte
+    margesCorps: '28px 32px 32px',
+    margeFond: '24px 8px',        // autour de la carte
+    colonnePastille: 46,
+    pastille: 40,
+    taillePastille: 18,           // taille de l'émoji dans la pastille
+    margesContenuSection: '8px 0 24px 14px',
+    barreAccroche: 5,
+    rayonBouton: 22,
+    margesBouton: '12px 22px',
+    rayonImportant: 6,
+    margesEncadre: '14px 18px',
+    rayonDate: 14,
   }),
 
   // Textes par défaut (charte-blocs.md, blocs 2, 3 et 12).
