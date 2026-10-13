@@ -5,7 +5,7 @@
 // colle telle quelle dans l'outil. Copie exacte de etape-2/prompt-ia.txt, vérifiée par les
 // tests : changer les deux fichiers ensemble, lancer « node --test », puis proposer le
 // changement par une demande de fusion relue par Mat.
-// Surtitre de 60 caractères au plus depuis DEC-108 (40 auparavant).
+// Surtitre de 60 caractères au plus depuis DEC-108 (40 auparavant), mis à jour au lot 5a (DEC-120).
 
 export const PROMPT_IA = `Tu es chargé de mettre en forme un email des représentants FCPE de l'école élémentaire Joliot-Curie, destiné à tous les parents. Je te donne plus bas mon texte brut. Réécris-le dans le « format pivot » de l'outil Mailing-FCPE, décrit ci-dessous, et réponds uniquement par le résultat, dans un seul bloc de code, sans commentaire avant ni après.
 

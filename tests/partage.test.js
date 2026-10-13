@@ -96,7 +96,7 @@ test('US-022 : « Copier l’email pour Gmail » copie le code de l’email et l
   assert.equal(p.elements.repli.hidden, true);
 });
 
-test('US-022 : copie refusée, l’email est montré et sélectionné, avec une phrase qui le dit', async () => {
+test('US-022 : copie refusée, l’email est montré et sélectionné, avec une phrase qui le dit (DEC-118)', async () => {
   const p = page({ texte: TEXTE, copie: false });
   await p.toucher('copier-gmail');
   assert.equal(p.elements.repli.hidden, false);
@@ -117,7 +117,7 @@ test('US-023 et US-024 : les versions WhatsApp et texte se copient, ou s’affic
   assert.equal(refus.elements['repli-contenu'].enfants[0].value, c.whatsapp);
 });
 
-test('US-026 : « Exporter » copie le brouillon au format pivot ; « Télécharger » en fait un fichier texte', async () => {
+test('US-026 : « Exporter » copie le brouillon au format pivot ; « Télécharger » en fait un fichier texte (DEC-117)', async () => {
   const p = page({ texte: TEXTE });
   await p.toucher('exporter');
   assert.equal(p.copies[0]['text/plain'], contenusPartage(TEXTE).pivot);
@@ -127,7 +127,7 @@ test('US-026 : « Exporter » copie le brouillon au format pivot ; « Téléchar
   assert.match(p.telechargements[0].type, /^text\/plain/);
 });
 
-test('US-026 : « Reprendre un brouillon » lit le fichier dans la page et met l’aperçu à jour', async () => {
+test('US-026 : « Reprendre un brouillon » lit le fichier dans la page et met l’aperçu à jour (DEC-117)', async () => {
   const p = page();
   const pivot = contenusPartage(TEXTE).pivot;
   p.elements['ouvrir-brouillon'].files = [{ size: pivot.length, text: async () => pivot }];
@@ -149,7 +149,7 @@ test('US-026 : un fichier trop gros ou illisible est refusé avec un message, le
   assert.equal(p.elements.texte.value, TEXTE);
 });
 
-test('US-027 : le prompt copié est celui de l’étape 2, avec le surtitre de 60 caractères (DEC-108)', async () => {
+test('US-027 : le prompt copié est celui de l’étape 2, avec le surtitre de 60 caractères (DEC-108, DEC-120)', async () => {
   assert.equal(PROMPT_IA, lireDuDepot('etape-2/prompt-ia.txt'));
   assert.match(PROMPT_IA, /Le surtitre fait 60 caractères au plus/);
   const p = page();
@@ -166,7 +166,7 @@ test('US-027 : l’exemple du prompt est lu par l’outil sans anomalie', () => 
   for (const s of doc.sections) assert.ok([...(s.surtitre || '')].length <= 60);
 });
 
-test('US-028 : avertissement au rechargement tant que l’email n’est ni copié pour Gmail ni exporté', async () => {
+test('US-028 : avertissement au rechargement tant que l’email n’est ni copié pour Gmail ni exporté (DEC-119)', async () => {
   const p = page();
   assert.equal(p.recharger(), false, 'texte vide');
   p.taper(TEXTE);

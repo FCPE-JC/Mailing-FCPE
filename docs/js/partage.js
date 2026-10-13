@@ -1,10 +1,10 @@
 // Mailing-FCPE : écran Partager, reprise d'un brouillon, prompt IA et avertissement avant de
-// recharger (US-021 à US-028 ; EX-009 à EX-014, EX-028, EX-029).
+// recharger (US-021 à US-028 ; EX-009 à EX-014, EX-028, EX-029 ; lot 5a, DEC-116).
 //
 // L'écran Partager suit la maquette de l'étape 2 : d'abord ce qui sert à la relecture sur
 // téléphone, puis ce qui sert à l'envoi depuis l'ordinateur. Chaque bouton dit en une ligne
 // ce qu'il a fait ; quand le navigateur refuse une copie, le contenu est sélectionné pour une
-// copie à la main. Le texte est toujours celui de la zone de l'écran Écrire : les corrections
+// copie à la main (DEC-118 pour l'email). Le texte est toujours celui de la zone de l'écran Écrire : les corrections
 // de l'écran Vérifier y sont déjà écrites (DEC-103).
 
 import { preparerApercu } from './apercu.js';
@@ -48,7 +48,8 @@ export function contenusPartage(texte) {
     html: apercu.html,
     whatsapp: versionTexte(apercu.doc, true),
     texte: versionTexte(apercu.doc, false),
-    // Le brouillon exporté est le texte relu au format pivot : le reprendre redonne le même email (EX-028).
+    // Le brouillon exporté (copié ou téléchargé, DEC-117) est le texte relu au format pivot :
+    // le reprendre redonne le même email (EX-028).
     pivot: ecrirePivot(apercu.doc),
   };
 }
@@ -68,7 +69,7 @@ export function brancherPartage(fenetre, fonctions) {
   const contenuRepli = $('repli-contenu');
   const boutonPartagerImage = $('partager-image');
 
-  // Texte au moment de la dernière copie pour Gmail ou du dernier export (EX-029).
+  // Texte au moment de la dernière copie pour Gmail ou du dernier export (EX-029, DEC-119).
   let misAbri = null;
   // Dernière image créée, gardée pour que « Partager » parte tout de suite (DEC-080).
   let image = null;
@@ -185,7 +186,8 @@ export function brancherPartage(fenetre, fonctions) {
     dire({ partage: MESSAGES.imagePartagee, annule: MESSAGES.imageAnnulee, impossible: MESSAGES.partageImpossible }[resultat]);
   });
 
-  // Écran Écrire : prompt IA (US-027) et reprise d'un brouillon (US-026).
+  // Écran Écrire : prompt IA (US-027, DEC-120) et reprise d'un brouillon, collé ou ouvert en
+  // fichier (US-026, DEC-117).
   $('copier-prompt').addEventListener('click', async () => {
     if (await copierTexte(fenetre, PROMPT_IA)) dire(MESSAGES.prompt, retourEcrire);
     else {

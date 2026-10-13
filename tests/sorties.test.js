@@ -233,7 +233,7 @@ test('US-026 : un brouillon exporté puis repris redonne exactement le même ema
   }
 });
 
-test('US-028 : avertir seulement si le texte n’est pas vide et a changé depuis la copie Gmail ou l’export', () => {
+test('US-028 : avertir seulement si le texte n’est pas vide et a changé depuis la copie Gmail ou l’export (DEC-119)', () => {
   assert.equal(aProteger('', null), false);
   assert.equal(aProteger('  \n', null), false);
   assert.equal(aProteger('Texte', null), true);

@@ -1,4 +1,5 @@
-// Mailing-FCPE : les sorties de l'email (US-022 à US-026, US-028 ; EX-009 à EX-013, EX-028, EX-029).
+// Mailing-FCPE : les sorties de l'email (US-022 à US-026, US-028 ; EX-009 à EX-013, EX-028, EX-029 ;
+// lot 5a, DEC-116).
 //
 // Versions WhatsApp et texte : transcription en JavaScript de sortie_texte() de
 // etape-2/outils-de-travail/rendu.py (une ligne vide entre chaque bloc, DEC-057), avec la
@@ -63,7 +64,7 @@ export function nomDeFichier(base, extension, date = new Date()) {
 }
 
 // Avertissement avant de recharger (EX-029) : un texte non vide qui a changé depuis la
-// dernière copie pour Gmail ou le dernier export du brouillon.
+// dernière copie pour Gmail ou le dernier export du brouillon, seuls « mis à l'abri » (DEC-119).
 export const aProteger = (texte, misAbri) => Boolean(String(texte ?? '').trim()) && texte !== misAbri;
 
 // Copie d'un texte. Renvoie true si le texte est dans le presse-papier.

@@ -1,6 +1,6 @@
 # Fiche d'essai du lot 5a (les sorties), v0.1
 
-À remplir par Mat après la fusion de la demande du lot 5a, sur ordinateur puis sur le téléphone Android. Durée : une vingtaine de minutes. Texte d'essai fictif : `etape-2/specimens/02-invitation.brut.txt` (ouvre-le sur GitHub, bouton « Raw », puis copie tout le texte). L'essai va jusqu'à Gmail : envoie l'email à ta propre adresse, à personne d'autre.
+À remplir par Mat après la fusion de la demande du lot 5a (DEC-116), sur ordinateur puis sur le téléphone Android. Durée : une vingtaine de minutes. Texte d'essai fictif : `etape-2/specimens/02-invitation.brut.txt` (ouvre-le sur GitHub, bouton « Raw », puis copie tout le texte). L'essai va jusqu'à Gmail : envoie l'email à ta propre adresse, à personne d'autre.
 
 Adresse : https://mat130718.github.io/Mailing-FCPE/ (attendre une à deux minutes après la fusion, puis recharger la page).
 
