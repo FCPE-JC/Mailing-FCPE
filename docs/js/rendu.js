@@ -153,7 +153,9 @@ export function rendreEmail(doc, charte = CHARTE, options = {}) {
   if (doc.signature) {
     const { formule, signataire } = doc.signature;
     a(`<p style="${F}font-size:${px(ty.signature.taille)};line-height:${ty.signature.interligne};margin:0;color:${c.texte};">${echapper(formule)}`
-      + (signataire ? `<br><strong style="color:${c.bleuTitre};">${echapper(signataire)}</strong>` : '') + '</p>');
+      + (signataire ? signataire.split('\n').map((ligne, q) => (q === 0
+        ? `<br><strong style="color:${c.bleuTitre};">${echapper(ligne)}</strong>`
+        : `<br>${echapper(ligne)}`)).join('') : '') + '</p>');
   }
   a('</td></tr>\n</table></td></tr></table>');
 
