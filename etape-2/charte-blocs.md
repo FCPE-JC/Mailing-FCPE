@@ -66,7 +66,7 @@ Pour chaque bloc : rôle, rendu dans l'email, rendu dans la version WhatsApp (EX
 
 **6. Paragraphe** — Texte courant 16 px, marge basse 16 px (0 pour le dernier bloc d'une section). Pivot : texte libre.
 
-**7. Note** — Paragraphe secondaire (précision, confidentialité, post-scriptum), 14 px en italique, couleur texte secondaire (15 px droit jusqu'au 13/10/2026, trop proche du paragraphe à l'essai du lot 4). WhatsApp : en italique. Pivot : paragraphe entièrement en italique `*…*`.
+**7. Note** — Paragraphe secondaire (précision, confidentialité, post-scriptum), 14 px en italique, couleur texte secondaire (15 px droit jusqu'au 13/10/2026, DEC-112). WhatsApp : en italique. Pivot : paragraphe entièrement en italique `*…*`.
 
 **8. Mise en valeur** — Mots en gras bleu titre dans un paragraphe (chiffre, date, échéance). Dans une note, le gras reste de la couleur de la note. WhatsApp : `*…*`. Texte : sans marque. Pivot : `**…**`.
 

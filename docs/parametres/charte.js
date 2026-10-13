@@ -38,7 +38,7 @@ export const CHARTE = Object.freeze({
     salutation: Object.freeze({ taille: 25, interligne: 1.25, graisse: 'bold' }),
     accroche: Object.freeze({ taille: 18, interligne: 1.6, graisse: 700 }),
     paragraphe: Object.freeze({ taille: 16, interligne: 1.6, graisse: 'normal' }),
-    note: Object.freeze({ taille: 14, interligne: 1.6, graisse: 'normal', style: 'italic' }), // DEC à venir : 15 px droit auparavant
+    note: Object.freeze({ taille: 14, interligne: 1.6, graisse: 'normal', style: 'italic' }), // DEC-112 : 15 px droit auparavant
     surtitre: Object.freeze({ taille: 12, espacement: 1.5, graisse: 800 }),
     bouton: Object.freeze({ taille: 15, graisse: 700 }),
     lienSecours: Object.freeze({ taille: 12, interligne: 1.4, graisse: 'normal' }),
