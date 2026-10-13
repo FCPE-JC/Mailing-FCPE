@@ -1,5 +1,5 @@
 // US-013 « Pastilles par mots-clés » (EX-004) : règle D16 de etape-2/regles-detection.md,
-// pour un texte brut et pour les sections d'un pivot écrites sans émoji (DEC du lot 3).
+// pour un texte brut et pour les sections d'un pivot écrites sans émoji (DEC-099).
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';

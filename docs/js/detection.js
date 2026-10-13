@@ -5,9 +5,10 @@
 // ensuite comme un pivot écrit à la main. Dans le doute, un texte reste un paragraphe.
 //
 // Transcription fidèle de etape-2/outils-de-travail/detection.py, défauts connus compris
-// (DEC du lot 3), sauf deux écarts avec la règle D16 corrigés dans choisirPastille() : les
-// tests comparent le résultat aux fichiers *.pivot-detecte.md des spécimens. Deux ajouts au texte des règles, gardés par Mat le 13/10/2026 : « Cher »,
-// « Chère » et « Mesdames » en salutation (D4), « -> » avant une adresse seule (D3).
+// (DEC-097), sauf deux écarts avec la règle D16 corrigés dans choisirPastille() : les
+// tests comparent le résultat aux fichiers *.pivot-detecte.md des spécimens. Deux ajouts
+// au texte des règles, gardés par Mat (DEC-100) : « Cher », « Chère » et « Mesdames » en
+// salutation (D4), « -> » avant une adresse seule (D3).
 
 // Frontière de mot au sens de Python (lettres et chiffres de toutes les langues) : le \b de
 // JavaScript ne connaît que les lettres sans accent.
@@ -252,7 +253,7 @@ export function detecterPivot(brut) {
   return versPivot(detecter(brut));
 }
 
-// D16 appliquée à un pivot lu (DEC du lot 3) : une section sans émoji reçoit la pastille de
+// D16 appliquée à un pivot lu (DEC-099) : une section sans émoji reçoit la pastille de
 // ses mots-clés ; aucun surtitre n'est ajouté, le rédacteur a écrit les siens.
 export function completerPastilles(doc) {
   const deja = [];

@@ -1,6 +1,6 @@
 // US-012 « Détecter les blocs d'un texte brut » (EX-001, EX-004) : chaque règle D1 à D15 de
 // etape-2/regles-detection.md ; les six textes bruts de l'étape 2 donnent exactement le pivot
-// de l'outil de travail detection.py (fichiers *.pivot-detecte.md, DEC du lot 3).
+// de l'outil de travail detection.py (fichiers *.pivot-detecte.md, DEC-097).
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
