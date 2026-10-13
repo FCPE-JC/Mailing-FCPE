@@ -248,3 +248,22 @@ button.bouton { cursor: pointer; }
 .choix-pastille { width: 44px; font-size: 1.3rem; padding: 0; }
 .choix-type:focus-visible, .choix-pastille:focus-visible, .proposition:focus-visible, .lien-conseil:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 .apercu { margin: 0 -16px; overflow-x: auto; }
+
+/* Écran Écrire : reprise d'un brouillon et prompt IA (US-026, US-027). Le choix de fichier
+   reste dans la page mais hors de l'écran : c'est son étiquette qui sert de bouton. */
+.actions-ecrire { display: flex; flex-wrap: wrap; gap: 10px; }
+.actions-ecrire .bouton { cursor: pointer; }
+.hors-ecran { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
+.hors-ecran:focus-visible + .bouton { outline: 3px solid var(--accent); outline-offset: 2px; }
+.retour:empty { display: none; }
+.retour { margin: 0; font-weight: 600; color: var(--texte); }
+.repli-texte { font-size: .9rem; }
+
+/* Écran Partager (US-021) : deux groupes de boutons, l'un sous l'autre, pleine largeur. */
+.partage { display: grid; gap: 16px; }
+.groupe { display: grid; gap: 10px; }
+.groupe h3 { margin: 0; font-size: 1rem; color: var(--doux); }
+.groupe .bouton { width: 100%; justify-content: flex-start; text-align: left; cursor: pointer; }
+.repli { display: grid; gap: 8px; }
+.repli-contenu { margin: 0 -16px; overflow-x: auto; border-block: 1px solid var(--bord); }
+.repli-contenu textarea { width: 100%; border: 0; }

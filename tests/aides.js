@@ -49,8 +49,10 @@ export class FauxElement {
   removeAttribute(nom) { delete this.attributs[nom]; }
   focus() { this.ownerDocument.focus = this; }
   // Événements : écouteurs enregistrés, déclenchés à la main par les tests.
-  addEventListener(nom, fonction) { (this.ecouteurs ??= {})[nom] = fonction; }
-  declencher(nom, evenement = {}) { this.ecouteurs?.[nom]?.(evenement); }
+  addEventListener(nom, fonction) { ((this.ecouteurs ??= {})[nom] ??= []).push(fonction); }
+  declencher(nom, evenement = {}) { for (const f of this.ecouteurs?.[nom] ?? []) f(evenement); }
+  dispatchEvent(evenement) { this.declencher(evenement.type, evenement); }
+  get firstElementChild() { return this.enfants.find(e => typeof e !== 'string') ?? null; }
   // Texte visible de l'élément et de ses enfants.
   get texte() {
     return this.textContent + this.enfants.map(e => (typeof e === 'string' ? e : e.texte)).join('');

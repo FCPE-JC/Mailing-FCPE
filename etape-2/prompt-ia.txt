@@ -11,7 +11,7 @@ FORMAT PIVOT (respecte-le exactement)
 2. La salutation seule sur sa ligne, terminée par une virgule (par défaut : « Chers parents, »).
 3. Le corps est découpé en 3 à 6 sections. Chaque section commence par une ligne :
    ## <un émoji> <un surtitre court>
-   L'émoji illustre le thème de la section (🗓️ date, 🏫 école, 🍽️ cantine, 📝 questionnaire, 🔒 confidentialité, 🎉 fête, 🙏 remerciement, 🤝 lien avec les familles, ⚠️ urgence…) ; n'utilise pas deux fois le même. Le surtitre fait 40 caractères au plus et ne finit pas par un point. La première section peut n'avoir qu'un émoji, sans surtitre.
+   L'émoji illustre le thème de la section (🗓️ date, 🏫 école, 🍽️ cantine, 📝 questionnaire, 🔒 confidentialité, 🎉 fête, 🙏 remerciement, 🤝 lien avec les familles, ⚠️ urgence…) ; n'utilise pas deux fois le même. Le surtitre fait 60 caractères au plus et ne finit pas par un point. La première section peut n'avoir qu'un émoji, sans surtitre.
 4. Dans une section, sépare les blocs par une ligne vide. Les blocs possibles :
    - un paragraphe ordinaire ;
    - une accroche, une seule dans l'email, dans la première section : une ligne qui commence par « > » ;
