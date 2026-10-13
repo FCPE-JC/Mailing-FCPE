@@ -11,7 +11,7 @@ Adresse : https://mat130718.github.io/Mailing-FCPE/ (attendre une à deux minute
 | 3 | Choisir la pastille 📝, puis écrire « Au programme du café » dans le surtitre et valider | La pastille et le surtitre changent aussitôt dans l'email | | |
 | 4 | Fermer le panneau, toucher l'étiquette « Paragraphe » du premier bloc, choisir « Note » | Le bloc passe en petit texte gris | | |
 | 5 | Dans le même panneau, toucher « Bouton » | Rien ne change ; une phrase dit qu'il faut une adresse web | | |
-| 6 | Effacer l'objet, puis toucher la proposition sous le champ | L'objet proposé s'inscrit dans le champ | | |
+| 6 | Effacer l'objet, puis quitter le champ | Le message « Ajoute un objet… » apparaît sous le champ. Pas de proposition avec ce texte : elle vient du surtitre de la première section ou d'une accroche, que ce texte n'a pas (fiche corrigée le 13/10/2026) | | |
 | 7 | Écrire « CAFÉ GRATUIT !! » dans l'objet | Trois messages : capitales, ponctuation, mot à risque ; le compteur de caractères suit | | |
 | 8 | Revenir à Écrire | Le texte est maintenant au format pivot, avec une phrase qui l'explique | | |
 | 9 | Revenir à Vérifier et toucher « ↶ Annuler » plusieurs fois | Les corrections se défont une à une ; à la fin, le bouton est grisé et le texte collé revient | | |
