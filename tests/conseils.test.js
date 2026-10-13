@@ -1,6 +1,6 @@
 // US-018 « Anomalies et conseils » (EX-026) et US-019 « Aide à l'objet » (EX-006) : l'outil
 // signale sans corriger ; seuils de etape-2/charte-blocs.md et de la section 5 de
-// etape-2/regles-detection.md, gardés tels quels comme conseils (DEC du lot 4).
+// etape-2/regles-detection.md, gardés tels quels comme conseils (DEC-106).
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';

@@ -1,6 +1,6 @@
 // US-016 « Changer le type d'un bloc », US-017 « Pastille et surtitre d'une section » et
 // US-020 « Annuler une correction » (EX-005, EX-027) : tableau de conversion validé par Mat
-// (etape-5/lot-4/us-lot-4-v0.1.md), corrections réécrites au format pivot (DEC du lot 4).
+// (DEC-105, etape-5/lot-4/us-lot-4-v0.1.md), corrections réécrites au format pivot (DEC-103).
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
