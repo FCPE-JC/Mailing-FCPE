@@ -7,7 +7,7 @@ import assert from 'node:assert/strict';
 import { lirePivot } from '../docs/js/pivot.js';
 import { conseils, aideObjet, SEUILS } from '../docs/js/conseils.js';
 import { preparerApercu } from '../docs/js/apercu.js';
-import { lireDuDepot, pageBranchee } from './aides.js';
+import { lireDuDepot, lireDuSite, pageBranchee } from './aides.js';
 
 const codes = texte => conseils(lirePivot(texte)).map(c => c.code);
 const FIN = '\n\nBien cordialement,\nFCPE';
@@ -128,4 +128,15 @@ test('US-019 : sur la page, l’objet se corrige dans son champ, avec compteur, 
   elements.objet.declencher('change');
   assert.ok(elements.texte.value.startsWith('Objet : FÊTE GRATUITE !!\n'));
   assert.equal(elements.annuler.disabled, false);
+});
+
+test('US-019 : les messages de l’objet restent sous le champ, avec l’aspect des conseils (demande de Mat)', () => {
+  const css = lireDuSite('style.css');
+  const regle = css.match(/\.messages \{ list-style[^}]*\}/)?.[0] ?? '';
+  const conseils = css.match(/\.conseils \{[^}]*\}/)[0];
+  for (const v of ['background: var(--construction-fond)', 'color: var(--construction)']) {
+    assert.ok(regle.includes(v) && conseils.includes(v), v);
+  }
+  assert.match(css, /\.messages li::before \{ content: "💡 "; \}/);
+  assert.match(lireDuSite('index.html'), /<input id="objet"[\s\S]*?<ul id="objet-messages" class="messages"[\s\S]*?<details id="conseils"/);
 });
