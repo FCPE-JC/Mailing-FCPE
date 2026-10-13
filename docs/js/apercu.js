@@ -174,9 +174,13 @@ export function brancherApercu(fenetre) {
       b.addEventListener('click', () => {
         if (!c.possible) { raison.textContent = c.raison; return; }
         const avant = apercu.doc;
-        appliquer(m => changerType(m, repereOuvert, c.type));
+        const repere = repereOuvert;
+        // Pendant la correction, le panneau ne se remplit pas sur l'ancien repère, qui peut
+        // ne plus exister (un bloc devenu titre ouvre une nouvelle section).
+        repereOuvert = null;
+        appliquer(m => changerType(m, repere, c.type));
         // Le panneau suit le bloc changé ; s'il s'est fondu dans un autre, il se ferme.
-        repereOuvert = retrouver(avant, apercu.doc, repereOuvert, c.type);
+        repereOuvert = retrouver(avant, apercu.doc, repere, c.type);
         if (repereOuvert) remplirPanneau(); else fermerPanneau();
       });
       return b;

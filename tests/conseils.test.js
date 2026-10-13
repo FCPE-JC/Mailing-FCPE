@@ -38,7 +38,7 @@ test('US-018 : conseils de la charte, chacun avec le bloc concerné', () => {
   assert.ok(codes(sections + FIN).includes('trop-de-sections'));
   assert.ok(!codes(Array.from({ length: 7 }, (_, k) => `## 🙏 S${k}\nTexte.`).join('\n\n') + FIN).includes('trop-de-sections'));
 
-  const doc = lirePivot(`## 🙏\n> Une\n\n## 🏫\n> Deux\n\n::: important\nA\n:::\n\n::: important\nB\n:::\n\n## 🎉 ${'x'.repeat(41)}\n[${'y'.repeat(31)}](https://exemple.fr/)\n\n${Array.from({ length: 8 }, (_, k) => `- e${k}`).join('\n')}\n\n---\n${'z'.repeat(81)}${FIN}`);
+  const doc = lirePivot(`## 🙏\n> Une\n\n## 🏫\n> Deux\n\n::: important\nA\n:::\n\n::: important\nB\n:::\n\n## 🎉 ${'x'.repeat(61)}\n[${'y'.repeat(31)}](https://exemple.fr/)\n\n${Array.from({ length: 8 }, (_, k) => `- e${k}`).join('\n')}\n\n---\n${'z'.repeat(81)}${FIN}`);
   const liste = conseils(doc);
   const cible = code => liste.find(c => c.code === code)?.cible;
   assert.equal(cible('section-sans-surtitre'), '1.0');
@@ -53,8 +53,13 @@ test('US-018 : conseils de la charte, chacun avec le bloc concerné', () => {
   assert.ok(!liste.some(c => c.code === 'section-sans-surtitre' && c.cible === '0.0'));
 });
 
+test('US-018 : surtitre, conseil au-delà de 60 caractères seulement (relevé à la demande de Mat)', () => {
+  assert.ok(!codes(`## 🎉 ${'x'.repeat(60)}\nTexte.${FIN}`).includes('surtitre-long'));
+  assert.ok(codes(`## 🎉 ${'x'.repeat(61)}\nTexte.${FIN}`).includes('surtitre-long'));
+});
+
 test('US-018 : seuils de la charte', () => {
-  assert.deepEqual([SEUILS.sectionsMax, SEUILS.surtitreMax, SEUILS.libelleMax, SEUILS.clotureMax, SEUILS.listeMax], [7, 40, 30, 80, 7]);
+  assert.deepEqual([SEUILS.sectionsMax, SEUILS.surtitreMax, SEUILS.libelleMax, SEUILS.clotureMax, SEUILS.listeMax], [7, 60, 30, 80, 7]);
 });
 
 test('US-018 : sur la page, la ligne « 💡 N conseils » s’ouvre sur la liste et mène au bloc', () => {

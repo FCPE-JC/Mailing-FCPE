@@ -77,10 +77,12 @@ test('US-016 : vers Titre de section, une nouvelle section commence ici ; un tit
   const f = changerType(DOC, '1.titre', 'paragraphe');
   assert.equal(f.sections.length, 1);
   assert.deepEqual(f.sections[0].blocs.slice(0, 3).map(b => b.texte ?? b.type), ['Merci à tous.', 'Au programme', 'Nous vous attendons. Venez avec vos enfants.']);
-  const long = lirePivot(`## x\n${'Un titre beaucoup trop long. '.repeat(3)}\n\nTexte.`);
-  const choix = choixPossibles(long, '0.0').find(c => c.type === 'titre');
+  // Titre de 100 caractères au plus (relevé à la demande de Mat, 60 auparavant).
+  const titre = n => choixPossibles(lirePivot(`## x\n${'x'.repeat(n)}\n\nTexte.`), '0.0').find(c => c.type === 'titre');
+  assert.equal(titre(100).possible, true);
+  const choix = titre(101);
   assert.equal(choix.possible, false);
-  assert.match(choix.raison, /60 caractères/);
+  assert.match(choix.raison, /100 caractères/);
 });
 
 test('US-016 : vers Clôture, seulement le dernier bloc ; l’ancienne clôture redevient un paragraphe', () => {
@@ -184,4 +186,17 @@ test('US-016 et US-020 : la page a le panneau « Ce bloc est… », le bouton An
   assert.match(html, /<button id="panneau-fermer" type="button"/);
   assert.match(html, /<label for="panneau-surtitre"/);
   assert.match(html, /<p id="note-pivot"[^>]*hidden>/);
+});
+
+test('US-016 : sur la page, un bloc changé en titre garde le panneau ouvert, sur la nouvelle section', () => {
+  // Le repère de départ (0.1) n'existe plus après le changement : le panneau ne doit ni
+  // planter ni se fermer, mais suivre le surtitre créé (1.titre).
+  const { elements, taper } = pageBranchee();
+  taper('## 🙏\nIntro.\n\nAu programme de la soirée\n\nTexte.\n\nBien cordialement,\nFCPE');
+  elements.apercu.declencher('click', { target: { closest: () => ({ getAttribute: () => '0.1' }) }, preventDefault() {} });
+  elements['panneau-types'].enfants.find(b => b.textContent === 'Titre de section').declencher('click');
+  assert.deepEqual(preparerApercu(elements.texte.value).doc.sections.map(s => s.surtitre), [null, 'Au programme de la soirée']);
+  assert.equal(elements.panneau.getAttribute('open'), '');
+  assert.equal(elements['panneau-surtitre'].value, 'Au programme de la soirée');
+  assert.equal(elements['panneau-types'].enfants.find(b => b.getAttribute('aria-pressed') === 'true').textContent, 'Titre de section');
 });
