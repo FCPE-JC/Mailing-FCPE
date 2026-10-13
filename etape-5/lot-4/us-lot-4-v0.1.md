@@ -35,3 +35,7 @@ Réponds par oui ou non à chaque numéro, ou « OK pour tout ».
 4. **Le tableau de conversion** ci-dessus ? *Je préconise oui : il ne perd jamais de texte, et un choix impossible est grisé avec sa raison plutôt que refusé en silence.*
 5. **Les seuils de l'aide à l'objet** de `regles-detection.md` (30 à 50 caractères conseillés, alerte au-delà de 60, un émoji au plus, moins de la moitié en capitales, une seule ponctuation forte, trois mots à risque) gardés tels quels pour la V1 ? *Je préconise oui : ils ne sont pas mesurés, mais ce sont des conseils, jamais des refus ; la recette (Doc#6) pourra les ajuster.*
 6. **Les objets types du modèle choisi** (« Merci pour… », « Invitation : … ») attendent le lot 6, qui apporte les modèles ? *Je préconise oui : au lot 4, seules les deux propositions tirées du texte sont faites.*
+
+## Réponses de Mat (13/10/2026, 22 h 10)
+
+« OK pour tout » : US-015 à US-020 validées ; dès la première correction, l'écran Écrire montre le pivot ; étiquettes de type dans l'aperçu seulement, jamais dans le code copié ; tableau de conversion adopté ; seuils de l'aide à l'objet gardés comme conseils ; objets types des modèles au lot 6.

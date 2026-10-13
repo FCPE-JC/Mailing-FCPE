@@ -1,4 +1,4 @@
-// Mailing-FCPE : lecture du format pivot (US-007 ; EX-003, RG-004).
+// Mailing-FCPE : lecture et écriture du format pivot (US-007, US-016 ; EX-003, RG-004, EX-028).
 //
 // Transforme un texte au format pivot (etape-2/format-pivot.md, règles P1 à P14) en un
 // modèle interne unique : objet, salutation, sections (pastille, surtitre, blocs), clôture,
@@ -136,8 +136,16 @@ export function lirePivot(texte) {
     doc.salutation = blocs.shift().texte;
   }
 
-  // P14 : signature, à partir de la formule de politesse.
-  const k = blocs.findIndex(b => b.type === 'paragraphe' && POLITESSE.test(b.texte));
+  // P14 : signature, à partir de la formule de politesse. P13 : la phrase qui suit le dernier
+  // « --- » est la clôture, même si elle commence par une formule (« À bientôt ✨ ») suivie
+  // de la vraie signature.
+  const estFormule = b => b.type === 'paragraphe' && POLITESSE.test(b.texte);
+  let k = blocs.findIndex(estFormule);
+  const separateur = blocs.map(b => b.type).lastIndexOf('separateur');
+  if (k >= 0 && separateur >= 0 && k === separateur + 1) {
+    const suivante = blocs.findIndex((b, i) => i > k && estFormule(b));
+    if (suivante >= 0) k = suivante;
+  }
   if (k >= 0) {
     const paragraphes = blocs.slice(k).filter(b => b.type === 'paragraphe').map(b => b.texte);
     const v = paragraphes[0];
@@ -188,4 +196,33 @@ export function lirePivot(texte) {
     if (/!\[[^\]]*\]\([^)]*\)/.test(t)) noter('image-refusee', 'Les images ne sont pas acceptées dans le texte (RG-002).');
   }
   return doc;
+}
+
+// Écrit le modèle interne au format pivot (US-016 à US-020) : c'est la forme que prennent
+// les corrections, et relire le texte écrit redonne le même modèle (EX-028).
+export function ecrirePivot(doc) {
+  const L = [];
+  if (doc.objet) L.push(`Objet : ${doc.objet}`, '');
+  if (doc.salutation) L.push(doc.salutation, '');
+  for (const s of doc.sections) {
+    L.push(('## ' + [s.pastille, s.surtitre].filter(Boolean).join(' ')).trimEnd());
+    for (const b of s.blocs) {
+      if (b.type === 'paragraphe') L.push(b.texte);
+      else if (b.type === 'accroche') L.push(`> ${b.texte}`);
+      // Note : étoiles simples, ou tirets bas si le texte commence ou finit par une étoile.
+      else if (b.type === 'note') L.push(/^\*|\*$/.test(b.texte) ? `_${b.texte}_` : `*${b.texte}*`);
+      else if (b.type === 'liste') L.push(...b.elements.map(e => `- ${e}`));
+      else if (b.type === 'bouton') L.push(`[${b.libelle}](${b.adresse})`);
+      else if (b.type === 'important') L.push('::: important', ...(b.titre && b.titre !== 'Important' ? [b.titre] : []), ...b.lignes, ':::');
+      else if (b.type === 'date') L.push('::: date', ...b.lignes, ':::');
+      L.push('');
+    }
+    if (L.at(-1) !== '') L.push('');
+  }
+  if (doc.cloture) L.push('---', doc.cloture, '');
+  if (doc.signature) {
+    L.push(doc.signature.formule);
+    if (doc.signature.signataire) L.push(doc.signature.signataire);
+  }
+  return L.join('\n').trimEnd() + '\n';
 }

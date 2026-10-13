@@ -160,3 +160,25 @@ test('US-007 : les pivots de l’étape 2 sont tous lus sans erreur', () => {
     assert.deepEqual(doc.anomalies.filter(a => a.code !== 'objet-absent'), [], `${f} : anomalies`);
   }
 });
+
+test('US-007 P13 : une clôture qui commence par une formule (« À bientôt ✨ ») reste la clôture', () => {
+  const doc = lirePivot('## x\nTexte.\n\n---\nÀ bientôt ✨\n\nBien cordialement,\nFCPE');
+  assert.equal(doc.cloture, 'À bientôt ✨');
+  assert.deepEqual(doc.signature, { formule: 'Bien cordialement,', signataire: 'FCPE' });
+  const seule = lirePivot('## x\nTexte.\n\n---\nBien cordialement,\nFCPE');
+  assert.equal(seule.cloture, null);
+  assert.deepEqual(seule.signature, { formule: 'Bien cordialement,', signataire: 'FCPE' });
+});
+
+test('US-016 : écrire le pivot puis le relire redonne le même modèle', async () => {
+  const { ecrirePivot } = await import('../docs/js/pivot.js');
+  const { completerPastilles } = await import('../docs/js/detection.js');
+  const net = d => ({ ...d, anomalies: undefined });
+  const dossier = 'etape-2/specimens/';
+  for (const f of [...readdirSync(new URL(`../${dossier}`, import.meta.url)).filter(f => f.endsWith('.md')).map(f => dossier + f), 'etape-3/T1-T2/email-test-15-blocs.pivot.md']) {
+    const doc = completerPastilles(lirePivot(lireDuDepot(f)));
+    assert.deepEqual(net(lirePivot(ecrirePivot(doc))), net(doc), f);
+  }
+  const note = { objet: null, salutation: null, sections: [{ pastille: '🙏', surtitre: null, blocs: [{ type: 'note', texte: '*étoile* au début' }] }], cloture: null, signature: null, anomalies: [] };
+  assert.deepEqual(net(lirePivot(ecrirePivot(note))).sections, note.sections);
+});

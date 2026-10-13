@@ -9,6 +9,9 @@
 // Transcription en JavaScript de html_email() de etape-2/outils-de-travail/rendu.py,
 // avec l'en-tête V1 (DEC-078). Tout texte du rédacteur est échappé : il ne peut jamais
 // devenir du code (US-011).
+//
+// Pour l'aperçu seulement (US-015), l'option « etiquettes » entoure chaque bloc d'un repère
+// et de l'étiquette de son type ; sans elle, le code est exactement celui qui sera copié.
 
 import { CHARTE } from '../parametres/charte.js';
 import { ADRESSE_LIEN } from './pivot.js';
@@ -41,8 +44,9 @@ export function styleConteneur(charte = CHARTE) {
   return `margin:0;padding:0;background:${c.fondPage};font-family:${charte.police};color:${c.texte};`;
 }
 
-// Rendu du modèle interne en code HTML de l'email.
-export function rendreEmail(doc, charte = CHARTE) {
+// Rendu du modèle interne en code HTML de l'email. options.etiquettes : noms des types,
+// pour l'aperçu seulement (US-015).
+export function rendreEmail(doc, charte = CHARTE, options = {}) {
   const c = charte.couleurs;
   const ty = charte.typographie;
   const d = charte.dimensions;
@@ -51,6 +55,10 @@ export function rendreEmail(doc, charte = CHARTE) {
   const px = n => `${n}px`;
   const out = [];
   const a = ligne => out.push(ligne);
+  // Repère et étiquette d'un bloc, dans l'aperçu seulement.
+  const noms = options.etiquettes;
+  const ouvrir = (repere, type) => { if (noms) a(`<div class="repere" data-bloc="${repere}"><button type="button" class="etiquette-bloc">${echapper(noms[type])} ▾</button>`); };
+  const fermer = () => { if (noms) a('</div>'); };
 
   a(`${tableau(LARGE)} style="background:${c.fondPage};"><tr><td align="center" style="padding:${d.margeFond};">`);
   a(`${tableau(LARGE)} style="max-width:${charte.largeurMax}px;background:${c.carte};border-radius:${px(d.rayonCarte)};">`);
@@ -74,16 +82,20 @@ export function rendreEmail(doc, charte = CHARTE) {
     const trait = k < n - 1
       ? `background-image:linear-gradient(${c.trait},${c.trait});background-repeat:no-repeat;background-position:21px 0;background-size:2px 100%;`
       : '';
-    // Sans émoji, pastille par défaut (DEC-093) ; le choix par mots-clés (D16) viendra au lot 3.
+    // Sans émoji, pastille par défaut (DEC-093) ; les mots-clés (D16) la choisissent avant le rendu (DEC-099).
     const pastille = s.pastille || charte.textes.pastilleParDefaut;
-    a(`${tableau(LARGE)}><tr>\n<td width="${d.colonnePastille}" valign="top" style="${trait}">${tableau()}><tr><td width="${d.pastille}" height="${d.pastille}" align="center" valign="middle" `
+    const repereSection = noms ? ` class="repere-pastille" data-bloc="${k}.${s.surtitre || !s.blocs.length ? 'titre' : 0}"` : '';
+    a(`${tableau(LARGE)}><tr>\n<td width="${d.colonnePastille}" valign="top"${repereSection} style="${trait}">${tableau()}><tr><td width="${d.pastille}" height="${d.pastille}" align="center" valign="middle" `
       + `style="width:${px(d.pastille)};height:${px(d.pastille)};background:${fond};border:2px solid ${bord};border-radius:22px;font-size:${px(d.taillePastille)};line-height:${px(d.pastille)};">${echapper(pastille)}</td></tr></table></td>`);
     a(`<td valign="top" style="padding:${d.margesContenuSection};">`);
     if (s.surtitre) {
+      ouvrir(`${k}.titre`, 'titre');
       a(`<p style="${F}font-size:${px(ty.surtitre.taille)};letter-spacing:${px(ty.surtitre.espacement)};text-transform:uppercase;font-weight:${ty.surtitre.graisse};color:${couleurSurtitre};margin:0 0 10px;">${enLigne(s.surtitre, null, charte)}</p>`);
+      fermer();
     }
     s.blocs.forEach((b, j) => {
       const mb = j === s.blocs.length - 1 ? '0' : '16px';
+      ouvrir(`${k}.${j}`, b.type);
       switch (b.type) {
         case 'accroche':
           a(`${tableau(LARGE)} style="margin:0 0 ${mb};"><tr><td width="${d.barreAccroche}" style="background:${c.vert};border-radius:2px;"></td>`
@@ -127,13 +139,16 @@ export function rendreEmail(doc, charte = CHARTE) {
         default:
           break;
       }
+      fermer();
     });
     a('</td></tr></table>');
   });
 
   if (doc.cloture) {
     a(`<div style="border-top:1px solid ${c.trait};margin:4px 0 24px;height:1px;line-height:1px;font-size:1px;">&nbsp;</div>`);
+    ouvrir('cloture', 'cloture');
     a(`<p style="${F}font-size:${px(ty.cloture.taille)};line-height:${ty.cloture.interligne};margin:0 0 14px;color:${c.bleuTitre};font-weight:${ty.cloture.graisse};">${enLigne(doc.cloture, null, charte)}</p>`);
+    fermer();
   }
   if (doc.signature) {
     const { formule, signataire } = doc.signature;

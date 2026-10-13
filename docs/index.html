@@ -42,6 +42,7 @@
       <textarea id="texte" rows="12" autocomplete="off" autocapitalize="sentences" spellcheck="true" lang="fr"
         placeholder="Objet : …&#10;&#10;Chers parents,&#10;&#10;Ton texte…"></textarea>
       <p class="aide">Un message tel quel (WhatsApp, email) est mis en forme automatiquement ; un texte au format pivot est lu tel quel. Les modèles types arriveront au lot 6.</p>
+      <p id="note-pivot" class="note-pivot" hidden>Tes corrections sont faites : le texte est maintenant écrit au format pivot. Tu peux encore le modifier ici.</p>
       <div class="navigation">
         <a class="bouton" href="#verifier">Mettre en forme →</a>
       </div>
@@ -50,10 +51,44 @@
     <section data-ecran="verifier" aria-labelledby="titre-verifier" hidden>
       <h2 id="titre-verifier" tabindex="-1">Vérifier</h2>
       <p id="apercu-vide" class="a-venir">Colle d'abord un texte sur l'écran Écrire : l'email s'affichera ici.</p>
-      <p id="lecture" class="aide" hidden></p>
-      <p id="objet" class="objet" hidden></p>
-      <div id="apercu" class="apercu" hidden></div>
-      <p class="aide">Les corrections bloc par bloc arriveront au lot 4.</p>
+      <div id="verification" class="verification" hidden>
+        <p id="lecture" class="aide"></p>
+        <div class="champ-objet">
+          <label for="objet" class="etiquette">Objet de l'email</label>
+          <div class="ligne-objet">
+            <input id="objet" type="text" autocomplete="off" spellcheck="true" lang="fr" enterkeyhint="done">
+            <span id="objet-compteur" class="compteur" aria-live="polite"></span>
+          </div>
+          <ul id="objet-messages" class="messages" aria-live="polite"></ul>
+          <div id="objet-propositions" class="propositions"></div>
+        </div>
+        <details id="conseils" class="conseils" hidden>
+          <summary id="conseils-titre"></summary>
+          <ul id="conseils-liste"></ul>
+        </details>
+        <div class="barre-apercu">
+          <p class="aide">Touche un bloc pour changer son type, sa pastille ou son surtitre.</p>
+          <button id="annuler" type="button" class="bouton bouton-second" disabled>↶ Annuler</button>
+        </div>
+        <div id="apercu" class="apercu"></div>
+      </div>
+      <dialog id="panneau" class="panneau" aria-labelledby="panneau-titre">
+        <h3 id="panneau-titre">Ce bloc est…</h3>
+        <div id="panneau-types" class="grille-types"></div>
+        <p id="panneau-raison" class="aide" aria-live="polite"></p>
+        <div id="panneau-libelle-zone" hidden>
+          <label for="panneau-libelle" class="etiquette">Libellé du bouton</label>
+          <input id="panneau-libelle" type="text" autocomplete="off">
+        </div>
+        <div id="panneau-section">
+          <h3>Pastille de la section</h3>
+          <div id="panneau-pastilles" class="grille-pastilles"></div>
+          <label for="panneau-surtitre" class="etiquette">Surtitre</label>
+          <input id="panneau-surtitre" type="text" autocomplete="off" placeholder="ex. « Au programme »">
+          <p id="panneau-conseil-surtitre" class="aide" aria-live="polite"></p>
+        </div>
+        <button id="panneau-fermer" type="button" class="bouton">Fermer</button>
+      </dialog>
       <div class="navigation">
         <a class="bouton bouton-second" href="#ecrire">← Écrire</a>
         <a class="bouton" href="#partager">Partager →</a>

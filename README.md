@@ -11,7 +11,7 @@ Outil qui transforme un texte brut en email aux couleurs du conseil local FCPE d
 | 2. Charte et format pivot | Bibliothèque de blocs, règles de détection, prompt IA | Terminée |
 | 3. Tests de faisabilité | Collage Gmail, mode sombre, image d'aperçu, smartphone | Terminée |
 | 4. Architecture | Choisir la solution | Terminée |
-| 5. Développement V1 | Construire, en six lots | En cours (lots 1 et 2 terminés ; lot 3 : détection) |
+| 5. Développement V1 | Construire, en six lots | En cours (lots 1 à 3 terminés ; lot 4 : corrections et conseils) |
 | 6. Recette | Vérifier sur les vrais appareils | À venir |
 | 7. Mise à disposition | Diffuser et mesurer | À venir |
 
@@ -33,7 +33,7 @@ L'outil est en construction : la page publiée affiche « Version en constructio
   - `index.html` : la page, avec la règle de sécurité ; `style.css` : la mise en page de l'outil.
   - `parametres/charte.js` : couleurs, tailles, textes fixes et logo de l'email. Seul fichier à modifier pour changer la charte.
   - `parametres/modeles.js` : les modèles types au format pivot.
-  - `js/` : un module JavaScript par fonction (`demarrage.js`, `ecrans.js`, `navigateur.js`, `pivot.js` pour la lecture du format pivot, `rendu.js` pour l'email, `apercu.js` pour le collage et l'aperçu, `detection.js` pour le passage d'un texte brut au pivot ; les suivants arrivent avec les lots).
+  - `js/` : un module JavaScript par fonction (`demarrage.js`, `ecrans.js`, `navigateur.js`, `pivot.js` pour la lecture du format pivot, `rendu.js` pour l'email, `apercu.js` pour le collage et l'aperçu, `detection.js` pour le passage d'un texte brut au pivot, `corrections.js` pour les corrections d'un clic, `conseils.js` pour les anomalies, les conseils et l'aide à l'objet ; les suivants arrivent avec les lots).
 - `tests/` : les tests automatiques, un fichier par user story (US) ; `tests/references/` contient les rendus de l'outil de travail `rendu.py`, auxquels le rendu de l'outil est comparé.
 - `.github/workflows/tests.yml` : la vérification qui relance les tests chez GitHub à chaque demande de fusion.
 
