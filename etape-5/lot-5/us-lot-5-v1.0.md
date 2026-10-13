@@ -1,6 +1,6 @@
-# Lot 5 : user stories proposées, v0.1
+# Lot 5 : user stories validées, v1.0
 
-13 octobre 2026. Rédigé par le fil « Étape 5 : développement », pour validation par Mat. Lot 5 du découpage (DEC-075) : les sorties (EX-009 à EX-014, EX-028, EX-029), plus les trois ajouts décidés pendant l'essai du lot 4 (DEC-109, DEC-111, DEC-114). Les US commencent à US-021.
+13 octobre 2026. Rédigé par le fil « Étape 5 : développement », validé par Mat le 13 octobre 2026 à 23 h 28 (« ok pour toutes tes précos »). Lot 5 du découpage (DEC-075) : les sorties (EX-009 à EX-014, EX-028, EX-029), plus les trois ajouts décidés pendant l'essai du lot 4 (DEC-109, DEC-111, DEC-114). Les US commencent à US-021.
 
 ## Les user stories
 
@@ -18,7 +18,9 @@
 | US-030 | Modifier le texte d'un bloc | En tant que rédacteur, je veux corriger le texte d'un bloc depuis l'écran Vérifier, afin de ne pas faire d'aller-retour avec l'écran Écrire. | EX-005 | Le panneau « Ce bloc est… » a un champ « Texte du bloc » pour le paragraphe, l'accroche, la note, la liste (une ligne par élément), la date, l'encadré, la clôture et la signature ; la modification réécrit le pivot (DEC-103) et s'annule avec « Annuler » (DEC-111) ; un texte vidé retire le bloc. |
 | US-031 | Type « Signature » | En tant que rédacteur, je veux faire du dernier bloc ma signature, même sans « Bien cordialement », afin de signer comme je le souhaite. | EX-005 | Le type « Signature » est proposé pour le dernier bloc, comme la clôture ; il s'écrit `::: signature` … `:::` dans le pivot, la formule devient facultative et P14 reste valable (DEC-114) ; le rendu suit DEC-110 ; le tableau de conversion et `format-pivot.md` sont complétés. |
 
-## Questions pour Mat
+## Questions pour Mat et réponses
+
+Mat a suivi les cinq préconisations.
 
 1. **Deux demandes de fusion, deux essais ?** D'abord les sorties (US-021 à US-028), puis les trois ajouts du lot 4 (US-029 à US-031). *Je préconise oui : chaque essai reste court, et tu peux faire tout le parcours jusqu'à Gmail dès la première.*
 2. **Exporter le brouillon** : le copier ET proposer un fichier à télécharger ; « Reprendre » accepte le collage ET l'ouverture du fichier ? *Je préconise oui pour les deux : la copie sert à l'envoyer sur WhatsApp à soi-même, le fichier à le garder sur l'ordinateur.*
