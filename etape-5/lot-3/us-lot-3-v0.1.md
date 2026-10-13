@@ -25,3 +25,5 @@ Réponds par oui ou non à chaque numéro, ou « OK pour tout ».
 « Aux questions 1 à 4 : ok pour tout » : US-012 à US-014 validées ; `detection.py` reproduit à l'identique, défauts connus compris ; la détection produit un pivot, lu comme au lot 2 ; la règle D16 s'applique aussi aux sections d'un pivot sans émoji (pastille seulement), à la place de la pastille ℹ️ par défaut de DEC-093.
 
 Question 5 (13/10/2026, 21 h 44, carte de décision) : « Garder ». La salutation reconnaît aussi « Cher », « Chère » et « Mesdames » (D4), et une adresse seule peut être précédée de « -> » (D3) ; les règles D3 et D4 sont à compléter.
+
+Écarts relevés en codant (13/10/2026, 22 h 01, carte de décision) : « Corriger ». Avec la règle D16, « maître » au singulier donne 🏫, et une pastille déjà utilisée est gardée plutôt que de devenir ℹ️ quand aucun autre mot-clé ne correspond. Les six spécimens restent identiques à `detection.py`.
