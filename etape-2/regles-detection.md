@@ -17,11 +17,11 @@
 **D2. Objet.** Si la première ligne non vide commence par « Objet : » ou « Sujet : », c'est l'objet de l'email ; elle est retirée du corps.
 
 **D3. Découpage en paragraphes.** Une ligne vide sépare deux paragraphes. Une ligne isolée de ses voisines même sans ligne vide :
-- une adresse web seule, éventuellement précédée de 👉, ➡️, →, ou de « Lien : », « Formulaire : », « Inscription : » ;
+- une adresse web seule, éventuellement précédée de 👉, ➡️, →, -> (ajout de DEC-100), ou de « Lien : », « Formulaire : », « Inscription : » ;
 - une ligne qui commence par une formule de politesse (D5) ;
 - le début et la fin d'une suite de lignes à puces (D8).
 
-**D4. Salutation.** Le premier paragraphe est la salutation s'il fait 40 caractères au plus, et s'il finit par une virgule ou commence par « Chers », « Chères », « Bonjour », « Bonsoir », « Madame ».
+**D4. Salutation.** Le premier paragraphe est la salutation s'il fait 40 caractères au plus, et s'il finit par une virgule ou commence par « Chers », « Chères », « Cher », « Chère », « Bonjour », « Bonsoir », « Madame », « Mesdames » (« Cher », « Chère » et « Mesdames » ajoutés par DEC-100, comme dans l'outil de travail).
 
 **D5. Signature.** Le premier paragraphe qui commence par une formule de politesse ouvre la signature. Formules reconnues : bien cordialement, cordialement, bien à vous, amicalement, à bientôt, à très bientôt, belle ou bonne journée / soirée / semaine, avec nos salutations, bon courage, merci et à bientôt. La première ligne est la formule ; les lignes et paragraphes suivants forment le signataire. Tout ce qui suit est retiré du corps.
 
