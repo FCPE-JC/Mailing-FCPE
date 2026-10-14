@@ -6,21 +6,23 @@ Adresse : https://mat130718.github.io/Mailing-FCPE/ (attendre une à deux minute
 
 | N° | Ce que tu fais | Ce que tu dois voir | PC | Android |
 |---|---|---|---|---|
-| 1 | Ouvrir l'écran Partager sans avoir collé de texte | Une phrase t'invite à coller d'abord un texte sur l'écran Écrire | | |
-| 2 | Sur Écrire, toucher « 🤖 J'utilise une IA : copier le prompt », puis le coller dans une note | Le message « ✓ Prompt copié… » ; la note contient le prompt, avec « Le surtitre fait 60 caractères au plus » | | |
-| 3 | Coller le texte d'essai, aller sur Partager | Deux groupes : « Pour la relecture (téléphone) » puis « Pour l'envoi (ordinateur) » | | |
-| 4 | Toucher « 💬 Copier pour WhatsApp », coller dans une conversation avec toi-même | Le message « ✓ Version WhatsApp copiée… » ; dans WhatsApp, surtitres en gras et capitales, une ligne vide entre chaque bloc, 👉 devant le lien, signature en gras | | |
-| 5 | Toucher « 🖼️ Enregistrer l'image de l'aperçu » | Une seule image longue de l'email, avec le logo et les émojis, dans tes téléchargements ou ta galerie | | |
-| 6 | Sur Android seulement : toucher « 📤 Partager l'image » et choisir WhatsApp | Le menu de partage du téléphone s'ouvre ; l'image arrive dans la conversation. Si le bouton n'apparaît pas, le noter : un bandeau en haut le dit alors | — | |
-| 7 | Toucher « 💾 Exporter le brouillon (copier) », coller dans une note | Le texte au format pivot (lignes « ## », « ::: date »…) | | |
-| 8 | Toucher « ⬇️ Télécharger le brouillon (fichier) » | Un fichier « brouillon-mailing-AAAA-MM-JJ.txt » dans tes téléchargements | | |
-| 9 | Recharger la page, puis sur Écrire toucher « 📂 Reprendre un brouillon » et choisir ce fichier | Le message « ✓ Brouillon repris… » ; sur Vérifier, l'email est exactement le même qu'avant | | |
-| 10 | Sur PC : Partager, « 📋 Copier l'email pour Gmail », puis coller dans un nouveau message Gmail adressé à toi-même et l'envoyer | L'email arrive avec sa mise en forme (en-tête, pastilles, bouton, signature) | | — |
-| 11 | Sur PC : « 📄 Copier la version texte », coller dans un bloc-notes | Le texte sans étoiles ni émojis de structure, une ligne vide entre chaque bloc | | — |
-| 12 | Modifier un mot sur Écrire, puis recharger la page | Le navigateur demande s'il faut quitter la page ; répondre « Annuler » garde le texte | | |
-| 13 | Copier pour Gmail (ou exporter), puis recharger | Pas de question : la page se recharge | | |
-| 14 | Faire glisser l'écran Partager de côté, en clair puis en sombre | Rien ne déborde ; les boutons restent lisibles | | |
+| 1 | Ouvrir l'écran Partager sans avoir collé de texte | Une phrase t'invite à coller d'abord un texte sur l'écran Écrire | Conforme | Conforme |
+| 2 | Sur Écrire, toucher « 🤖 J'utilise une IA : copier le prompt », puis le coller dans une note | Le message « ✓ Prompt copié… » ; la note contient le prompt, avec « Le surtitre fait 60 caractères au plus » | Conforme | Conforme |
+| 3 | Coller le texte d'essai, aller sur Partager | Deux groupes : « Pour la relecture (téléphone) » puis « Pour l'envoi (ordinateur) » | Conforme | Conforme |
+| 4 | Toucher « 💬 Copier pour WhatsApp », coller dans une conversation avec toi-même | Le message « ✓ Version WhatsApp copiée… » ; dans WhatsApp, surtitres en gras et capitales, une ligne vide entre chaque bloc, 👉 devant le lien, signature en gras | Conforme | Conforme |
+| 5 | Toucher « 🖼️ Enregistrer l'image de l'aperçu » | Une seule image longue de l'email, avec le logo et les émojis, dans tes téléchargements ou ta galerie | Conforme | Conforme |
+| 6 | Sur Android seulement : toucher « 📤 Partager l'image » et choisir WhatsApp | Le menu de partage du téléphone s'ouvre ; l'image arrive dans la conversation. Si le bouton n'apparaît pas, le noter : un bandeau en haut le dit alors | — | Conforme |
+| 7 | Toucher « 💾 Exporter le brouillon (copier) », coller dans une note | Le texte au format pivot (lignes « ## », « ::: date »…) | Conforme | Conforme |
+| 8 | Toucher « ⬇️ Télécharger le brouillon (fichier) » | Un fichier « brouillon-mailing-AAAA-MM-JJ.txt » dans tes téléchargements | Conforme | Conforme |
+| 9 | Recharger la page, puis sur Écrire toucher « 📂 Reprendre un brouillon » et choisir ce fichier | Le message « ✓ Brouillon repris… » ; sur Vérifier, l'email est exactement le même qu'avant | Conforme | Conforme |
+| 10 | Sur PC : Partager, « 📋 Copier l'email pour Gmail », puis coller dans un nouveau message Gmail adressé à toi-même et l'envoyer | L'email arrive avec sa mise en forme (en-tête, pastilles, bouton, signature) | Conforme | — |
+| 11 | Sur PC : « 📄 Copier la version texte », coller dans un bloc-notes | Le texte sans étoiles ni émojis de structure, une ligne vide entre chaque bloc | Conforme | — |
+| 12 | Modifier un mot sur Écrire, puis recharger la page | Le navigateur demande s'il faut quitter la page ; répondre « Annuler » garde le texte | Conforme | Conforme |
+| 13 | Copier pour Gmail (ou exporter), puis recharger | Pas de question : la page se recharge | Conforme | Conforme |
+| 14 | Faire glisser l'écran Partager de côté, en clair puis en sombre | Rien ne déborde ; les boutons restent lisibles | Conforme | Conforme |
 
-Résultat : 
+Résultat (14/10/2026, 7 h 09, Mat) : « tous les tests sont concluants ». Le retour ne distingue pas le PC et Android ; les deux colonnes reprennent ce retour global.
 
-Remarques libres :
+Remarques libres (14/10/2026, 0 h 00 à 7 h 09), avec leur suite :
+- Bouton de fichier en double et prompt qui ne se copiait pas, juste après la fusion : le navigateur avait gardé d'anciens fichiers de l'outil ; un rechargement forcé a tout corrigé (5 h 57). Correctif proposé pour le lot 5b : un numéro de version dans les adresses des fichiers.
+- Prompt IA : réponse dans un bloc de code pour profiter du bouton « Copier » de l'IA. Déjà demandé ; consigne rappelée en fin de prompt (DEC-121) et lignes « ``` » ignorées au collage (DEC-122), lot 5b.
