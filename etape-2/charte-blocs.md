@@ -76,7 +76,7 @@ Pour chaque bloc : rôle, rendu dans l'email, rendu dans la version WhatsApp (EX
 
 **11. Clôture** — Phrase finale 20 px, graisse 800, bleu titre. Conseil : 80 caractères au plus. Pivot : le texte qui suit `---`.
 
-**12. Signature** — Formule de politesse (15 px) puis, à la ligne, le signataire en gras bleu titre. Valeur par défaut « Bien cordialement, / Vos représentants FCPE ». WhatsApp : signataire en gras. Pivot : la formule sur une ligne, le signataire sur la suivante.
+**12. Signature** — Formule de politesse (15 px) puis, à la ligne, le signataire en gras bleu titre. Valeur par défaut « Bien cordialement, / Vos représentants FCPE ». WhatsApp : signataire en gras. Pivot : la formule sur une ligne, le signataire sur la suivante. Depuis le lot 5, la formule est facultative : une signature sans formule s'écrit `::: signature` … `:::`, et sa première ligne est en gras bleu titre (DEC-114).
 
 ### Blocs ajoutés (décision d'étape 2, dessin proposé)
 

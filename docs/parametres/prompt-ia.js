@@ -5,7 +5,9 @@
 // colle telle quelle dans l'outil. Copie exacte de etape-2/prompt-ia.txt, vérifiée par les
 // tests : changer les deux fichiers ensemble, lancer « node --test », puis proposer le
 // changement par une demande de fusion relue par Mat.
-// Surtitre de 60 caractères au plus depuis DEC-108 (40 auparavant), mis à jour au lot 5a (DEC-120).
+// Surtitre de 60 caractères au plus depuis DEC-108 (40 auparavant), mis à jour au lot 5a (DEC-120) ;
+// nouvelles pastilles (DEC-109), signature sans formule (DEC-114) et rappel du bloc de code en
+// fin de prompt (DEC-121) au lot 5b.
 
 export const PROMPT_IA = `Tu es chargé de mettre en forme un email des représentants FCPE de l'école élémentaire Joliot-Curie, destiné à tous les parents. Je te donne plus bas mon texte brut. Réécris-le dans le « format pivot » de l'outil Mailing-FCPE, décrit ci-dessous, et réponds uniquement par le résultat, dans un seul bloc de code, sans commentaire avant ni après.
 
@@ -20,7 +22,7 @@ FORMAT PIVOT (respecte-le exactement)
 2. La salutation seule sur sa ligne, terminée par une virgule (par défaut : « Chers parents, »).
 3. Le corps est découpé en 3 à 6 sections. Chaque section commence par une ligne :
    ## <un émoji> <un surtitre court>
-   L'émoji illustre le thème de la section (🗓️ date, 🏫 école, 🍽️ cantine, 📝 questionnaire, 🔒 confidentialité, 🎉 fête, 🙏 remerciement, 🤝 lien avec les familles, ⚠️ urgence…) ; n'utilise pas deux fois le même. Le surtitre fait 60 caractères au plus et ne finit pas par un point. La première section peut n'avoir qu'un émoji, sans surtitre.
+   L'émoji illustre le thème de la section (🗓️ date, 🏫 école, 🍽️ cantine, 📝 questionnaire, 🔒 confidentialité, 🎉 fête, 🙏 remerciement, 🤝 lien avec les familles, ⚠️ urgence, 📢 annonce, 📚 vie scolaire, 🗣️ consultation, ♻️ environnement, 🙋 appel à bénévoles…) ; n'utilise pas deux fois le même. Le surtitre fait 60 caractères au plus et ne finit pas par un point. La première section peut n'avoir qu'un émoji, sans surtitre.
 4. Dans une section, sépare les blocs par une ligne vide. Les blocs possibles :
    - un paragraphe ordinaire ;
    - une accroche, une seule dans l'email, dans la première section : une ligne qui commence par « > » ;
@@ -38,7 +40,7 @@ FORMAT PIVOT (respecte-le exactement)
      📍 lieu
      :::
 5. Après la dernière section : une ligne « --- », puis une phrase de clôture courte (80 caractères au plus).
-6. Puis une ligne vide, la formule de politesse terminée par une virgule (par défaut : « Bien cordialement, »), et sur la ligne suivante le signataire (par défaut : « Vos représentants FCPE »).
+6. Puis une ligne vide, la formule de politesse terminée par une virgule (par défaut : « Bien cordialement, »), et sur la ligne suivante le signataire (par défaut : « Vos représentants FCPE »). Si mon texte se termine par une signature sans formule de politesse, garde-la telle quelle, entre une ligne « ::: signature » et une ligne « ::: ».
 N'utilise aucune autre syntaxe : pas de titre « # », pas de tableau, pas d'italique au milieu d'une phrase, pas de HTML.
 
 EXEMPLE DE RÉSULTAT ATTENDU
@@ -66,6 +68,8 @@ Encore merci pour votre confiance ✨
 Bien cordialement,
 Vos représentants FCPE
 \`\`\`
+
+RAPPEL : réponds uniquement par le résultat, dans un seul bloc de code, sans commentaire avant ni après.
 
 MON TEXTE BRUT
 (colle ton texte ici, à la place de cette ligne)

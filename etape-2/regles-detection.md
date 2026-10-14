@@ -84,10 +84,16 @@ Une section sans émoji reçoit une pastille selon le premier mot-clé trouvé d
 | 🎉 | fête, kermesse, carnaval, spectacle, goûter |
 | 🙏 | merci, remercier |
 | 🗳️ | élection, vote, scrutin |
+| 📢 | annonce, actualité, nouvelle (DEC-109) |
+| 📚 | pédagogique, apprentissage, devoirs, lecture, bibliothèque (DEC-109) |
+| 👨‍👩‍👧‍👦 | communauté (DEC-109) |
+| 🗣️ | consultation, débat, parole, exprimer (DEC-109) |
+| ♻️ | recyclage, collecte, environnement, écologie, durable (DEC-109) |
+| 🙋 | bénévole, volontaire, besoin de vous, coup de main (DEC-109) |
 | 🤝 | écoute, lien, ensemble, contact, rencontre |
 | ℹ️ | aucun mot-clé (pastille neutre) |
 
-Un émoji déjà utilisé par une section précédente est évité si un autre mot-clé correspond ; sinon il est gardé, car ℹ️ ne vaut que sans aucun mot-clé. Les mots-clés « maître » et « maîtres » sont reconnus au singulier comme au pluriel. (Ces deux précisions corrigent l'outil de travail `detection.py`, DEC-101.) Une section sans surtitre qui contient une date reçoit cette date comme surtitre (« Lundi 12 octobre »). C'est le seul surtitre créé automatiquement, et jamais sur une section de note ni sur une section qui contient un bloc Date et lieu.
+📅 est proposé dans le panneau des pastilles mais jamais choisi par la détection, qui garde 🗓️ pour les dates ; le panneau accepte aussi tout autre émoji, tapé ou collé (DEC-109). Un émoji déjà utilisé par une section précédente est évité si un autre mot-clé correspond ; sinon il est gardé, car ℹ️ ne vaut que sans aucun mot-clé. Les mots-clés « maître » et « maîtres » sont reconnus au singulier comme au pluriel. (Ces deux précisions corrigent l'outil de travail `detection.py`, DEC-101.) Une section sans surtitre qui contient une date reçoit cette date comme surtitre (« Lundi 12 octobre »). C'est le seul surtitre créé automatiquement, et jamais sur une section de note ni sur une section qui contient un bloc Date et lieu.
 
 ## 3. Ce qui reste au rédacteur
 

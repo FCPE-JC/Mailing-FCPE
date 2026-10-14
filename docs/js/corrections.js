@@ -1,4 +1,4 @@
-// Mailing-FCPE : corrections d'un clic (US-016, US-017, US-019 ; EX-005, EX-006, EX-027).
+// Mailing-FCPE : corrections d'un clic (US-016, US-017, US-019, US-030, US-031 ; EX-005, EX-006, EX-027).
 //
 // Chaque correction prend le modèle interne (js/pivot.js) et rend un nouveau modèle, sans
 // toucher l'ancien : l'écran le réécrit ensuite au format pivot (DEC-103). Le changement
@@ -6,15 +6,18 @@
 // aucun texte n'est jamais perdu, et un choix impossible est grisé avec sa raison.
 //
 // Un bloc est désigné par un repère écrit en texte, celui que porte l'aperçu :
-// « 2.0 » (section 2, bloc 0), « 2.titre » (surtitre de la section 2) ou « cloture ».
+// « 2.0 » (section 2, bloc 0), « 2.titre » (surtitre de la section 2), « cloture » ou
+// « signature ».
 
-import { libelleBouton, decouperDateLieu, marquerDateLieu } from './detection.js';
+import { libelleBouton, decouperDateLieu, marquerDateLieu } from './detection.js?v=0.5.2';
+import { signatureDe } from './pivot.js?v=0.5.2';
 
-// Les neuf types de la maquette, dans son ordre.
+// Les neuf types de la maquette, dans son ordre, puis la signature (DEC-114).
 export const TYPES = Object.freeze([
   ['paragraphe', 'Paragraphe'], ['accroche', 'Accroche'], ['note', 'Note'],
   ['titre', 'Titre de section'], ['liste', 'Liste'], ['bouton', 'Bouton'],
   ['important', '⚠️ Important'], ['date', '🗓️ Date et lieu'], ['cloture', 'Clôture'],
+  ['signature', 'Signature'],
 ]);
 export const NOM_TYPE = Object.freeze(Object.fromEntries(TYPES.map(([t, nom]) => [t, nom.replace(/^\S+ (?=[A-Z])/u, '')])));
 
@@ -28,6 +31,7 @@ const sansMarques = t => t.replaceAll('**', '').replace(/[\s:]+$/u, '').trim();
 // Lit un repère « s.b », « s.titre » ou « cloture ».
 export function lireRepere(repere) {
   if (repere === 'cloture') return { cloture: true };
+  if (repere === 'signature') return { signature: true };
   const [s, b] = String(repere).split('.');
   return b === 'titre' ? { s: Number(s), titre: true } : { s: Number(s), b: Number(b) };
 }
@@ -35,6 +39,7 @@ export function lireRepere(repere) {
 export function typeDe(doc, repere) {
   const r = lireRepere(repere);
   if (r.cloture) return 'cloture';
+  if (r.signature) return 'signature';
   if (r.titre) return 'titre';
   return doc.sections[r.s].blocs[r.b].type;
 }
@@ -43,6 +48,7 @@ export function typeDe(doc, repere) {
 export function lignesDe(doc, repere) {
   const r = lireRepere(repere);
   if (r.cloture) return doc.cloture ? [doc.cloture] : [];
+  if (r.signature) return doc.signature ? [doc.signature.formule, ...(doc.signature.signataire || '').split('\n')].filter(Boolean) : [];
   if (r.titre) return doc.sections[r.s]?.surtitre ? [doc.sections[r.s].surtitre] : [];
   const b = doc.sections[r.s].blocs[r.b];
   switch (b.type) {
@@ -59,7 +65,9 @@ const joindre = lignes => (lignes.length <= 1 ? (lignes[0] ?? '') : lignes.map(l
 const phrases = texte => texte.split(/(?<=[.!?…])\s+/u).filter(Boolean);
 
 // Dernier bloc avant la signature : seul candidat à la clôture.
-const estDernierBloc = (doc, r) => !r.titre && !r.cloture && r.s === doc.sections.length - 1 && r.b === doc.sections[r.s].blocs.length - 1;
+const estDernierBloc = (doc, r) => !r.titre && !r.cloture && !r.signature && r.s === doc.sections.length - 1 && r.b === doc.sections[r.s].blocs.length - 1;
+// Seul candidat à la signature (DEC-114) : la clôture, ou le dernier bloc s'il n'y en a pas.
+const estDernierElement = (doc, r) => (doc.cloture ? Boolean(r.cloture) : estDernierBloc(doc, r));
 
 // Les choix du panneau « Ce bloc est… », avec ce qui est possible et pourquoi.
 export function choixPossibles(doc, repere) {
@@ -71,7 +79,9 @@ export function choixPossibles(doc, repere) {
     if (type === actuel) raison = null;
     else if (type === 'bouton' && !ADRESSE.test(texte)) raison = 'Il faut une adresse web (https://…) dans le bloc.';
     else if (type === 'titre' && [...sansMarques(texte)].length > LONGUEUR_TITRE_MAX) raison = `Trop long pour un titre (${LONGUEUR_TITRE_MAX} caractères au plus).`;
-    else if (type === 'cloture' && !estDernierBloc(doc, r)) raison = 'Seul le dernier bloc avant la signature peut devenir la clôture.';
+    else if (type === 'cloture' && !(estDernierBloc(doc, r) || (r.signature && !doc.cloture))) raison = 'Seul le dernier bloc avant la signature peut devenir la clôture.';
+    else if (type === 'signature' && doc.signature) raison = 'L’email a déjà une signature.';
+    else if (type === 'signature' && !estDernierElement(doc, r)) raison = 'Seul le dernier bloc de l’email peut devenir la signature.';
     return { type, libelle, actuel: type === actuel, possible: raison === null, raison };
   });
 }
@@ -109,13 +119,14 @@ export const surtitreDe = (doc, repere) => sansMarques(joindre(lignesDe(doc, rep
 export function retrouver(avant, apres, repere, type) {
   const r = lireRepere(repere);
   if (type === 'cloture') return apres.cloture ? 'cloture' : null;
+  if (type === 'signature') return apres.signature ? 'signature' : null;
   if (type === 'titre') {
     const attendu = surtitreDe(avant, repere);
     const k = apres.sections.findIndex((s, i) => s.surtitre === attendu && !(avant.sections[i]?.surtitre === attendu));
     return k >= 0 ? `${k}.titre` : null;
   }
   if (r.titre) return null;
-  const candidats = r.cloture
+  const candidats = r.cloture || r.signature
     ? (apres.sections.length ? [`${apres.sections.length - 1}.${apres.sections.at(-1).blocs.length - 1}`] : [])
     : [`${r.s}.${r.b}`, `${r.s}.${r.b + 1}`];
   return candidats.find(c => { const q = lireRepere(c); return apres.sections[q.s]?.blocs[q.b]?.type === type; }) ?? null;
@@ -135,8 +146,8 @@ export function changerType(doc, repere, type) {
 
   // 1. Retirer le bloc de sa place, en notant où le nouveau se posera.
   let place;
-  if (r.cloture) {
-    d.cloture = null;
+  if (r.cloture || r.signature) {
+    if (r.cloture) d.cloture = null; else d.signature = null;
     if (!d.sections.length) d.sections.push(sectionVide());
     place = { s: d.sections.length - 1, b: d.sections.at(-1).blocs.length };
   } else if (r.titre) {
@@ -164,10 +175,46 @@ export function changerType(doc, repere, type) {
   } else if (type === 'cloture') {
     if (d.cloture) sec.blocs.push({ type: 'paragraphe', texte: d.cloture });
     d.cloture = joindre(lignes);
+  } else if (type === 'signature') {
+    d.signature = signatureDe(lignes);
   } else {
     sec.blocs.splice(place.b, 0, ...construire(type, lignes));
   }
   return nettoyer(d);
+}
+
+// Les blocs dont le texte se modifie dans le panneau (US-030, DEC-111) ; le titre et le
+// bouton ont déjà leurs champs (surtitre, libellé).
+export const TEXTE_MODIFIABLE = Object.freeze(['paragraphe', 'accroche', 'note', 'liste', 'date', 'important', 'cloture', 'signature']);
+
+// Texte d'un bloc dans le champ « Texte du bloc » : une ligne par élément, par ligne de
+// date ou d'encadré, par ligne de signature ; null pour un bloc sans ce champ.
+export function texteDuBloc(doc, repere) {
+  const type = typeDe(doc, repere);
+  if (!TEXTE_MODIFIABLE.includes(type)) return null;
+  const r = lireRepere(repere);
+  if (type === 'important') return doc.sections[r.s].blocs[r.b].lignes.join('\n');
+  return lignesDe(doc, repere).join('\n');
+}
+
+// Remplace le texte d'un bloc (US-030) ; un texte vidé retire le bloc. Un paragraphe, une
+// accroche, une note ou la clôture tiennent sur une ligne : les retours à la ligne y
+// deviennent des espaces.
+export function changerTexte(doc, repere, texte) {
+  const type = typeDe(doc, repere);
+  if (!TEXTE_MODIFIABLE.includes(type)) return doc;
+  const lignes = String(texte ?? '').split(/\r\n?|\n/).map(x => x.replace(/\s+/gu, ' ').trim()).filter(Boolean);
+  const d = cloner(doc);
+  const r = lireRepere(repere);
+  if (r.cloture) { d.cloture = lignes.join(' ') || null; return d; }
+  if (r.signature) { d.signature = signatureDe(lignes); return d; }
+  const sec = d.sections[r.s];
+  if (!lignes.length) { sec.blocs.splice(r.b, 1); return nettoyer(d); }
+  const b = sec.blocs[r.b];
+  if (type === 'liste') b.elements = lignes;
+  else if (type === 'date' || type === 'important') b.lignes = lignes;
+  else b.texte = lignes.join(' ');
+  return d;
 }
 
 // Change la pastille d'une section (US-017).

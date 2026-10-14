@@ -1,5 +1,5 @@
 // Mailing-FCPE : collage du texte, aperçu continu et corrections (US-009, US-010, US-014 à
-// US-020 ; EX-001, EX-003, EX-005, EX-006, EX-008, EX-019, EX-026, EX-027).
+// US-020, US-029 à US-031 ; EX-001, EX-003, EX-005, EX-006, EX-008, EX-019, EX-026, EX-027).
 //
 // L'écran Écrire reçoit le texte ; l'écran Vérifier affiche l'email rendu, mis à jour à
 // chaque modification, avec l'étiquette du type de chaque bloc (US-015). Les étiquettes ne
@@ -10,12 +10,15 @@
 // arrière correction par correction. Le texte ne vit que dans la page : rien n'est
 // enregistré (DEC-071).
 
-import { lirePivot, ecrirePivot } from './pivot.js';
-import { rendreEmail } from './rendu.js';
-import { CHARTE } from '../parametres/charte.js';
-import { estPivot, detecterPivot, completerPastilles, PASTILLES } from './detection.js';
-import { NOM_TYPE, choixPossibles, typeDe, lireRepere, retrouver, changerType, changerPastille, changerSurtitre, changerLibelle, changerObjet } from './corrections.js';
-import { conseils, aideObjet, SEUILS } from './conseils.js';
+import { lirePivot, ecrirePivot, estEmojiSeul } from './pivot.js?v=0.5.2';
+import { rendreEmail } from './rendu.js?v=0.5.2';
+import { CHARTE } from '../parametres/charte.js?v=0.5.2';
+import { estPivot, detecterPivot, completerPastilles, PASTILLES } from './detection.js?v=0.5.2';
+import {
+  NOM_TYPE, choixPossibles, typeDe, lireRepere, retrouver, changerType, changerPastille, changerSurtitre, changerLibelle, changerObjet,
+  texteDuBloc, changerTexte,
+} from './corrections.js?v=0.5.2';
+import { conseils, aideObjet, SEUILS } from './conseils.js?v=0.5.2';
 
 // Phrase affichée sur l'écran Vérifier selon la lecture faite (US-014).
 export const LECTURES = Object.freeze({
@@ -23,10 +26,19 @@ export const LECTURES = Object.freeze({
   detection: 'Texte brut, mis en forme automatiquement.',
 });
 
+// Lignes « ``` » qui encadrent tout le texte, quand on colle la réponse d'une IA avec son
+// bloc de code (DEC-122) : elles sont ignorées, le texte entre elles est lu.
+export function retirerBlocCode(texte) {
+  const t = String(texte ?? '');
+  const m = t.match(/^\s*```[\w-]*[ \t]*\r?\n([\s\S]*?)\r?\n[ \t]*```\s*$/);
+  return m ? m[1] : t;
+}
+
 // Prépare l'aperçu d'un texte : rien si le texte est vide, sinon la lecture faite, le pivot,
 // l'objet, le code de l'email (html, celui qui sera copié), l'aperçu étiqueté et les
 // anomalies notées à la lecture.
-export function preparerApercu(texte) {
+export function preparerApercu(saisi) {
+  const texte = retirerBlocCode(saisi);
   if (!String(texte ?? '').trim()) return { vide: true };
   const lecture = estPivot(texte) ? 'pivot' : 'detection';
   const pivot = lecture === 'pivot' ? String(texte) : detecterPivot(texte);
@@ -159,11 +171,16 @@ export function brancherApercu(fenetre) {
   const conseilSurtitre = $('panneau-conseil-surtitre');
   const zoneLibelle = $('panneau-libelle-zone');
   const champLibelle = $('panneau-libelle');
+  const zoneTexteBloc = $('panneau-texte-zone');
+  const champTexteBloc = $('panneau-texte');
+  const champAutre = $('panneau-autre');
+  const messageAutre = $('panneau-autre-message');
 
   function remplirPanneau() {
     const d = apercu.doc;
     const r = lireRepere(repereOuvert);
-    const existe = r.cloture ? Boolean(d.cloture) : Boolean(d.sections[r.s] && (r.titre ? d.sections[r.s].surtitre : d.sections[r.s].blocs[r.b]));
+    const existe = r.cloture ? Boolean(d.cloture) : r.signature ? Boolean(d.signature)
+      : Boolean(d.sections[r.s] && (r.titre ? d.sections[r.s].surtitre : d.sections[r.s].blocs[r.b]));
     if (!existe) { fermerPanneau(); return; }
     raison.textContent = '';
     typesPanneau.replaceChildren(...choixPossibles(d, repereOuvert).map(c => {
@@ -187,8 +204,12 @@ export function brancherApercu(fenetre) {
     }));
     zoneLibelle.hidden = typeDe(d, repereOuvert) !== 'bouton';
     if (!zoneLibelle.hidden && doc.activeElement !== champLibelle) champLibelle.value = d.sections[r.s].blocs[r.b].libelle;
-    zoneSection.hidden = Boolean(r.cloture);
-    if (r.cloture) return;
+    // Texte du bloc (US-030, DEC-111), sauf pendant la frappe.
+    const texte = texteDuBloc(d, repereOuvert);
+    zoneTexteBloc.hidden = texte === null;
+    if (texte !== null && doc.activeElement !== champTexteBloc) champTexteBloc.value = texte;
+    zoneSection.hidden = Boolean(r.cloture || r.signature);
+    if (r.cloture || r.signature) return;
     const section = d.sections[r.s];
     const choix = PASTILLES.includes(section.pastille) ? PASTILLES : [...PASTILLES, section.pastille];
     pastillesPanneau.replaceChildren(...choix.map(p => {
@@ -233,6 +254,23 @@ export function brancherApercu(fenetre) {
     if (repereOuvert) remplirPanneau();
   });
   champLibelle.addEventListener('change', () => appliquer(m => changerLibelle(m, repereOuvert, champLibelle.value)));
+  // Texte du bloc : appliqué en quittant le champ ; un texte vidé retire le bloc (US-030).
+  champTexteBloc.addEventListener('change', () => {
+    const repere = repereOuvert;
+    const valeur = champTexteBloc.value;
+    appliquer(m => changerTexte(m, repere, valeur));
+    if (repereOuvert) remplirPanneau();
+  });
+  // Pastille « Autre » : un seul émoji, tapé ou collé (US-029, DEC-109).
+  champAutre.addEventListener('change', () => {
+    const valeur = champAutre.value.trim();
+    if (!valeur) { messageAutre.textContent = ''; return; }
+    if (!estEmojiSeul(valeur)) { messageAutre.textContent = 'Mets un seul émoji, sans texte.'; return; }
+    messageAutre.textContent = '';
+    champAutre.value = '';
+    const s = lireRepere(repereOuvert).s;
+    appliquer(m => changerPastille(m, s, valeur));
+  });
 
   champObjet.addEventListener('input', () => afficherAideObjet(champObjet.value));
   champObjet.addEventListener('change', () => appliquer(m => changerObjet(m, champObjet.value)));

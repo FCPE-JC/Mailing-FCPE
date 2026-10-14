@@ -11,6 +11,8 @@ Demande de Mat (6 h 01) : que la réponse de l'IA arrive dans un bloc de code, p
 
 À rattacher à US-027 (prompt IA) pour le premier point et à US-014 (lecture du texte collé) pour le second.
 
-## Mise à jour des fichiers après une nouvelle version (proposé, en attente de Mat)
+## Mise à jour des fichiers après une nouvelle version (proposé ; inclus dans la demande du lot 5b, Mat peut le refuser)
 
 Constat de l'essai (14/10/2026, 0 h 00 à 5 h 57) : après la fusion du lot 5a, le navigateur de Mat a gardé l'ancienne feuille de style et d'anciens modules ; le bouton de fichier apparaissait en double et le prompt ne se copiait pas. Un rechargement forcé a tout corrigé. Proposition : un numéro de version ajouté aux adresses des fichiers du site, changé à chaque demande de fusion, pour que le navigateur charge toujours les nouveaux.
+
+Mis en œuvre : la version 0.5.2 de `package.json` est ajoutée à chaque adresse (`style.css?v=0.5.2`, `./pivot.js?v=0.5.2`…) et affichée dans le pied de page ; un test vérifie qu'elle est partout la même.

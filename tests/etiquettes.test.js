@@ -27,10 +27,10 @@ test('US-015 : chaque bloc, surtitre et clôture de l’aperçu porte l’étiqu
   assert.ok(htmlEtiquete.includes('data-bloc="cloture"><button type="button" class="etiquette-bloc">Clôture ▾'));
 });
 
-test('US-015 : les noms des étiquettes sont ceux de la maquette', () => {
+test('US-015 et US-031 : les noms des étiquettes sont ceux de la maquette, plus Signature (DEC-114)', () => {
   assert.deepEqual(NOM_TYPE, {
     paragraphe: 'Paragraphe', accroche: 'Accroche', note: 'Note', titre: 'Titre de section', liste: 'Liste',
-    bouton: 'Bouton', important: 'Important', date: 'Date et lieu', cloture: 'Clôture',
+    bouton: 'Bouton', important: 'Important', date: 'Date et lieu', cloture: 'Clôture', signature: 'Signature',
   });
 });
 

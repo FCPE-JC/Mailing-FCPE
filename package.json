@@ -1,6 +1,7 @@
 {
   "name": "mailing-fcpe",
   "private": true,
+  "version": "0.5.2",
   "description": "Mailing-FCPE : texte brut vers email aux couleurs du conseil local FCPE. Aucune dépendance.",
   "type": "module",
   "scripts": {
