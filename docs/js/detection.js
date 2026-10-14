@@ -37,7 +37,7 @@ const COMMENCE_EMOJI = motif(`^${EMOJI}`, 'u');
 
 // D16 : pastilles, dans l'ordre de priorité ; null pour la présence d'une date (D12). Six
 // pastilles ajoutées au lot 5 (DEC-109), dont les mots-clés passent avant ceux de 🤝, plus
-// vagues ; 📅, proposée d'abord, est retirée à l'essai du lot 5b : un seul calendrier, 🗓️.
+// vagues ; 📅, proposée d'abord, est retirée à l'essai du lot 5b : un seul calendrier, 🗓️ (DEC-124).
 const PICTOS = [
   ['⚠️', '\\b(urgent|grève|greve|fermeture|annul\\w*|alerte)\\b'],
   ['🗓️', null],

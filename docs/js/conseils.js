@@ -1,5 +1,5 @@
-// Mailing-FCPE : anomalies, conseils de rédaction et aide à l'objet (US-018, US-019 ;
-// EX-006, EX-026).
+// Mailing-FCPE : anomalies, conseils de rédaction et aide à l'objet (US-018, US-019, US-034 ;
+// EX-002, EX-006, EX-026).
 //
 // L'outil signale, il ne corrige jamais en silence. Les anomalies viennent de la lecture du
 // pivot (js/pivot.js) ; les conseils viennent de la charte (etape-2/charte-blocs.md) ; l'aide
@@ -26,6 +26,17 @@ const ANOMALIES = {
   'signature-absente': 'Aucune signature reconnue : termine par une formule (« Bien cordialement, ») suivie de ton nom.',
 };
 
+// Passages à compléter des modèles types (US-034) : texte entre crochets, sauf le libellé
+// d'un lien « [libellé](adresse) ». Au plus six sont cités dans le message.
+const A_COMPLETER = /\[([^[\]\n]+)\](?!\()/gu;
+const A_COMPLETER_CITES = 6;
+
+// Passages à compléter d'un texte, dans l'ordre, sans doublon.
+// Toutes les chaînes d'une valeur (un bloc, la signature), mises bout à bout.
+const chaines = v => (typeof v === 'string' ? v : v && typeof v === 'object' ? Object.values(v).map(chaines).join('\n') : '');
+
+export const passagesACompleter = texte => [...new Set([...String(texte ?? '').matchAll(A_COMPLETER)].map(m => m[0]))];
+
 // Anomalies et conseils, chacun avec son message et, quand il y en a un, le repère du bloc
 // concerné (même repère que l'aperçu : « s.b », « s.titre » ou « cloture »).
 export function conseils(doc) {
@@ -42,6 +53,20 @@ export function conseils(doc) {
       }));
     }
     ajouter('anomalie', a.code, ANOMALIES[a.code] || a.message, cible);
+  }
+
+  // Passages à compléter, avec le premier bloc qui en contient un (l'objet n'a pas de repère).
+  const textes = [[doc.objet, null], [doc.salutation, null]];
+  doc.sections.forEach((s, k) => {
+    textes.push([s.surtitre, `${k}.titre`]);
+    s.blocs.forEach((b, j) => textes.push([chaines(b), `${k}.${j}`]));
+  });
+  textes.push([doc.cloture, 'cloture'], [chaines(doc.signature), 'signature']);
+  const passages = [...new Set(textes.flatMap(([t]) => passagesACompleter(t)))];
+  if (passages.length) {
+    const cible = (textes.find(([t, c]) => c && passagesACompleter(t).length) || [])[1] ?? null;
+    const cites = passages.slice(0, A_COMPLETER_CITES).join(', ') + (passages.length > A_COMPLETER_CITES ? '…' : '.');
+    ajouter('anomalie', 'a-completer', `Il reste à compléter : ${cites}`, cible);
   }
 
   const n = doc.sections.length;

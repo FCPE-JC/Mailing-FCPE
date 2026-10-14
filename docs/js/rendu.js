@@ -13,8 +13,8 @@
 // Pour l'aperçu seulement (US-015), l'option « etiquettes » entoure chaque bloc d'un repère
 // et de l'étiquette de son type ; sans elle, le code est exactement celui qui sera copié.
 
-import { CHARTE } from '../parametres/charte.js?v=0.5.3';
-import { ADRESSE_LIEN } from './pivot.js?v=0.5.3';
+import { CHARTE } from '../parametres/charte.js?v=0.6.0';
+import { ADRESSE_LIEN } from './pivot.js?v=0.6.0';
 
 // Échappe un texte pour l'insérer dans le code HTML (contenu ou valeur d'attribut).
 export function echapper(texte) {
@@ -110,7 +110,7 @@ export function rendreEmail(doc, charte = CHARTE, options = {}) {
         case 'liste':
           a(`${tableau(LARGE)} style="margin:0 0 ${mb};">`);
           for (const element of b.elements) {
-            a(`<tr><td width="22" valign="top" style="${F}font-size:${px(ty.paragraphe.taille)};line-height:${ty.paragraphe.interligne};color:${c.vert};font-weight:700;">●</td>`
+            a(`<tr><td width="22" valign="top" aria-hidden="true" style="${F}font-size:${px(ty.paragraphe.taille)};line-height:${ty.paragraphe.interligne};color:${c.vert};font-weight:700;">●</td>`
               + `<td valign="top" style="${F}font-size:${px(ty.paragraphe.taille)};line-height:${ty.paragraphe.interligne};color:${c.texte};padding:0 0 6px;">${enLigne(element, null, charte)}</td></tr>`);
           }
           a('</table>');
@@ -131,8 +131,8 @@ export function rendreEmail(doc, charte = CHARTE, options = {}) {
         case 'date':
           a(`${tableau(LARGE)} style="margin:0 0 ${mb};"><tr><td style="border:2px solid ${c.trait};border-radius:${px(d.rayonDate)};padding:${d.margesEncadre};">`);
           b.lignes.forEach((x, q) => {
-            const [taille, poids, couleur] = q === 0 ? ['18px', '800', c.bleuTitre] : ['15px', '400', c.texte];
-            a(`<p style="${F}font-size:${taille};line-height:1.5;margin:0 0 ${q < b.lignes.length - 1 ? '6px' : '0'};color:${couleur};font-weight:${poids};">${enLigne(x, null, charte)}</p>`);
+            const [style, couleur] = q === 0 ? [ty.titreDate, c.bleuTitre] : [ty.ligneDate, c.texte];
+            a(`<p style="${F}font-size:${px(style.taille)};line-height:${style.interligne};margin:0 0 ${q < b.lignes.length - 1 ? '6px' : '0'};color:${couleur};font-weight:${style.graisse};">${enLigne(x, null, charte)}</p>`);
           });
           a('</td></tr></table>');
           break;
@@ -164,5 +164,6 @@ export function rendreEmail(doc, charte = CHARTE, options = {}) {
   }
   a('</td></tr>\n</table></td></tr></table>');
 
-  return `<div style="${styleConteneur(charte)}">${out.join('\n')}</div>`;
+  // lang : la synthèse vocale lit l'email en français (EX-021, US-036).
+  return `<div lang="fr" style="${styleConteneur(charte)}">${out.join('\n')}</div>`;
 }

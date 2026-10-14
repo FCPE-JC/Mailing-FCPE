@@ -9,8 +9,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
 <title>Mailing-FCPE</title>
-<link rel="stylesheet" href="style.css?v=0.5.3">
-<script type="module" src="js/demarrage.js?v=0.5.3"></script>
+<link rel="stylesheet" href="style.css?v=0.6.0">
+<script type="module" src="js/demarrage.js?v=0.6.0"></script>
 </head>
 <body>
 
@@ -38,10 +38,16 @@
   <main>
     <section data-ecran="ecrire" aria-labelledby="titre-ecrire">
       <h2 id="titre-ecrire" tabindex="-1">Écrire</h2>
+      <div class="choix-modele">
+        <label for="modele" class="etiquette">Partir d'un modèle</label>
+        <select id="modele">
+          <option value="">Choisir un modèle…</option>
+        </select>
+      </div>
       <label for="texte" class="etiquette">Colle ton texte</label>
       <textarea id="texte" rows="12" autocomplete="off" autocapitalize="sentences" spellcheck="true" lang="fr"
         placeholder="Objet : …&#10;&#10;Chers parents,&#10;&#10;Ton texte…"></textarea>
-      <p class="aide">Un message tel quel (WhatsApp, email) est mis en forme automatiquement ; un texte au format pivot est lu tel quel. Pour reprendre un brouillon exporté, colle-le ici ou ouvre son fichier. Les modèles types arriveront au lot 6.</p>
+      <p class="aide">Un message tel quel (WhatsApp, email) est mis en forme automatiquement ; un texte au format pivot est lu tel quel. Pour reprendre un brouillon exporté, colle-le ici ou ouvre son fichier. Un modèle contient des passages entre crochets, [comme ceci], à remplacer par ton texte.</p>
       <div class="actions-ecrire">
         <input id="ouvrir-brouillon" type="file" accept=".txt,.md,text/plain" class="hors-ecran">
         <label for="ouvrir-brouillon" class="bouton bouton-second">📂 Reprendre un brouillon</label>
@@ -141,7 +147,7 @@
 
   <footer class="pied">
     <p>🔒 Ton texte ne quitte pas cet appareil ; il disparaît à la fermeture de la page.</p>
-    <p class="version">Version 0.5.3</p>
+    <p class="version">Version 0.6.0</p>
   </footer>
 </div>
 

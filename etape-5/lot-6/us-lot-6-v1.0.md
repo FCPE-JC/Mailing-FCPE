@@ -1,6 +1,6 @@
-# Lot 6 : user stories proposées, v0.1
+# Lot 6 : user stories validées, v1.0
 
-14 octobre 2026. Rédigé par le fil « Étape 5 : développement », à valider par Mat. Lot 6 du découpage (DEC-075), le dernier de l'étape 5 : modèles et finitions (EX-002, EX-019 à EX-022, EX-024, EX-025). Les US commencent à US-032 (numéros à confirmer par le fil Documents de référence).
+14 octobre 2026. Rédigé par le fil « Étape 5 : développement », validé par Mat le 14 octobre 2026 à 11 h 13 (« Sur les questions du Lot6 : ok pour tout »). Lot 6 du découpage (DEC-075), le dernier de l'étape 5 : modèles et finitions (EX-002, EX-019 à EX-022, EX-024, EX-025). Les US commencent à US-032 (numéros à confirmer par le fil Documents de référence).
 
 ## Ce que j'ai vérifié avant d'écrire
 
@@ -21,9 +21,9 @@
 | US-036 | Accessibilité de l'email | En tant que parent qui utilise une synthèse vocale ou qui voit mal, je veux un email lisible et lu dans le bon ordre, afin de le comprendre comme les autres. | EX-021 | Un test calcule le contraste de chaque couleur de texte sur son fond : au moins 4,5 pour 1, ou 3 pour 1 pour les grands titres. L'email indique la langue française. Les puces « ● » ne sont plus lues. Le logo garde son texte alternatif. La lecture suit l'ordre de l'aperçu. |
 | US-037 | Accessibilité de l'outil | En tant que rédacteur, je veux un outil utilisable au clavier et lisible, afin de le prendre en main quelle que soit ma façon de lire l'écran. | EX-019, EX-021 | Chaque champ a une étiquette lue par la synthèse vocale. Chaque bouton est atteignable avec la touche Tab et montre un contour visible quand il est sélectionné. Les messages de retour (« ✓ copié ») sont annoncés. Les boutons font au moins 44 pixels de haut sur téléphone. |
 
-## Questions pour Mat
+## Questions pour Mat et réponses
 
-Réponds par oui ou non à chaque numéro, ou « OK pour tout ».
+Mat a suivi les dix préconisations.
 
 1. **Une seule demande de fusion** pour tout le lot 6, avec un seul essai ? *Je préconise oui : le lot est plus petit que le lot 5.*
 2. **Remplacer le texte** : quand la zone n'est pas vide, l'outil demande une confirmation avant de mettre le modèle à la place ? *Je préconise oui : rien n'est conservé dans le navigateur, donc un texte remplacé par erreur serait perdu.*
