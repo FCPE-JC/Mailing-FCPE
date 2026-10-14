@@ -4,13 +4,13 @@ Demande de Mat du 13/10/2026 (22 h 51), propositions validées le 13/10/2026 (22
 
 ## Émojis ajoutés au panneau (7)
 
-Déjà présents dans la liste : 🎉 🏫 🤝 📝 ⚠️. Nouveaux : 📢 📚 📅 👨‍👩‍👧‍👦 🗣️ ♻️ 🙋 (18 pastilles en tout).
+Déjà présents dans la liste : 🎉 🏫 🤝 📝 ⚠️. Nouveaux : 📢 📚 📅 👨‍👩‍👧‍👦 🗣️ ♻️ 🙋 (18 pastilles en tout). Après l'essai du lot 5b (14/10/2026), Mat retire 📅, trop proche de 🗓️ et affiché avec une date imprimée selon l'appareil : 17 pastilles.
 
 | Émoji | Thème (Mat) | Mots-clés D16 | Remarque |
 |---|---|---|---|
 | 📢 | Annonce, communication | annonce, actualité, nouvelle | |
 | 📚 | Vie scolaire, apprentissages | pédagogique, apprentissage, devoirs, lecture, bibliothèque | |
-| 📅 | Dates, agenda, échéances | aucun | Panneau seulement ; la détection garde 🗓️ pour les dates (Q1) |
+| 📅 | Dates, agenda, échéances | aucun | Panneau seulement ; la détection garde 🗓️ pour les dates (Q1). Retiré après l'essai du lot 5b |
 | 👨‍👩‍👧‍👦 | Familles, communauté | communauté | Ni « familles » ni « parents », présents dans presque tous les emails. Émoji composé : vérifier à l'essai (vieux Outlook), 👪 en remplacement s'il s'affiche mal (Q2) |
 | 🗣️ | Expression, consultation | consultation, débat, parole, exprimer | « avis » reste à 📝 |
 | ♻️ | Environnement | recyclage, collecte, environnement, écologie, durable | |

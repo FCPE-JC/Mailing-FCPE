@@ -10,15 +10,15 @@
 // arrière correction par correction. Le texte ne vit que dans la page : rien n'est
 // enregistré (DEC-071).
 
-import { lirePivot, ecrirePivot, estEmojiSeul } from './pivot.js?v=0.5.2';
-import { rendreEmail } from './rendu.js?v=0.5.2';
-import { CHARTE } from '../parametres/charte.js?v=0.5.2';
-import { estPivot, detecterPivot, completerPastilles, PASTILLES } from './detection.js?v=0.5.2';
+import { lirePivot, ecrirePivot, estEmojiSeul } from './pivot.js?v=0.5.3';
+import { rendreEmail } from './rendu.js?v=0.5.3';
+import { CHARTE } from '../parametres/charte.js?v=0.5.3';
+import { estPivot, detecterPivot, completerPastilles, PASTILLES } from './detection.js?v=0.5.3';
 import {
   NOM_TYPE, choixPossibles, typeDe, lireRepere, retrouver, changerType, changerPastille, changerSurtitre, changerLibelle, changerObjet,
   texteDuBloc, changerTexte,
-} from './corrections.js?v=0.5.2';
-import { conseils, aideObjet, SEUILS } from './conseils.js?v=0.5.2';
+} from './corrections.js?v=0.5.3';
+import { conseils, aideObjet, SEUILS } from './conseils.js?v=0.5.3';
 
 // Phrase affichée sur l'écran Vérifier selon la lecture faite (US-014).
 export const LECTURES = Object.freeze({
