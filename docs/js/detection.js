@@ -35,10 +35,13 @@ const EMOJI_TETE = motif(`^(${EMOJI})\\s*(.*)$`, 'u');
 const EMOJIS = motif(EMOJI, 'gu');
 const COMMENCE_EMOJI = motif(`^${EMOJI}`, 'u');
 
-// D16 : pastilles, dans l'ordre de priorité ; null pour la présence d'une date (D12).
+// D16 : pastilles, dans l'ordre de priorité ; null pour la présence d'une date (D12), false
+// pour une pastille proposée dans le panneau seulement. Sept pastilles ajoutées au lot 5
+// (DEC-109), dont les mots-clés passent avant ceux de 🤝, plus vagues.
 const PICTOS = [
   ['⚠️', '\\b(urgent|grève|greve|fermeture|annul\\w*|alerte)\\b'],
   ['🗓️', null],
+  ['📅', false],
   ['🔒', '\\b(anonym\\w*|confidenti\\w*)\\b'],
   ['🍽️', '\\b(cantine|repas|restauration|menus?)\\b'],
   ['📝', '\\b(questionnaire|formulaire|sondage|témoignages?|avis)\\b'],
@@ -46,9 +49,15 @@ const PICTOS = [
   ['🎉', '\\b(fête|kermesse|carnaval|spectacle|goûter)\\b'],
   ['🙏', '\\b(merci|remerci\\w*)\\b'],
   ['🗳️', '\\b(élections?|vote[rsz]?|scrutin)\\b'],
+  ['📢', '\\b(annonces?|actualités?|nouvelles?)\\b'],
+  ['📚', '\\b(pédagogi\\w*|apprentissages?|devoirs|lecture|bibliothèques?)\\b'],
+  ['👨‍👩‍👧‍👦', '\\b(communautés?)\\b'],
+  ['🗣️', '\\b(consultations?|débats?|parole|exprimer)\\b'],
+  ['♻️', '\\b(recyclage|collectes?|environnement|écologi\\w*|durables?)\\b'],
+  ['🙋', '\\b(bénévoles?|volontaires?|besoin de vous|coup de main)\\b'],
   ['🤝', '\\b(écoute|lien|ensemble|contact\\w*|rencontr\\w*)\\b'],
   ['ℹ️', '.'],
-].map(([emoji, source]) => [emoji, source && motif(source, 'u')]);
+].map(([emoji, source]) => [emoji, source ? motif(source, 'u') : source]);
 const NEUTRE = 'ℹ️';
 
 // Longueur en caractères affichés (comme Python), et non en unités UTF-16.
@@ -75,7 +84,7 @@ export function libelleBouton(adresse) {
 // ne reconnaissait pas « maître » au singulier (DEC-101).
 export function choisirPastille(texte, deja = []) {
   const t = texte.toLowerCase();
-  const trouves = PICTOS.filter(([, m]) => (m === null ? DATE.test(t) : m.test(t))).map(([e]) => e);
+  const trouves = PICTOS.filter(([, m]) => m !== false && (m === null ? DATE.test(t) : m.test(t))).map(([e]) => e);
   return trouves.find(e => e !== NEUTRE && !deja.includes(e)) ?? trouves[0] ?? NEUTRE;
 }
 

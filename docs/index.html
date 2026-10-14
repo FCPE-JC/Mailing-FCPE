@@ -9,8 +9,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
 <title>Mailing-FCPE</title>
-<link rel="stylesheet" href="style.css">
-<script type="module" src="js/demarrage.js"></script>
+<link rel="stylesheet" href="style.css?v=0.5.2">
+<script type="module" src="js/demarrage.js?v=0.5.2"></script>
 </head>
 <body>
 
@@ -74,7 +74,7 @@
           <ul id="conseils-liste"></ul>
         </details>
         <div class="barre-apercu">
-          <p class="aide">Touche un bloc pour changer son type, sa pastille ou son surtitre.</p>
+          <p class="aide">Touche un bloc pour changer son type, son texte, sa pastille ou son surtitre.</p>
           <button id="annuler" type="button" class="bouton bouton-second" disabled>↶ Annuler</button>
         </div>
         <div id="apercu" class="apercu"></div>
@@ -87,9 +87,17 @@
           <label for="panneau-libelle" class="etiquette">Libellé du bouton</label>
           <input id="panneau-libelle" type="text" autocomplete="off">
         </div>
+        <div id="panneau-texte-zone" hidden>
+          <label for="panneau-texte" class="etiquette">Texte du bloc</label>
+          <textarea id="panneau-texte" rows="4" autocomplete="off" autocapitalize="sentences" spellcheck="true" lang="fr"></textarea>
+          <p class="aide">Une ligne par élément pour une liste, une date, un encadré ou la signature. Vide le champ pour retirer le bloc.</p>
+        </div>
         <div id="panneau-section">
           <h3>Pastille de la section</h3>
           <div id="panneau-pastilles" class="grille-pastilles"></div>
+          <label for="panneau-autre" class="etiquette">Autre émoji</label>
+          <input id="panneau-autre" type="text" class="champ-autre" autocomplete="off" inputmode="text" enterkeyhint="done" placeholder="ex. ☕ ou 🎈">
+          <p id="panneau-autre-message" class="aide" aria-live="polite"></p>
           <label for="panneau-surtitre" class="etiquette">Surtitre</label>
           <input id="panneau-surtitre" type="text" autocomplete="off" placeholder="ex. « Au programme »">
           <p id="panneau-conseil-surtitre" class="aide" aria-live="polite"></p>
@@ -133,6 +141,7 @@
 
   <footer class="pied">
     <p>🔒 Ton texte ne quitte pas cet appareil ; il disparaît à la fermeture de la page.</p>
+    <p class="version">Version 0.5.2</p>
   </footer>
 </div>
 

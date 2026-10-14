@@ -89,7 +89,8 @@ export function faussePage(ids) {
 // Éléments de l'écran Vérifier que l'aperçu branche.
 const IDS = ['texte', 'note-pivot', 'apercu-vide', 'verification', 'lecture', 'objet', 'objet-compteur', 'objet-messages', 'objet-propositions',
   'conseils', 'conseils-titre', 'conseils-liste', 'annuler', 'apercu', 'panneau', 'panneau-types', 'panneau-raison', 'panneau-section',
-  'panneau-pastilles', 'panneau-surtitre', 'panneau-conseil-surtitre', 'panneau-libelle-zone', 'panneau-libelle', 'panneau-fermer'];
+  'panneau-pastilles', 'panneau-surtitre', 'panneau-conseil-surtitre', 'panneau-libelle-zone', 'panneau-libelle', 'panneau-fermer',
+  'panneau-texte-zone', 'panneau-texte', 'panneau-autre', 'panneau-autre-message'];
 // Page dont l'aperçu est branché (US-010 à US-020) ; taper() simule la saisie du rédacteur.
 export function pageBranchee(texte = '') {
   const page = faussePage(IDS);

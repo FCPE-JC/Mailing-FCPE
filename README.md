@@ -11,7 +11,7 @@ Outil qui transforme un texte brut en email aux couleurs du conseil local FCPE d
 | 2. Charte et format pivot | Bibliothèque de blocs, règles de détection, prompt IA | Terminée |
 | 3. Tests de faisabilité | Collage Gmail, mode sombre, image d'aperçu, smartphone | Terminée |
 | 4. Architecture | Choisir la solution | Terminée |
-| 5. Développement V1 | Construire, en six lots | En cours (lots 1 à 4 terminés ; lot 5 : sorties) |
+| 5. Développement V1 | Construire, en six lots | En cours (lots 1 à 4 et 5a terminés ; lot 5b : pastilles, texte du bloc, signature) |
 | 6. Recette | Vérifier sur les vrais appareils | À venir |
 | 7. Mise à disposition | Diffuser et mesurer | À venir |
 
@@ -54,6 +54,7 @@ La dernière ligne `# fail 0` signifie que tous les tests passent. Les mêmes te
 - Chaque fichier commence par un commentaire qui dit son rôle et les exigences ou US qu'il couvre.
 - Chaque test est nommé d'après l'US ou l'exigence qu'il vérifie (« US-002 : … »).
 - Aucune bibliothèque, aucune dépendance, aucune étape de construction (DEC-067).
+- Numéro de version : celui de `package.json`, repris dans chaque adresse de fichier du site (`?v=0.5.2`) et dans le pied de page, pour que le navigateur charge les nouveaux fichiers après une mise à jour. À changer partout à chaque demande de fusion qui touche `docs/` ; un test vérifie qu'il est le même partout.
 
 ## Documents de référence
 

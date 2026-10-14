@@ -24,6 +24,7 @@ Ce que tu pourras essayer à la fin du lot : corriger un email mal détecté, pa
 | Important | Le texte entre dans l'encadré, titre « Important ». |
 | Date et lieu | Découpé en lignes comme à la règle D12 (virgule après l'heure, point, tiret), avec 🗓️ et 📍. |
 | Clôture | Proposé seulement pour le dernier bloc avant la signature ; l'ancienne clôture, s'il y en a une, redevient un paragraphe. |
+| Signature (ajoutée au lot 5, DEC-114) | Proposé pour la clôture, ou pour le dernier bloc s'il n'y a pas de clôture, quand l'email n'a pas encore de signature. Si la première ligne commence par une formule de politesse, elle reste la formule ; sinon la signature n'a pas de formule. À l'inverse, une signature passée dans un autre type rejoint la fin de la dernière section. |
 
 Seuils modifiés le 13/10/2026 par DEC-108 : conseil au-delà de 60, refus au-delà de 100.
 

@@ -70,6 +70,7 @@ Une ligne vide sépare deux blocs. Deux lignes qui se suivent sans ligne vide fo
 | P12 | Date et lieu | `::: date` / lignes / `:::` | Une information par ligne ; la première est mise en avant. Exemple : `🗓️ Jeudi 5 novembre à 8 h 30`, `📍 Salle polyvalente`. |
 | P13 | Séparateur et clôture | `---` puis la phrase | Ce qui suit le dernier `---` et précède la signature est la clôture. |
 | P14 | Signature | `Bien cordialement,` / `Vos représentants FCPE` | Paragraphe qui commence par une formule de politesse connue : bien cordialement, cordialement, bien à vous, amicalement, à bientôt, à très bientôt, belle ou bonne journée / soirée / semaine, avec nos salutations, bon courage, merci et à bientôt. La formule va jusqu'à la première virgule ; le reste est le signataire, qui garde ses retours à la ligne : la première ligne en gras, les suivantes en texte normal (DEC-110). |
+| P15 | Signature sans formule | `::: signature` / lignes / `:::` | Toutes les lignes forment la signature : la première en gras, les suivantes en texte normal ; la formule de politesse n'est pas obligatoire. Si la première ligne commence par une formule connue, elle est lue comme à P14. Avec ce bloc, P14 ne s'applique pas ; s'il y en a plusieurs, seul le dernier compte (DEC-114). |
 
 Contenu placé avant le premier `##` : il forme une première section sans surtitre, dont la pastille est choisie par l'outil.
 

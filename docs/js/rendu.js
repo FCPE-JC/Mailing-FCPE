@@ -13,8 +13,8 @@
 // Pour l'aperçu seulement (US-015), l'option « etiquettes » entoure chaque bloc d'un repère
 // et de l'étiquette de son type ; sans elle, le code est exactement celui qui sera copié.
 
-import { CHARTE } from '../parametres/charte.js';
-import { ADRESSE_LIEN } from './pivot.js';
+import { CHARTE } from '../parametres/charte.js?v=0.5.2';
+import { ADRESSE_LIEN } from './pivot.js?v=0.5.2';
 
 // Échappe un texte pour l'insérer dans le code HTML (contenu ou valeur d'attribut).
 export function echapper(texte) {
@@ -151,11 +151,16 @@ export function rendreEmail(doc, charte = CHARTE, options = {}) {
     fermer();
   }
   if (doc.signature) {
+    // Formule (facultative depuis DEC-114), puis le signataire : première ligne en gras bleu,
+    // suivantes en texte normal (DEC-110).
     const { formule, signataire } = doc.signature;
-    a(`<p style="${F}font-size:${px(ty.signature.taille)};line-height:${ty.signature.interligne};margin:0;color:${c.texte};">${echapper(formule)}`
-      + (signataire ? signataire.split('\n').map((ligne, q) => (q === 0
-        ? `<br><strong style="color:${c.bleuTitre};">${echapper(ligne)}</strong>`
-        : `<br>${echapper(ligne)}`)).join('') : '') + '</p>');
+    const lignes = [
+      ...(formule ? [echapper(formule)] : []),
+      ...(signataire ? signataire.split('\n').map((ligne, q) => (q === 0 ? `<strong style="color:${c.bleuTitre};">${echapper(ligne)}</strong>` : echapper(ligne))) : []),
+    ];
+    ouvrir('signature', 'signature');
+    a(`<p style="${F}font-size:${px(ty.signature.taille)};line-height:${ty.signature.interligne};margin:0;color:${c.texte};">${lignes.join('<br>')}</p>`);
+    fermer();
   }
   a('</td></tr>\n</table></td></tr></table>');
 

@@ -26,10 +26,10 @@ const DOC = lirePivot(PIVOT);
 const blocs = d => d.sections.flatMap(s => s.blocs);
 const mots = d => ecrirePivot(d).toLowerCase().match(/[\p{L}\p{N}]+/gu).filter(m => !['important', 'date'].includes(m));
 
-test('US-016 : le panneau propose les neuf types de la maquette', () => {
-  assert.deepEqual(TYPES.map(([, nom]) => nom), ['Paragraphe', 'Accroche', 'Note', 'Titre de section', 'Liste', 'Bouton', '⚠️ Important', '🗓️ Date et lieu', 'Clôture']);
+test('US-016 et US-031 : le panneau propose les neuf types de la maquette, puis Signature (DEC-114)', () => {
+  assert.deepEqual(TYPES.map(([, nom]) => nom), ['Paragraphe', 'Accroche', 'Note', 'Titre de section', 'Liste', 'Bouton', '⚠️ Important', '🗓️ Date et lieu', 'Clôture', 'Signature']);
   const choix = choixPossibles(DOC, '1.0');
-  assert.equal(choix.length, 9);
+  assert.equal(choix.length, 10);
   assert.deepEqual(choix.filter(c => c.actuel).map(c => c.type), ['paragraphe']);
 });
 
@@ -121,8 +121,8 @@ test('US-016 : après un changement, le panneau retrouve le bloc changé', () =>
   assert.deepEqual(lignesDe(DOC, 'cloture'), ['Encore merci ✨']);
 });
 
-test('US-017 : les onze pastilles de D16 sont proposées ; changer la pastille ou le surtitre', () => {
-  assert.deepEqual(PASTILLES, ['⚠️', '🗓️', '🔒', '🍽️', '📝', '🏫', '🎉', '🙏', '🗳️', '🤝', 'ℹ️']);
+test('US-017 et US-029 : les dix-huit pastilles sont proposées (DEC-109) ; changer la pastille ou le surtitre', () => {
+  assert.deepEqual(PASTILLES, ['⚠️', '🗓️', '📅', '🔒', '🍽️', '📝', '🏫', '🎉', '🙏', '🗳️', '📢', '📚', '👨‍👩‍👧‍👦', '🗣️', '♻️', '🙋', '🤝', 'ℹ️']);
   assert.equal(changerPastille(DOC, 1, '☕').sections[1].pastille, '☕');
   assert.equal(changerSurtitre(DOC, 0, '  Merci  ').sections[0].surtitre, 'Merci');
   assert.equal(changerSurtitre(DOC, 1, '').sections[1].surtitre, null);
@@ -160,7 +160,7 @@ test('US-016 et US-020 : sur la page, toucher un bloc ouvre le panneau, choisir 
   assert.equal(elements['note-pivot'].hidden, true);
   elements.apercu.declencher('click', { target: { closest: () => ({ getAttribute: () => '1.0' }) }, preventDefault() {} });
   assert.equal(elements.panneau.getAttribute('open'), '');
-  assert.equal(elements['panneau-types'].enfants.length, 9);
+  assert.equal(elements['panneau-types'].enfants.length, 10);
   assert.equal(elements['panneau-pastilles'].enfants.length >= 11, true);
   const note = elements['panneau-types'].enfants.find(b => b.textContent === 'Note');
   note.declencher('click');

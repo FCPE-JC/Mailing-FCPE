@@ -11,7 +11,8 @@ import { faussePage, lireDuDepot, lireDuSite } from './aides.js';
 
 const IDS_APERCU = ['texte', 'note-pivot', 'apercu-vide', 'verification', 'lecture', 'objet', 'objet-compteur', 'objet-messages', 'objet-propositions',
   'conseils', 'conseils-titre', 'conseils-liste', 'annuler', 'apercu', 'panneau', 'panneau-types', 'panneau-raison', 'panneau-section',
-  'panneau-pastilles', 'panneau-surtitre', 'panneau-conseil-surtitre', 'panneau-libelle-zone', 'panneau-libelle', 'panneau-fermer'];
+  'panneau-pastilles', 'panneau-surtitre', 'panneau-conseil-surtitre', 'panneau-libelle-zone', 'panneau-libelle', 'panneau-fermer',
+  'panneau-texte-zone', 'panneau-texte', 'panneau-autre', 'panneau-autre-message'];
 const IDS_PARTAGE = ['partage-vide', 'partage', 'retour-partager', 'retour-ecrire', 'repli', 'repli-consigne', 'repli-contenu', 'copier-whatsapp',
   'enregistrer-image', 'partager-image', 'exporter', 'telecharger-brouillon', 'copier-gmail', 'copier-texte', 'copier-prompt', 'ouvrir-brouillon', 'prompt-repli'];
 

@@ -1,4 +1,4 @@
-// Mailing-FCPE : lecture et écriture du format pivot (US-007, US-016 ; EX-003, RG-004, EX-028).
+// Mailing-FCPE : lecture et écriture du format pivot (US-007, US-016, US-031 ; EX-003, RG-004, EX-028).
 //
 // Transforme un texte au format pivot (etape-2/format-pivot.md, règles P1 à P14) en un
 // modèle interne unique : objet, salutation, sections (pastille, surtitre, blocs), clôture,
@@ -28,6 +28,27 @@ const TITRES_IMPORTANT = ['important', 'attention', 'urgent', 'à retenir', 'a r
 
 export function retirerEmoji(texte) {
   return texte.replace(EMOJI, '');
+}
+
+// Un seul émoji, sans rien d'autre (bouton « Autre » des pastilles, US-029, DEC-109).
+export function estEmojiSeul(texte) {
+  const t = String(texte ?? '').trim();
+  const m = t.match(EMOJI);
+  return Boolean(m) && m[0].trim() === t;
+}
+
+// Signature tirée de ses lignes. Si la première commence par une formule de politesse (P14),
+// la formule va jusqu'à la première virgule et le reste forme le signataire ; sinon la
+// signature n'a pas de formule (type Signature, DEC-114). Le signataire garde ses retours
+// à la ligne (DEC-110). Rien à signer : null.
+export function signatureDe(lignes) {
+  const [v, ...suite] = lignes.map(x => x.trim()).filter(Boolean);
+  if (!v) return null;
+  if (!POLITESSE.test(v)) return { formule: null, signataire: [v, ...suite].join('\n') };
+  const virgule = v.indexOf(',');
+  const formule = (virgule >= 0 ? v.slice(0, virgule) : v) + ',';
+  const signataire = [virgule >= 0 ? v.slice(virgule + 1).trim() : '', ...suite].filter(Boolean).join('\n');
+  return { formule, signataire: signataire || null };
 }
 
 // Lit un texte au format pivot et renvoie le modèle interne.
@@ -91,6 +112,9 @@ export function lirePivot(texte) {
       const contenu = paquet.slice(1, -1).map(x => x.trim()).filter(Boolean);
       if (genre.startsWith('date')) {
         blocs.push({ type: 'date', lignes: contenu });
+      } else if (genre.startsWith('signature')) {
+        // Signature écrite comme un encadré, avec ou sans formule de politesse (DEC-114).
+        blocs.push({ type: 'signature', lignes: contenu });
       } else {
         if (!genre.startsWith('important')) {
           noter('encadre-inconnu', `Encadré « ::: ${genre} » inconnu : il est rendu comme un encadré Important.`);
@@ -144,26 +168,34 @@ export function lirePivot(texte) {
     doc.salutation = blocs.shift().texte;
   }
 
-  // P14 : signature, à partir de la formule de politesse. P13 : la phrase qui suit le dernier
-  // « --- » est la clôture, même si elle commence par une formule (« À bientôt ✨ ») suivie
-  // de la vraie signature.
-  const estFormule = b => b.type === 'paragraphe' && POLITESSE.test(b.texte);
-  let k = blocs.findIndex(estFormule);
-  const separateur = blocs.map(b => b.type).lastIndexOf('separateur');
-  if (k >= 0 && separateur >= 0 && k === separateur + 1) {
-    const suivante = blocs.findIndex((b, i) => i > k && estFormule(b));
-    if (suivante >= 0) k = suivante;
+  // Signature écrite « ::: signature » (DEC-114) : la dernière l'emporte, une précédente
+  // redevient un paragraphe ; la règle P14 ne s'applique pas alors.
+  const signatures = blocs.map((b, i) => (b.type === 'signature' ? i : -1)).filter(i => i >= 0);
+  for (const i of signatures.slice(0, -1)) {
+    blocs[i] = { type: 'paragraphe', texte: blocs[i].lignes.join(' ') };
+    noter('plusieurs-signatures', 'Plusieurs signatures « ::: signature » : seule la dernière est gardée comme signature.');
   }
-  if (k >= 0) {
-    // Le signataire garde les retours à la ligne écrits : une ligne par ligne (DEC-110).
-    const [v, ...suite] = blocs.slice(k).filter(b => b.type === 'paragraphe').flatMap(b => lignesParagraphe.get(b));
-    const virgule = v.indexOf(',');
-    const formule = (virgule >= 0 ? v.slice(0, virgule) : v) + ',';
-    const signataire = [virgule >= 0 ? v.slice(virgule + 1).trim() : '', ...suite].filter(Boolean).join('\n');
-    doc.signature = { formule, signataire: signataire || null };
-    blocs.length = k;
+  if (signatures.length) {
+    doc.signature = signatureDe(blocs.splice(signatures.at(-1), 1)[0].lignes);
+    if (!doc.signature) noter('signature-absente', 'La signature « ::: signature » est vide.');
   } else {
-    noter('signature-absente', 'Aucune signature reconnue.');
+    // P14 : signature, à partir de la formule de politesse. P13 : la phrase qui suit le dernier
+    // « --- » est la clôture, même si elle commence par une formule (« À bientôt ✨ ») suivie
+    // de la vraie signature.
+    const estFormule = b => b.type === 'paragraphe' && POLITESSE.test(b.texte);
+    let k = blocs.findIndex(estFormule);
+    const separateur = blocs.map(b => b.type).lastIndexOf('separateur');
+    if (k >= 0 && separateur >= 0 && k === separateur + 1) {
+      const suivante = blocs.findIndex((b, i) => i > k && estFormule(b));
+      if (suivante >= 0) k = suivante;
+    }
+    if (k >= 0) {
+      // Le signataire garde les retours à la ligne écrits : une ligne par ligne (DEC-110).
+      doc.signature = signatureDe(blocs.slice(k).filter(b => b.type === 'paragraphe').flatMap(b => lignesParagraphe.get(b)));
+      blocs.length = k;
+    } else {
+      noter('signature-absente', 'Aucune signature reconnue.');
+    }
   }
 
   // P13 : clôture, ce qui suit le dernier séparateur.
@@ -228,9 +260,12 @@ export function ecrirePivot(doc) {
     if (L.at(-1) !== '') L.push('');
   }
   if (doc.cloture) L.push('---', doc.cloture, '');
-  if (doc.signature) {
+  // Signature avec formule : P14 ; sans formule : « ::: signature » (DEC-114).
+  if (doc.signature?.formule) {
     L.push(doc.signature.formule);
     if (doc.signature.signataire) L.push(doc.signature.signataire);
+  } else if (doc.signature?.signataire) {
+    L.push('::: signature', ...doc.signature.signataire.split('\n'), ':::');
   }
   return L.join('\n').trimEnd() + '\n';
 }
