@@ -1,6 +1,6 @@
 # Fiche d'essai du lot 6 (modèles et finitions), v0.1
 
-À remplir par Mat après la fusion de la demande du lot 6, sur ordinateur puis sur le téléphone Android. Durée : une vingtaine de minutes, dont l'essai chronométré.
+À remplir par Mat après la fusion de la demande du lot 6, sur ordinateur puis sur le téléphone Android. Durée : une vingtaine de minutes, dont l'essai chronométré (DEC-135). Pour l'essai réel, ton texte reste sur ton appareil : rien ne m'est envoyé, et une capture éventuelle ne montre ni nom ni adresse.
 
 Adresse : https://mat130718.github.io/Mailing-FCPE/ (attendre une à deux minutes après la fusion, puis recharger la page). Le pied de page doit indiquer « Version 0.6.0 ».
 

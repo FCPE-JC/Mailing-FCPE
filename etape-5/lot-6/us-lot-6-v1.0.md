@@ -1,6 +1,6 @@
 # Lot 6 : user stories validées, v1.0
 
-14 octobre 2026. Rédigé par le fil « Étape 5 : développement », validé par Mat le 14 octobre 2026 à 11 h 13 (« Sur les questions du Lot6 : ok pour tout »). Lot 6 du découpage (DEC-075), le dernier de l'étape 5 : modèles et finitions (EX-002, EX-019 à EX-022, EX-024, EX-025). Les US commencent à US-032 (numéros à confirmer par le fil Documents de référence).
+14 octobre 2026. Rédigé par le fil « Étape 5 : développement », validé par Mat le 14 octobre 2026 à 11 h 13 (« Sur les questions du Lot6 : ok pour tout »). Lot 6 du découpage (DEC-075), le dernier de l'étape 5 : modèles et finitions (EX-002, EX-019 à EX-022, EX-024, EX-025). US-032 à US-037 confirmées par le fil Documents de référence ; décisions DEC-125 (lot démarré) puis DEC-126 à DEC-135 (questions 1 à 10, dans l'ordre).
 
 ## Ce que j'ai vérifié avant d'écrire
 

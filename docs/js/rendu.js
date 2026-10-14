@@ -164,6 +164,6 @@ export function rendreEmail(doc, charte = CHARTE, options = {}) {
   }
   a('</td></tr>\n</table></td></tr></table>');
 
-  // lang : la synthèse vocale lit l'email en français (EX-021, US-036).
+  // lang : la synthèse vocale lit l'email en français (EX-021, US-036, DEC-132).
   return `<div lang="fr" style="${styleConteneur(charte)}">${out.join('\n')}</div>`;
 }

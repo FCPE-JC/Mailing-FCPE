@@ -3,11 +3,11 @@
 // Les cinq modèles types du cahier des charges (remerciement, invitation, préparation
 // du conseil d'école, appel à témoignages, information urgente), écrits au format pivot
 // (etape-2/format-pivot.md) à partir des spécimens fictifs de l'étape 2
-// (etape-2/specimens/01 à 05). Le rédacteur part d'un modèle et le complète.
+// (etape-2/specimens/01 à 05, DEC-130). Le rédacteur part d'un modèle et le complète.
 //
-// Chaque modèle commence par son objet type (ligne « Objet : »). Les passages à compléter
+// Chaque modèle commence par son objet type (ligne « Objet : », DEC-129). Les passages à compléter
 // sont entre crochets, par exemple [date] : l'outil les signale tant qu'il en reste
-// (US-034). Dans une adresse, le passage à compléter ne contient pas d'espace :
+// (US-034, DEC-128). Dans une adresse, le passage à compléter ne contient pas d'espace :
 // https://[adresse].
 //
 // Pour ajouter ou modifier un modèle : changer ce fichier, lancer les tests

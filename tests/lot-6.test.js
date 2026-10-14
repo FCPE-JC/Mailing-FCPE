@@ -1,6 +1,6 @@
 // Lot 6 : modèles types (US-032, US-033), passages à compléter (US-034), police de la date
 // et de la clôture (US-035), accessibilité de l'email (US-036) et de l'outil (US-037) ;
-// EX-002, EX-019 à EX-021, EX-024, EX-025.
+// EX-002, EX-019 à EX-021, EX-024, EX-025 ; DEC-125 à DEC-132.
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';

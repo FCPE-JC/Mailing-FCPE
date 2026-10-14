@@ -1,9 +1,9 @@
-// Mailing-FCPE : partir d'un modèle type (US-032 ; EX-002, EX-019, EX-024).
+// Mailing-FCPE : partir d'un modèle type (US-032, DEC-125, DEC-127 ; EX-002, EX-019, EX-024).
 //
 // L'écran Écrire propose les cinq modèles de parametres/modeles.js. Le modèle choisi
 // remplit la zone de texte, par le même chemin qu'une saisie : l'aperçu se met à jour.
 // Rien n'est conservé dans le navigateur (DEC-071) : un texte déjà écrit n'est remplacé
-// qu'après confirmation.
+// qu'après confirmation (DEC-127).
 
 import { MODELES } from '../parametres/modeles.js?v=0.6.0';
 

@@ -42,8 +42,8 @@ export const CHARTE = Object.freeze({
     surtitre: Object.freeze({ taille: 12, espacement: 1.5, graisse: 800 }),
     bouton: Object.freeze({ taille: 15, graisse: 700 }),
     lienSecours: Object.freeze({ taille: 12, interligne: 1.4, graisse: 'normal' }),
-    cloture: Object.freeze({ taille: 20, interligne: 1.4, graisse: 700 }), // 800 jusqu'au lot 6 (US-035)
-    titreDate: Object.freeze({ taille: 18, interligne: 1.5, graisse: 700 }), // 1re ligne du bloc Date et lieu ; 800 jusqu'au lot 6 (US-035)
+    cloture: Object.freeze({ taille: 20, interligne: 1.4, graisse: 700 }), // 800 jusqu'au lot 6 (US-035, DEC-131)
+    titreDate: Object.freeze({ taille: 18, interligne: 1.5, graisse: 700 }), // 1re ligne du bloc Date et lieu ; 800 jusqu'au lot 6 (US-035, DEC-131)
     ligneDate: Object.freeze({ taille: 15, interligne: 1.5, graisse: 400 }),
     signature: Object.freeze({ taille: 15, interligne: 1.6, graisse: 'normal' }),
   }),

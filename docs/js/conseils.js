@@ -26,7 +26,7 @@ const ANOMALIES = {
   'signature-absente': 'Aucune signature reconnue : termine par une formule (« Bien cordialement, ») suivie de ton nom.',
 };
 
-// Passages à compléter des modèles types (US-034) : texte entre crochets, sauf le libellé
+// Passages à compléter des modèles types (US-034, DEC-128) : texte entre crochets, sauf le libellé
 // d'un lien « [libellé](adresse) ». Au plus six sont cités dans le message.
 const A_COMPLETER = /\[([^[\]\n]+)\](?!\()/gu;
 const A_COMPLETER_CITES = 6;
