@@ -121,8 +121,8 @@ test('US-016 : après un changement, le panneau retrouve le bloc changé', () =>
   assert.deepEqual(lignesDe(DOC, 'cloture'), ['Encore merci ✨']);
 });
 
-test('US-017 et US-029 : les dix-huit pastilles sont proposées (DEC-109) ; changer la pastille ou le surtitre', () => {
-  assert.deepEqual(PASTILLES, ['⚠️', '🗓️', '📅', '🔒', '🍽️', '📝', '🏫', '🎉', '🙏', '🗳️', '📢', '📚', '👨‍👩‍👧‍👦', '🗣️', '♻️', '🙋', '🤝', 'ℹ️']);
+test('US-017 et US-029 : les dix-sept pastilles sont proposées (DEC-109) ; changer la pastille ou le surtitre', () => {
+  assert.deepEqual(PASTILLES, ['⚠️', '🗓️', '🔒', '🍽️', '📝', '🏫', '🎉', '🙏', '🗳️', '📢', '📚', '👨‍👩‍👧‍👦', '🗣️', '♻️', '🙋', '🤝', 'ℹ️']);
   assert.equal(changerPastille(DOC, 1, '☕').sections[1].pastille, '☕');
   assert.equal(changerSurtitre(DOC, 0, '  Merci  ').sections[0].surtitre, 'Merci');
   assert.equal(changerSurtitre(DOC, 1, '').sections[1].surtitre, null);

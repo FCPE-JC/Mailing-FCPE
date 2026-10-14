@@ -35,13 +35,12 @@ const EMOJI_TETE = motif(`^(${EMOJI})\\s*(.*)$`, 'u');
 const EMOJIS = motif(EMOJI, 'gu');
 const COMMENCE_EMOJI = motif(`^${EMOJI}`, 'u');
 
-// D16 : pastilles, dans l'ordre de priorité ; null pour la présence d'une date (D12), false
-// pour une pastille proposée dans le panneau seulement. Sept pastilles ajoutées au lot 5
-// (DEC-109), dont les mots-clés passent avant ceux de 🤝, plus vagues.
+// D16 : pastilles, dans l'ordre de priorité ; null pour la présence d'une date (D12). Six
+// pastilles ajoutées au lot 5 (DEC-109), dont les mots-clés passent avant ceux de 🤝, plus
+// vagues ; 📅, proposée d'abord, est retirée à l'essai du lot 5b : un seul calendrier, 🗓️.
 const PICTOS = [
   ['⚠️', '\\b(urgent|grève|greve|fermeture|annul\\w*|alerte)\\b'],
   ['🗓️', null],
-  ['📅', false],
   ['🔒', '\\b(anonym\\w*|confidenti\\w*)\\b'],
   ['🍽️', '\\b(cantine|repas|restauration|menus?)\\b'],
   ['📝', '\\b(questionnaire|formulaire|sondage|témoignages?|avis)\\b'],
@@ -84,7 +83,7 @@ export function libelleBouton(adresse) {
 // ne reconnaissait pas « maître » au singulier (DEC-101).
 export function choisirPastille(texte, deja = []) {
   const t = texte.toLowerCase();
-  const trouves = PICTOS.filter(([, m]) => m !== false && (m === null ? DATE.test(t) : m.test(t))).map(([e]) => e);
+  const trouves = PICTOS.filter(([, m]) => (m === null ? DATE.test(t) : m.test(t))).map(([e]) => e);
   return trouves.find(e => e !== NEUTRE && !deja.includes(e)) ?? trouves[0] ?? NEUTRE;
 }
 

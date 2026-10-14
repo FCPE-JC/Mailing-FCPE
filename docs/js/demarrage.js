@@ -4,10 +4,10 @@
 // ne peut pas se charger), vérifie le navigateur, branche la zone de texte et l'aperçu,
 // l'écran Partager, puis les trois écrans.
 
-import { brancherEcrans } from './ecrans.js?v=0.5.2';
-import { brancherApercu } from './apercu.js?v=0.5.2';
-import { brancherPartage } from './partage.js?v=0.5.2';
-import { detecterFonctions, fonctionsAbsentes, afficherAvertissement } from './navigateur.js?v=0.5.2';
+import { brancherEcrans } from './ecrans.js?v=0.5.3';
+import { brancherApercu } from './apercu.js?v=0.5.3';
+import { brancherPartage } from './partage.js?v=0.5.3';
+import { detecterFonctions, fonctionsAbsentes, afficherAvertissement } from './navigateur.js?v=0.5.3';
 
 document.getElementById('navigateur-trop-ancien').remove();
 document.getElementById('application').hidden = false;

@@ -19,9 +19,10 @@ const SIG = 'Chers parents,\n\n## 🎉 Fête\nVenez nombreux.\n\n---\nÀ l’ann
 
 // --- US-029 : pastilles (DEC-109) ---
 
-test('US-029 : les sept nouvelles pastilles sont proposées, dix-huit en tout (DEC-109)', () => {
-  assert.equal(PASTILLES.length, 18);
-  for (const p of ['📢', '📚', '📅', '👨‍👩‍👧‍👦', '🗣️', '♻️', '🙋']) assert.ok(PASTILLES.includes(p), p);
+test('US-029 : les six nouvelles pastilles sont proposées, dix-sept en tout, avec un seul calendrier (DEC-109)', () => {
+  assert.equal(PASTILLES.length, 17);
+  for (const p of ['📢', '📚', '👨‍👩‍👧‍👦', '🗣️', '♻️', '🙋']) assert.ok(PASTILLES.includes(p), p);
+  assert.ok(PASTILLES.includes('🗓️') && !PASTILLES.includes('📅'));
 });
 
 test('US-029 : D16 reconnaît les mots-clés des nouvelles pastilles (DEC-109)', () => {
@@ -33,12 +34,11 @@ test('US-029 : D16 reconnaît les mots-clés des nouvelles pastilles (DEC-109)',
   for (const [texte, pastille] of cas) assert.equal(choisirPastille(texte), pastille, texte);
 });
 
-test('US-029 : les nouveaux mots-clés passent avant ceux de 🤝, et 📅 n’est jamais choisi par D16', () => {
+test('US-029 : les nouveaux mots-clés passent avant ceux de 🤝, et les dates gardent 🗓️', () => {
   assert.equal(choisirPastille('Rencontre avec les bénévoles'), '🙋');
   assert.equal(choisirPastille('Rencontre pour un débat'), '🗣️');
   assert.equal(choisirPastille('Rencontre'), '🤝');
   assert.equal(choisirPastille('Jeudi 5 novembre à 8 h 30'), '🗓️');
-  for (const t of ['agenda', 'calendrier', 'échéance', 'date']) assert.notEqual(choisirPastille(t), '📅');
 });
 
 test('US-029 : « Autre » accepte un seul émoji, y compris composé, et refuse un texte', () => {

@@ -13,8 +13,8 @@
 // Pour l'aperçu seulement (US-015), l'option « etiquettes » entoure chaque bloc d'un repère
 // et de l'étiquette de son type ; sans elle, le code est exactement celui qui sera copié.
 
-import { CHARTE } from '../parametres/charte.js?v=0.5.2';
-import { ADRESSE_LIEN } from './pivot.js?v=0.5.2';
+import { CHARTE } from '../parametres/charte.js?v=0.5.3';
+import { ADRESSE_LIEN } from './pivot.js?v=0.5.3';
 
 // Échappe un texte pour l'insérer dans le code HTML (contenu ou valeur d'attribut).
 export function echapper(texte) {
