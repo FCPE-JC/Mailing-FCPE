@@ -1,5 +1,6 @@
 // Mailing-FCPE : écran Partager, reprise d'un brouillon, prompt IA et avertissement avant de
 // recharger (US-021 à US-028 ; EX-009 à EX-014, EX-028, EX-029 ; lot 5a, DEC-116).
+// Étape 6 : « Copier l'objet », pour ne pas ressaisir l'objet dans Gmail (EX-009).
 //
 // L'écran Partager suit la maquette de l'étape 2 : d'abord ce qui sert à la relecture sur
 // téléphone, puis ce qui sert à l'envoi depuis l'ordinateur. Chaque bouton dit en une ligne
@@ -7,18 +8,20 @@
 // copie à la main (DEC-118 pour l'email). Le texte est toujours celui de la zone de l'écran Écrire : les corrections
 // de l'écran Vérifier y sont déjà écrites (DEC-103).
 
-import { preparerApercu } from './apercu.js?v=0.6.0';
-import { ecrirePivot } from './pivot.js?v=0.6.0';
-import { PROMPT_IA } from '../parametres/prompt-ia.js?v=0.6.0';
+import { preparerApercu } from './apercu.js?v=0.6.1';
+import { ecrirePivot } from './pivot.js?v=0.6.1';
+import { PROMPT_IA } from '../parametres/prompt-ia.js?v=0.6.1';
 import {
   versionTexte, nomDeFichier, aProteger, copierTexte, copierEmail, selectionner,
   creerImage, telecharger, partagerFichier,
-} from './sorties.js?v=0.6.0';
+} from './sorties.js?v=0.6.1';
 
 // Messages affichés après chaque geste.
 export const MESSAGES = Object.freeze({
   whatsapp: '✓ Version WhatsApp copiée : colle-la dans une conversation WhatsApp.',
   texte: '✓ Version texte copiée : colle-la dans ton message.',
+  objet: '✓ Objet copié : colle-le dans le champ « Objet » de Gmail.',
+  objetAbsent: "Pas encore d'objet : ajoute-le sur l'écran Vérifier.",
   gmail: '✓ Email copié : colle-le dans un nouveau message Gmail (Ctrl+V, ou ⌘+V sur Mac).',
   gmailRepli: "Ton navigateur n'a pas permis la copie : l'email est sélectionné ci-dessous. Fais Ctrl+C (⌘+C sur Mac), puis colle-le dans Gmail.",
   texteRepli: "Ton navigateur n'a pas permis la copie : le texte est sélectionné ci-dessous. Copie-le à la main (Ctrl+C, ou appui long puis « Copier »).",
@@ -40,11 +43,12 @@ export const MESSAGES = Object.freeze({
 // Taille maximale d'un brouillon à reprendre : bien au-delà d'un email (quelques kilo-octets).
 export const TAILLE_MAX_BROUILLON = 200 * 1024;
 
-// Les quatre contenus de l'écran Partager, pour un texte donné ; null si le texte est vide.
+// Les contenus de l'écran Partager, pour un texte donné ; null si le texte est vide.
 export function contenusPartage(texte) {
   const apercu = preparerApercu(texte);
   if (apercu.vide) return null;
   return {
+    objet: apercu.objet || '',
     html: apercu.html,
     whatsapp: versionTexte(apercu.doc, true),
     texte: versionTexte(apercu.doc, false),
@@ -68,6 +72,8 @@ export function brancherPartage(fenetre, fonctions) {
   const consigneRepli = $('repli-consigne');
   const contenuRepli = $('repli-contenu');
   const boutonPartagerImage = $('partager-image');
+  const objetPartage = $('objet-partage');
+  const boutonObjet = $('copier-objet');
 
   // Texte au moment de la dernière copie pour Gmail ou du dernier export (EX-029, DEC-119).
   let misAbri = null;
@@ -112,6 +118,10 @@ export function brancherPartage(fenetre, fonctions) {
     dire('');
     cacherRepli();
     boutonPartagerImage.hidden = !fonctions.partage;
+    // L'objet est rappelé au-dessus de son bouton ; sans objet, le bouton est grisé.
+    const objet = c ? c.objet : '';
+    objetPartage.textContent = objet ? `Objet : ${objet}` : MESSAGES.objetAbsent;
+    boutonObjet.disabled = !objet;
     if (image && (!c || image.html !== c.html)) image = null;
   }
 
@@ -125,6 +135,11 @@ export function brancherPartage(fenetre, fonctions) {
 
   $('copier-whatsapp').addEventListener('click', () => copierVersion('whatsapp'));
   $('copier-texte').addEventListener('click', () => copierVersion('texte'));
+  // Copier l'objet seul ne met pas l'email à l'abri : l'avertissement reste (EX-029).
+  boutonObjet.addEventListener('click', () => {
+    const c = contenus();
+    if (c && c.objet) copierVersion('objet');
+  });
 
   $('copier-gmail').addEventListener('click', async () => {
     const c = contenus();

@@ -14,7 +14,8 @@ const IDS_APERCU = ['texte', 'note-pivot', 'apercu-vide', 'verification', 'lectu
   'panneau-pastilles', 'panneau-surtitre', 'panneau-conseil-surtitre', 'panneau-libelle-zone', 'panneau-libelle', 'panneau-fermer',
   'panneau-texte-zone', 'panneau-texte', 'panneau-autre', 'panneau-autre-message'];
 const IDS_PARTAGE = ['partage-vide', 'partage', 'retour-partager', 'retour-ecrire', 'repli', 'repli-consigne', 'repli-contenu', 'copier-whatsapp',
-  'enregistrer-image', 'partager-image', 'exporter', 'telecharger-brouillon', 'copier-gmail', 'copier-texte', 'copier-prompt', 'ouvrir-brouillon', 'prompt-repli'];
+  'enregistrer-image', 'partager-image', 'exporter', 'telecharger-brouillon', 'copier-gmail', 'copier-texte', 'copier-prompt', 'ouvrir-brouillon', 'prompt-repli',
+  'objet-partage', 'copier-objet'];
 
 const TEXTE = 'Objet : Café des parents ☕\n\nChers parents,\n\n## 🎉 Au programme\nVenez **nombreux**.\n\nBien cordialement,\nVos représentants FCPE';
 
@@ -72,7 +73,7 @@ test('US-021 : l’écran suit la maquette, relecture puis envoi, sans « Copier
   const html = lireDuSite('index.html');
   const partager = html.slice(html.indexOf('data-ecran="partager"'));
   const ordre = ['Pour la relecture (téléphone)', 'Copier pour WhatsApp', "Enregistrer l'image", "Partager l'image", 'Exporter le brouillon',
-    'Télécharger le brouillon', "Pour l'envoi (ordinateur)", "Copier l'email pour Gmail", 'Copier la version texte'];
+    'Télécharger le brouillon', "Pour l'envoi (ordinateur)", "Copier l'objet", "Copier l'email pour Gmail", 'Copier la version texte'];
   let position = -1;
   for (const libelle of ordre) {
     const i = partager.indexOf(libelle);
@@ -189,4 +190,43 @@ test('US-028 : une copie pour Gmail refusée ne compte pas comme mise à l’abr
   const p = page({ texte: TEXTE, copie: false });
   await p.toucher('copier-gmail');
   assert.equal(p.recharger(), true);
+});
+
+// Étape 6 : « Copier l'objet » (EX-009), demandé par Mat après la fin de l'étape 5.
+test('EX-009 : « Copier l’objet » copie l’objet seul, rappelé au-dessus du bouton, et le dit', async () => {
+  const p = page({ texte: TEXTE });
+  p.changerEcran();
+  assert.equal(p.elements['objet-partage'].textContent, 'Objet : Café des parents ☕');
+  assert.equal(p.elements['copier-objet'].disabled, false);
+  await p.toucher('copier-objet');
+  assert.deepEqual(p.copies, [{ 'text/plain': 'Café des parents ☕' }]);
+  assert.equal(p.elements['retour-partager'].textContent, MESSAGES.objet);
+});
+
+test('EX-009 : sans objet, le bouton est grisé et renvoie vers Vérifier', async () => {
+  const p = page({ texte: TEXTE.replace(/^Objet : .*\n\n/, '') });
+  p.changerEcran();
+  assert.equal(p.elements['copier-objet'].disabled, true);
+  assert.equal(p.elements['objet-partage'].textContent, MESSAGES.objetAbsent);
+  await p.toucher('copier-objet');
+  assert.deepEqual(p.copies, []);
+});
+
+test('EX-009 : l’objet copié suit l’objet changé ; copie refusée, il est montré sélectionné', async () => {
+  const p = page({ texte: TEXTE });
+  p.taper(TEXTE.replace('Café des parents ☕', 'Réunion de rentrée'));
+  p.changerEcran();
+  assert.equal(p.elements['objet-partage'].textContent, 'Objet : Réunion de rentrée');
+  const refus = page({ texte: TEXTE, copie: false });
+  await refus.toucher('copier-objet');
+  assert.equal(refus.elements.repli.hidden, false);
+  assert.equal(refus.elements['repli-contenu'].enfants[0].value, 'Café des parents ☕');
+});
+
+test('EX-029 : copier l’objet seul ne retire pas l’avertissement avant de recharger', async () => {
+  const p = page({ texte: TEXTE });
+  await p.toucher('copier-objet');
+  assert.equal(p.recharger(), true);
+  await p.toucher('copier-gmail');
+  assert.equal(p.recharger(), false);
 });

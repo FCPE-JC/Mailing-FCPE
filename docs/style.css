@@ -285,6 +285,9 @@ button.bouton { cursor: pointer; }
 .groupe { display: grid; gap: 10px; }
 .groupe h3 { margin: 0; font-size: 1rem; color: var(--doux); }
 .groupe .bouton { width: 100%; justify-content: flex-start; text-align: left; cursor: pointer; }
+.groupe .bouton:disabled { cursor: default; }
+/* Objet rappelé au-dessus de « Copier l'objet », pour voir ce qui sera copié (étape 6, EX-009). */
+.objet-partage { margin: 0; overflow-wrap: anywhere; }
 .repli { display: grid; gap: 8px; }
 .repli-contenu { margin: 0 -16px; overflow-x: auto; border-block: 1px solid var(--bord); }
 .repli-contenu textarea { width: 100%; border: 0; }
