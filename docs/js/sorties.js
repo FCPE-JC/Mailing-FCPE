@@ -8,7 +8,7 @@
 // du test T3 (dessin de l'email dans une image SVG, puis dans un canevas), une seule image
 // longue (DEC-056). Tout se fait dans la page : rien n'est envoyé ni enregistré (DEC-071).
 
-import { CHARTE } from '../parametres/charte.js?v=0.6.0';
+import { CHARTE } from '../parametres/charte.js?v=0.6.1';
 
 // Lettre, chiffre ou tiret bas, comme \w de Python.
 const MOT = '[\\p{L}\\p{N}_]';

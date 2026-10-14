@@ -5,7 +5,7 @@
 // Rien n'est conservé dans le navigateur (DEC-071) : un texte déjà écrit n'est remplacé
 // qu'après confirmation (DEC-127).
 
-import { MODELES } from '../parametres/modeles.js?v=0.6.0';
+import { MODELES } from '../parametres/modeles.js?v=0.6.1';
 
 export const MESSAGES_MODELE = Object.freeze({
   confirmation: 'Remplacer ton texte par le modèle ? Ton texte actuel sera perdu.',
