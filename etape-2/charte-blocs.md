@@ -43,7 +43,7 @@ Sept couleurs de fond et de texte au plus, contre huit couleurs de fond dans la 
 | Surtitre | 12 px, capitales, espacement 1,5 px | — | 800 | Alterné (voir bloc 3) |
 | Bouton | 15 px | — | 700 | Blanc sur bleu titre |
 | Lien de secours | 12 px | 1,4 | normale | #5f6f8c |
-| Clôture | 20 px | 1,4 | 800 | Bleu titre |
+| Clôture | 20 px | 1,4 | 700 (800 jusqu'au lot 6 de l'étape 5) | Bleu titre |
 | Signature | 15 px | 1,6 | formule normale, signataire en gras | Texte, signataire bleu titre |
 
 ## 4. Bibliothèque de blocs
@@ -74,7 +74,7 @@ Pour chaque bloc : rôle, rendu dans l'email, rendu dans la version WhatsApp (EX
 
 **10. Séparateur** — Filet gris 1 px #e2e0ee, marges 4 / 24 px, avant la clôture. WhatsApp et texte : une ligne vide. Pivot : `---`.
 
-**11. Clôture** — Phrase finale 20 px, graisse 800, bleu titre. Conseil : 80 caractères au plus. Pivot : le texte qui suit `---`.
+**11. Clôture** — Phrase finale 20 px, graisse 700 (800 jusqu'au lot 6 de l'étape 5 : Arial n'a pas de graisse 800, et Gmail Android affichait un gras plus large), bleu titre. Conseil : 80 caractères au plus. Pivot : le texte qui suit `---`.
 
 **12. Signature** — Formule de politesse (15 px) puis, à la ligne, le signataire en gras bleu titre. Valeur par défaut « Bien cordialement, / Vos représentants FCPE ». WhatsApp : signataire en gras. Pivot : la formule sur une ligne, le signataire sur la suivante. Depuis le lot 5, la formule est facultative : une signature sans formule s'écrit `::: signature` … `:::`, et sa première ligne est en gras bleu titre (DEC-114).
 
@@ -84,7 +84,7 @@ Pour chaque bloc : rôle, rendu dans l'email, rendu dans la version WhatsApp (EX
 
 **14. Encadré Important** — Pour une information à ne pas manquer (grève, fermeture, échéance). Fond #ebe9f7, bordure gauche 5 px bleu titre, coins 6 px, marges internes 14 / 18 px. Titre en surtitre « ⚠️ IMPORTANT » (ou « ATTENTION », « URGENT », « À RETENIR », « À NOTER », « RAPPEL » si le texte l’indique), puis le texte 16 px gras. Conseil : un seul par mail, placé le plus haut possible. WhatsApp : `⚠️ *IMPORTANT*` (ou le titre écrit, comme dans l'email, depuis le lot 5) puis le texte ; texte : `IMPORTANT` ou ce titre. Pivot : `::: important` … `:::`.
 
-**15. Date et lieu** — Pour une invitation ou un rendez-vous. Cadre 2 px #e2e0ee, coins 14 px, marges internes 14 / 18 px. Première ligne en 18 px graisse 800 bleu titre (la date et l'heure), lignes suivantes en 15 px texte (lieu, précisions). Émojis 🗓️ et 📍 en tête de ligne conseillés. WhatsApp et texte : les lignes telles quelles. Pivot : `::: date` … `:::`, une information par ligne.
+**15. Date et lieu** — Pour une invitation ou un rendez-vous. Cadre 2 px #e2e0ee, coins 14 px, marges internes 14 / 18 px. Première ligne en 18 px graisse 700 (800 jusqu'au lot 6 de l'étape 5, comme la clôture) bleu titre (la date et l'heure), lignes suivantes en 15 px texte (lieu, précisions). Émojis 🗓️ et 📍 en tête de ligne conseillés. WhatsApp et texte : les lignes telles quelles. Pivot : `::: date` … `:::`, une information par ligne.
 
 ## 5. Mode sombre
 

@@ -7,13 +7,13 @@
 // copie à la main (DEC-118 pour l'email). Le texte est toujours celui de la zone de l'écran Écrire : les corrections
 // de l'écran Vérifier y sont déjà écrites (DEC-103).
 
-import { preparerApercu } from './apercu.js?v=0.5.3';
-import { ecrirePivot } from './pivot.js?v=0.5.3';
-import { PROMPT_IA } from '../parametres/prompt-ia.js?v=0.5.3';
+import { preparerApercu } from './apercu.js?v=0.6.0';
+import { ecrirePivot } from './pivot.js?v=0.6.0';
+import { PROMPT_IA } from '../parametres/prompt-ia.js?v=0.6.0';
 import {
   versionTexte, nomDeFichier, aProteger, copierTexte, copierEmail, selectionner,
   creerImage, telecharger, partagerFichier,
-} from './sorties.js?v=0.5.3';
+} from './sorties.js?v=0.6.0';
 
 // Messages affichés après chaque geste.
 export const MESSAGES = Object.freeze({
@@ -95,6 +95,7 @@ export function brancherPartage(fenetre, fonctions) {
       const zone = doc.createElement('textarea');
       zone.readOnly = true;
       zone.rows = 8;
+      zone.setAttribute('aria-label', 'Texte à copier'); // US-037 : un champ a toujours un nom
       zone.value = texte;
       contenuRepli.replaceChildren(zone);
     }

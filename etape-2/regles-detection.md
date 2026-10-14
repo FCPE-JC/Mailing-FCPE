@@ -137,7 +137,8 @@ Les règles ci-dessous sont proposées. Les seuils viennent de mes connaissances
 
 Si aucun objet n'est écrit, l'outil propose :
 - le surtitre de la première section ;
-- sinon, le début de l'accroche coupé à 50 caractères ;
-- et toujours les objets types du modèle choisi : « Merci pour… », « Invitation : … le … », « Conseil d'école du … : vos questions », « Votre avis sur … », « ⚠️ … : information importante ».
+- sinon, le début de l'accroche coupé à 50 caractères.
+
+Les objets types (« Merci pour… », « Invitation : … le … », « Conseil d'école du … : vos questions », « Votre avis sur … », « ⚠️ … : information importante ») ne sont pas proposés par l'aide : chacun est écrit à la ligne « Objet : » de son modèle type (`docs/parametres/modeles.js`, lot 6 de l'étape 5), puisque l'outil ne garde pas en mémoire le modèle choisi.
 
 Le rédacteur garde la main.

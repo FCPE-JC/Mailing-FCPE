@@ -115,7 +115,7 @@ def html_email(doc, logo):
     out = []
     a = out.append
     a(f'<!DOCTYPE html>\n<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>{html.escape(doc["objet"] or "Email FCPE")}</title></head>')
-    a(f'<body style="margin:0;padding:0;background:{C["fond"]};{F}color:{C["texte"]};">')
+    a(f'<body lang="fr" style="margin:0;padding:0;background:{C["fond"]};{F}color:{C["texte"]};">')
     a(f'{tbl("width=\"100%\"")} style="background:{C["fond"]};"><tr><td align="center" style="padding:24px 8px;">')
     a(f'{tbl("width=\"100%\"")} style="max-width:640px;background:{C["carte"]};border-radius:20px;">')
     a(f'<tr><td style="padding:24px 32px 22px;background:{C["entete"]};border-radius:20px 20px 0 0;">{tbl("width=\"100%\"")}><tr>'
@@ -151,7 +151,7 @@ def html_email(doc, logo):
             elif ty == 'liste':
                 a(f'{tbl("width=\"100%\"")} style="margin:0 0 {mb};">')
                 for it in v:
-                    a(f'<tr><td width="22" valign="top" style="{F}font-size:16px;line-height:1.6;color:{C["vert"]};font-weight:700;">●</td>'
+                    a(f'<tr><td width="22" valign="top" aria-hidden="true" style="{F}font-size:16px;line-height:1.6;color:{C["vert"]};font-weight:700;">●</td>'
                       f'<td valign="top" style="{F}font-size:16px;line-height:1.6;color:{C["texte"]};padding:0 0 6px;">{en_ligne(it)}</td></tr>')
                 a('</table>')
             elif ty == 'bouton':
@@ -170,13 +170,13 @@ def html_email(doc, logo):
             elif ty == 'date':
                 a(f'{tbl("width=\"100%\"")} style="margin:0 0 {mb};"><tr><td style="border:2px solid {C["trait"]};border-radius:14px;padding:14px 18px;">')
                 for q, x in enumerate(v):
-                    taille, poids, coul = ('18px', '800', C['bleu']) if q == 0 else ('15px', '400', C['texte'])
+                    taille, poids, coul = ('18px', '700', C['bleu']) if q == 0 else ('15px', '400', C['texte'])
                     a(f'<p style="{F}font-size:{taille};line-height:1.5;margin:0 0 {"6px" if q < len(v)-1 else "0"};color:{coul};font-weight:{poids};">{en_ligne(x)}</p>')
                 a('</td></tr></table>')
         a('</td></tr></table>')
     if doc['cloture']:
         a(f'<div style="border-top:1px solid {C["trait"]};margin:4px 0 24px;height:1px;line-height:1px;font-size:1px;">&nbsp;</div>')
-        a(f'<p style="{F}font-size:20px;line-height:1.4;margin:0 0 14px;color:{C["bleu"]};font-weight:800;">{en_ligne(doc["cloture"])}</p>')
+        a(f'<p style="{F}font-size:20px;line-height:1.4;margin:0 0 14px;color:{C["bleu"]};font-weight:700;">{en_ligne(doc["cloture"])}</p>')
     if doc['signature']:
         f_, s_ = doc['signature']
         a(f'<p style="{F}font-size:15px;line-height:1.6;margin:0;color:{C["texte"]};">{html.escape(f_)}' + (f'<br><strong style="color:{C["bleu"]};">{html.escape(s_)}</strong>' if s_ else '') + '</p>')

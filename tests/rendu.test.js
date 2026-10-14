@@ -17,8 +17,8 @@ const source = nom => SOURCES[nom] || `etape-2/specimens/${nom}.md`;
 
 // Ce que rendu.py écrit dans <body>, mis sous la forme copiée dans Gmail (T1, T5).
 function attendu(reference) {
-  const m = reference.match(/<body style="([^"]*)">([\s\S]*)<\/body>/);
-  return `<div style="${m[1]}">${m[2].trim()}</div>`;
+  const m = reference.match(/<body([^>]*)>([\s\S]*)<\/body>/);
+  return `<div${m[1]}>${m[2].trim()}</div>`;
 }
 
 // Différences admises : l'en-tête (V1 depuis DEC-078), le logo, les espaces entre balises,
@@ -76,7 +76,7 @@ test('US-008 : styles en ligne seulement, sans bloc <style> ni classe', () => {
   const html = rendreEmail(lirePivot(lireDuDepot(SOURCES['email-test-15-blocs.pivot'])));
   assert.ok(!/<style/i.test(html));
   assert.ok(!/\sclass=/i.test(html));
-  assert.ok(html.startsWith(`<div style="${styleConteneur()}">`));
+  assert.ok(html.startsWith(`<div lang="fr" style="${styleConteneur()}">`));
 });
 
 test('US-008 : toutes les couleurs du rendu viennent de la charte', () => {

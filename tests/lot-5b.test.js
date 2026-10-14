@@ -19,7 +19,7 @@ const SIG = 'Chers parents,\n\n## 🎉 Fête\nVenez nombreux.\n\n---\nÀ l’ann
 
 // --- US-029 : pastilles (DEC-109) ---
 
-test('US-029 : les six nouvelles pastilles sont proposées, dix-sept en tout, avec un seul calendrier (DEC-109)', () => {
+test('US-029 : les six nouvelles pastilles sont proposées, dix-sept en tout, avec un seul calendrier (DEC-109, DEC-124)', () => {
   assert.equal(PASTILLES.length, 17);
   for (const p of ['📢', '📚', '👨‍👩‍👧‍👦', '🗣️', '♻️', '🙋']) assert.ok(PASTILLES.includes(p), p);
   assert.ok(PASTILLES.includes('🗓️') && !PASTILLES.includes('📅'));
@@ -222,7 +222,7 @@ test('US-014 : les lignes ``` qui encadrent le texte collé sont ignorées (DEC-
   assert.equal(retirerBlocCode('```\nx'), '```\nx');
 });
 
-// --- Numéro de version des fichiers (essai du lot 5a) ---
+// --- Numéro de version des fichiers (essai du lot 5a, DEC-123) ---
 
 const VERSION = JSON.parse(lireDuDepot('package.json')).version;
 
