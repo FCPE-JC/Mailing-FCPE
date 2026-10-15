@@ -4,13 +4,24 @@
 <meta charset="UTF-8">
 <!-- Règle de sécurité (US-002, DEC-070, TEC-004) : aucune requête réseau lancée par le code
      (connect-src 'none') ; seuls les fichiers du site, les images intégrées (data:) et celles
-     créées par la page (blob:) sont permis. Elle doit rester la première ligne après charset. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+     créées par la page (blob:) sont permis. manifest-src 'self' laisse le navigateur lire le
+     manifeste du site pour installer l'outil comme une application (version 1.1.0, décision
+     de Mat du 15/10/2026) ; rien n'est gardé hors connexion. Elle doit rester la première
+     ligne après charset. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; manifest-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
 <title>Mailing-FCPE</title>
-<link rel="stylesheet" href="style.css?v=1.0.0">
-<script type="module" src="js/demarrage.js?v=1.0.0"></script>
+<!-- Installation sur l'écran d'accueil du téléphone (version 1.1.0) : nom, icône, plein écran.
+     La couleur de la barre est dans le manifeste, recopiée de charte.js (vérifié par
+     tests/application.test.js) : aucune couleur de la charte dans ce fichier (US-004). -->
+<link rel="manifest" href="manifest.webmanifest?v=1.1.0">
+<link rel="apple-touch-icon" href="icones/apple-touch-icon-180.png?v=1.1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Mailing FCPE">
+<link rel="stylesheet" href="style.css?v=1.1.0">
+<script type="module" src="js/demarrage.js?v=1.1.0"></script>
 </head>
 <body>
 
@@ -147,7 +158,7 @@
 
   <footer class="pied">
     <p>🔒 Ton texte ne quitte pas cet appareil ; il disparaît à la fermeture de la page.</p>
-    <p class="version">Version 1.0.0</p>
+    <p class="version">Version 1.1.0</p>
   </footer>
 </div>
 

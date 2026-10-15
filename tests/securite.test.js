@@ -8,10 +8,13 @@ import { fichiersDuSite, lireDuSite } from './aides.js';
 const PAGES = fichiersDuSite(['.html']);
 const CODE = fichiersDuSite(['.js', '.css', '.html']);
 
-// La règle exigée, directive par directive.
+// La règle exigée, directive par directive. manifest-src 'self' (version 1.1.0, décision de Mat
+// du 15/10/2026) laisse le navigateur lire le manifeste du site pour installer l'outil comme une
+// application ; connect-src reste à 'none'.
 const DIRECTIVES_EXIGEES = [
   "default-src 'none'",
   "script-src 'self'",
+  "manifest-src 'self'",
   "connect-src 'none'",
   "form-action 'none'",
   "base-uri 'none'",

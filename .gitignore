@@ -20,6 +20,9 @@
 *.ods
 *.csv
 
+# Exception : icônes de l'application (version 1.1.0), faites à partir du logo dont l'usage est autorisé (DEC-013)
+!docs/icones/*.png
+
 # Logo extrait du modèle, à placer à la main à côté de rendu.py
 logo.datauri
 
