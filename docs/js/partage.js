@@ -8,13 +8,13 @@
 // copie à la main (DEC-118 pour l'email). Le texte est toujours celui de la zone de l'écran Écrire : les corrections
 // de l'écran Vérifier y sont déjà écrites (DEC-103).
 
-import { preparerApercu } from './apercu.js?v=0.6.1';
-import { ecrirePivot } from './pivot.js?v=0.6.1';
-import { PROMPT_IA } from '../parametres/prompt-ia.js?v=0.6.1';
+import { preparerApercu } from './apercu.js?v=1.0.0';
+import { ecrirePivot } from './pivot.js?v=1.0.0';
+import { PROMPT_IA } from '../parametres/prompt-ia.js?v=1.0.0';
 import {
   versionTexte, nomDeFichier, aProteger, copierTexte, copierEmail, selectionner,
   creerImage, telecharger, partagerFichier,
-} from './sorties.js?v=0.6.1';
+} from './sorties.js?v=1.0.0';
 
 // Messages affichés après chaque geste.
 export const MESSAGES = Object.freeze({

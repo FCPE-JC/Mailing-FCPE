@@ -72,7 +72,6 @@ p { margin: 0; }
   border-radius: 10px;
   font-size: .95rem;
 }
-.bandeau-construction { background: var(--construction-fond); color: var(--construction); font-weight: 600; text-align: center; }
 .bandeau-alerte { background: var(--alerte-fond); color: var(--alerte); }
 .bandeau-alerte ul { margin: 6px 0 0; padding-left: 20px; }
 .bandeau-alerte li + li { margin-top: 4px; }

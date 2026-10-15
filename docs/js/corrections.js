@@ -9,8 +9,8 @@
 // « 2.0 » (section 2, bloc 0), « 2.titre » (surtitre de la section 2), « cloture » ou
 // « signature ».
 
-import { libelleBouton, decouperDateLieu, marquerDateLieu } from './detection.js?v=0.6.1';
-import { signatureDe } from './pivot.js?v=0.6.1';
+import { libelleBouton, decouperDateLieu, marquerDateLieu } from './detection.js?v=1.0.0';
+import { signatureDe } from './pivot.js?v=1.0.0';
 
 // Les neuf types de la maquette, dans son ordre, puis la signature (DEC-114).
 export const TYPES = Object.freeze([

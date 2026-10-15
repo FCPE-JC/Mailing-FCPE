@@ -15,7 +15,7 @@ Outil qui transforme un texte brut en email aux couleurs du conseil local FCPE d
 | 6. Recette | Vérifier sur les vrais appareils | À venir |
 | 7. Mise à disposition | Diffuser et mesurer | À venir |
 
-L'outil est en construction : la page publiée affiche « Version en construction, ne pas utiliser pour un vrai mailing » jusqu'à la mise à disposition (étape 7). Il est publié par GitHub Pages depuis le dossier `docs/` (DEC-068) : https://mat130718.github.io/Mailing-FCPE/
+L'outil est disponible à l'adresse https://fcpe-jc.github.io/Mailing-FCPE/ . Il est publié par GitHub Pages depuis le dossier `docs/` (DEC-068) du dépôt [FCPE-JC/Mailing-FCPE](https://github.com/FCPE-JC/Mailing-FCPE).
 
 ## Contenu
 
@@ -54,7 +54,7 @@ La dernière ligne `# fail 0` signifie que tous les tests passent. Les mêmes te
 - Chaque fichier commence par un commentaire qui dit son rôle et les exigences ou US qu'il couvre.
 - Chaque test est nommé d'après l'US ou l'exigence qu'il vérifie (« US-002 : … »).
 - Aucune bibliothèque, aucune dépendance, aucune étape de construction (DEC-067).
-- Numéro de version (DEC-123) : celui de `package.json`, repris dans chaque adresse de fichier du site (`?v=0.6.1`) et dans le pied de page, pour que le navigateur charge les nouveaux fichiers après une mise à jour. À changer partout à chaque demande de fusion qui touche `docs/` ; un test vérifie qu'il est le même partout.
+- Numéro de version (DEC-123) : celui de `package.json`, repris dans chaque adresse de fichier du site (`?v=1.0.0`) et dans le pied de page, pour que le navigateur charge les nouveaux fichiers après une mise à jour. À changer partout à chaque demande de fusion qui touche `docs/` ; un test vérifie qu'il est le même partout.
 
 ## Documents de référence
 
